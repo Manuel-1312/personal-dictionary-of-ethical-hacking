@@ -22,5 +22,14 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 - `services/runner.py` → ejecuta scripts y devuelve salida
 - `build_exe.ps1` → empaqueta el launcher a `.exe`
 
+## Mejoras de esta fase
+La app ya tiene una base más usable:
+- buscador por categoría y texto
+- panel de detalle del script
+- caja para argumentos extra
+- botón para usar el comando de ejemplo como base
+- botón para copiar comando
+- consola con stdout/stderr y código de salida
+
 ## Nota
 El `.exe` está pensado para vivir junto al repositorio o dentro de él, usando sus carpetas reales como motor.

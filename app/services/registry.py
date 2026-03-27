@@ -31,7 +31,7 @@ def parse_markdown_table(lines: Iterable[str], toolkit_path: Path, category: str
         stripped = line.strip()
         if not stripped.startswith("|"):
             continue
-        if "---" in stripped or "Script" in stripped and "Comando" in stripped:
+        if "---" in stripped or ("Script" in stripped and "Comando" in stripped):
             continue
         parts = [part.strip() for part in stripped.strip("|").split("|")]
         if len(parts) < 4:
@@ -39,7 +39,15 @@ def parse_markdown_table(lines: Iterable[str], toolkit_path: Path, category: str
         script = parts[0].strip("`")
         description = parts[2] if len(parts) >= 3 else ""
         example = parts[3].strip("`") if len(parts) >= 4 else ""
-        entries.append(ScriptEntry(category=category, script=script, description=description, example=example, source_toolkit=toolkit_path))
+        entries.append(
+            ScriptEntry(
+                category=category,
+                script=script,
+                description=description,
+                example=example,
+                source_toolkit=toolkit_path,
+            )
+        )
     return entries
 
 
