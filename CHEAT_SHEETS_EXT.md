@@ -110,6 +110,20 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - Respeta los límites de APIs (Shodan, Censys, SecurityTrails).
 
 ---
+## ⚡ PowerShell para Windows y automatización ligera
+- `pwsh -File powershell/system/system_report.ps1` → resumen corto de sistema, modelo, memoria, BIOS y arranque.
+- `pwsh -File powershell/system/process_snapshot.ps1 -Output reports/processes.csv` → snapshot de procesos para revisar luego con calma.
+- `pwsh -File powershell/system/scheduled_tasks_export.ps1 -Output reports/tasks.json` → exporta tareas programadas a JSON.
+- `pwsh -File powershell/files/large_files_finder.ps1 -Path $HOME -MinMb 100` → caza archivos grandes rápidamente.
+- `pwsh -File powershell/network/net_connections_report.ps1 -Output reports/connections.csv` → conexiones TCP activas con proceso asociado.
+- `pwsh -File powershell/fun/ascii_status_card.ps1 -Title LAB -Status ACTIVE` → porque hasta PowerShell se merece un poco de estética.
+
+### Recomendaciones personales
+1. Úsalo para scripts realmente pegados a Windows: servicios, tareas, red local, escritorio y reporting rápido.
+2. Si luego metes más de 15–20 scripts, quizá compense organizar ejemplos y outputs por subcarpeta.
+3. Mantén el estilo simple: PowerShell luce mucho mejor cuando no intentas convertirlo en un framework.
+
+---
 ## 🐍 Python Tools y scripts propios
 - `python python/log_parser.py --input defense/monitoring/logs/zeek.log --output automation/reporting/results/zeek-summary.csv` → parsea logs Zeek/Suricata y genera CSV/markdown con IPs/puertos.
 - `python python/inventory_builder.py --nmap reports/network/nmap-full.xml --masscan reports/network/masscan.gnmap --out reports/network/inventory.md` → normaliza escaneos y crea un inventario comprimido.
