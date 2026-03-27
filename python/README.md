@@ -10,6 +10,7 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 - `reporting/` → conversión de resultados técnicos en informes Markdown reutilizables.
 - `ad/` → helpers para documentar mejor casos de Active Directory en laboratorio.
 - `requirements.txt` → dependencias comunes.
+- `DEPENDENCIES.md` → mapa rápido de dependencias Python y herramientas externas por script.
 - `toolkit.md` → catálogo vivo de scripts y ejemplos de uso.
 - `ROADMAP.md` → ideas priorizadas para futuras ampliaciones.
 

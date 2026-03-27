@@ -82,6 +82,8 @@ La fase 3 añade una capa más práctica para forense y evidencia: resumen de PC
 
 La fase 4 remata esa línea con más utilidades de conversión y trazabilidad: parser de Masscan a CSV, manifiestos de capturas web, conversión de CSV a Markdown y plantillas de cadena de custodia.
 
+Y para no perder de vista qué necesita cada helper, la carpeta ya incluye `python/DEPENDENCIES.md`, donde se separan dependencias de `pip` y herramientas externas del sistema como `tshark`.
+
 ## 📘 Cheat Sheets & Referencias rápidas
 - `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
 - `CHEAT_SHEETS_EXT.md`: guía extendida con técnicas, comandos, scripts, recursos premium y plantillas adjuntas para cada bloque.
