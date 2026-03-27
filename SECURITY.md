@@ -1,9 +1,7 @@
 # Security Policy
 
 ## Reporting a Vulnerability
-Si encuentras un fallo de seguridad, por favor usa uno de los siguientes canales antes de publicarlo:
-1. Abre una [Security Advisory privada](https://github.com/Manuel-1312/personal-dictionary-of-ethical-hacking/security/advisories) en GitHub.
-2. Envía un correo a `security@manuel-sanchez-brito.com` (si prefieres hablar en privado) y menciona claramente qué componente afecta.
+Si encuentras un fallo de seguridad, por favor usa uno de los siguientes canales antes de publicarlo Abre una [Security Advisory privada](https://github.com/Manuel-1312/personal-dictionary-of-ethical-hacking/security/advisories) en GitHub.
 
 Incluye pasos para reproducir, el impacto esperado y cómo podría mitigarse.
 
