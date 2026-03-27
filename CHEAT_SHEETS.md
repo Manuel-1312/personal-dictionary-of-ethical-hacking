@@ -45,6 +45,15 @@ Este archivo recoge los comandos y técnicas clave que ya documentaste en cada s
 - Técnica: usa snapshots antes de los playbooks y vuelve al estado base para repetir flujos.
 - Recomendación: mantén los scripts versionados y documenta qué variables actuales se reemplazan en cada ejecución.
 
+## PowerShell
+- `pwsh -File powershell/system/system_report.ps1` → resumen rápido del equipo Windows.
+- `pwsh -File powershell/system/service_report.ps1 -Output reports/services.csv` → export de servicios.
+- `pwsh -File powershell/files/desktop_inventory.ps1 -Output reports/desktop.csv` → inventario del escritorio.
+- `pwsh -File powershell/network/local_network_snapshot.ps1 -Output reports/network.json` → snapshot de la red local.
+- `pwsh -File powershell/reporting/markdown_table_from_csv.ps1 -Input data.csv -Output table.md` → pasar CSV a Markdown.
+- Técnica: ideal para automatización ligera, inventario y reporting en Windows sin meter demasiadas dependencias.
+- Recomendación: si el script toca mucho el sistema, deja siempre un output exportable para revisar después.
+
 ## Exploitation (Lab)
 - `msfconsole -q` → abrir workspace limpio para validar hallazgos en un entorno controlado.
 - `searchsploit --nmap reports/network/nmap-full.xml` → relacionar banners/versiones con referencias públicas.
