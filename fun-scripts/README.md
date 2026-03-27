@@ -25,6 +25,10 @@ Una mezcla de scripts:
 - `ascii_separator_generator.py` → separadores bonitos para notas, terminal y READMEs
 - `ascii_skull.py` → una calavera ASCII minimalista y descaradamente innecesaria
 - `ascii_lab_card.py` → tarjeta ASCII para nombrar labs, casos o sesiones
+- `ascii_network_map.py` → mini mapas ASCII de nodos o flujos
+- `ascii_progress_bar.py` → barras de progreso con sabor terminal
+- `ascii_terminal_frame.py` → marcos tipo terminal para texto o mensajes
+- `ascii_badge_maker.py` → badges ASCII simples para dejar títulos más vistosos
 - `lab_quote_generator.py` → frases de laboratorio con energía de terminal trasnochada
 - `fake_breach_report.py` → informes ficticios para practicar reporting sin dramas reales
 - `terminal_glitch_text.py` → texto con efecto raro/glitch para postureo sano
