@@ -8,6 +8,7 @@ Esta carpeta reúne utilidades PowerShell pensadas para Windows, inventario, rep
 - `network/` → instantáneas de red local, conexiones y comprobaciones básicas.
 - `reporting/` → conversión de datos a formatos más legibles y plantillas rápidas.
 - `fun/` → pequeños scripts visuales o simpáticos para consola y demos.
+- `DEPENDENCIES.md` → mapa rápido de requisitos, cmdlets y utilidades del sistema por categoría.
 
 ## Filosofía
 - scripts sencillos
