@@ -16,7 +16,8 @@ class ToolboxApp:
         self.root = root
         self.repo_root = repo_root
         self.root.title('Hacking Toolbox')
-        self.root.geometry('1260x780')
+        self.root.geometry('1320x820')
+        self.root.minsize(1100, 700)
         self.entries = load_registry(repo_root)
         self.filtered: list[ScriptEntry] = []
         self.state = load_state(repo_root)
@@ -29,16 +30,56 @@ class ToolboxApp:
         self.status_var = tk.StringVar(value=f'Repo: {repo_root}')
         self.only_favorites_var = tk.BooleanVar(value=False)
 
+        self.setup_style()
         self.build_ui(categories)
         self.refresh_list()
         self.refresh_history()
 
-    def build_ui(self, categories: list[str]):
-        container = ttk.Frame(self.root, padding=10)
-        container.pack(fill='both', expand=True)
+    def setup_style(self):
+        style = ttk.Style()
+        try:
+            style.theme_use('clam')
+        except tk.TclError:
+            pass
+        self.root.configure(bg='#0f172a')
+        style.configure('App.TFrame', background='#0f172a')
+        style.configure('Panel.TFrame', background='#111827')
+        style.configure('Card.TFrame', background='#1f2937')
+        style.configure('Title.TLabel', background='#0f172a', foreground='#f9fafb', font=('Segoe UI', 18, 'bold'))
+        style.configure('Subtitle.TLabel', background='#111827', foreground='#d1d5db', font=('Segoe UI', 10))
+        style.configure('PanelTitle.TLabel', background='#111827', foreground='#f9fafb', font=('Segoe UI', 11, 'bold'))
+        style.configure('Small.TLabel', background='#111827', foreground='#9ca3af', font=('Segoe UI', 9))
+        style.configure('TLabel', background='#111827', foreground='#e5e7eb')
+        style.configure('TCheckbutton', background='#111827', foreground='#e5e7eb')
+        style.configure('TButton', padding=6)
+        style.configure('TEntry', padding=4)
+        style.configure('TCombobox', padding=4)
 
-        left = ttk.Frame(container)
-        left.pack(side='left', fill='y', padx=(0, 10))
+    def build_ui(self, categories: list[str]):
+        shell = ttk.Frame(self.root, style='App.TFrame', padding=12)
+        shell.pack(fill='both', expand=True)
+
+        header = ttk.Frame(shell, style='App.TFrame')
+        header.pack(fill='x', pady=(0, 10))
+        ttk.Label(header, text='Hacking Toolbox', style='Title.TLabel').pack(anchor='w')
+        ttk.Label(
+            header,
+            text='Launcher del repositorio: categorías, scripts, favoritos e historial en una sola vista.',
+            style='Subtitle.TLabel',
+        ).pack(anchor='w')
+
+        body = ttk.Panedwindow(shell, orient='horizontal')
+        body.pack(fill='both', expand=True)
+
+        left = ttk.Frame(body, style='Panel.TFrame', padding=10)
+        center = ttk.Frame(body, style='Panel.TFrame', padding=10)
+        right = ttk.Frame(body, style='Panel.TFrame', padding=10)
+        body.add(left, weight=2)
+        body.add(center, weight=4)
+        body.add(right, weight=2)
+
+        ttk.Label(left, text='Explorar scripts', style='PanelTitle.TLabel').pack(anchor='w')
+        ttk.Label(left, text='Filtra por categoría o busca por texto.', style='Small.TLabel').pack(anchor='w', pady=(0, 8))
 
         ttk.Label(left, text='Categoría').pack(anchor='w')
         self.category_box = ttk.Combobox(left, textvariable=self.category_var, values=categories, state='readonly')
@@ -50,48 +91,93 @@ class ToolboxApp:
         search.pack(fill='x')
         search.bind('<KeyRelease>', lambda e: self.refresh_list())
 
-        ttk.Checkbutton(left, text='Solo favoritos', variable=self.only_favorites_var, command=self.refresh_list).pack(anchor='w', pady=(8, 0))
+        ttk.Checkbutton(left, text='Solo favoritos', variable=self.only_favorites_var, command=self.refresh_list).pack(anchor='w', pady=(10, 4))
 
-        self.listbox = tk.Listbox(left, width=44, height=30)
-        self.listbox.pack(fill='both', expand=True, pady=(10, 0))
+        self.listbox = tk.Listbox(
+            left,
+            width=42,
+            height=30,
+            bg='#0b1220',
+            fg='#e5e7eb',
+            selectbackground='#2563eb',
+            selectforeground='white',
+            relief='flat',
+            highlightthickness=0,
+            activestyle='none',
+        )
+        self.listbox.pack(fill='both', expand=True, pady=(8, 0))
         self.listbox.bind('<<ListboxSelect>>', lambda e: self.show_selected())
         self.listbox.bind('<Double-Button-1>', lambda e: self.run_selected())
 
-        right = ttk.Frame(container)
-        right.pack(side='left', fill='both', expand=True)
+        ttk.Label(center, text='Detalle del script', style='PanelTitle.TLabel').pack(anchor='w')
+        ttk.Label(center, text='Revisa descripción, usa el ejemplo como base y ejecuta desde aquí.', style='Small.TLabel').pack(anchor='w', pady=(0, 8))
 
-        self.title_label = ttk.Label(right, text='Selecciona un script', font=('Segoe UI', 14, 'bold'))
-        self.title_label.pack(anchor='w')
+        self.title_label = ttk.Label(center, text='Selecciona un script', style='Title.TLabel')
+        self.title_label.pack(anchor='w', pady=(0, 8))
 
-        meta = ttk.Frame(right)
-        meta.pack(fill='x', pady=(8, 6))
-        ttk.Label(meta, text='Argumentos extra:').pack(anchor='w')
-        ttk.Entry(meta, textvariable=self.args_var).pack(fill='x')
+        meta_card = ttk.Frame(center, style='Card.TFrame', padding=10)
+        meta_card.pack(fill='x', pady=(0, 10))
+        ttk.Label(meta_card, text='Argumentos extra', style='PanelTitle.TLabel').pack(anchor='w')
+        ttk.Entry(meta_card, textvariable=self.args_var).pack(fill='x', pady=(6, 0))
 
-        self.desc = tk.Text(right, height=12, wrap='word')
-        self.desc.pack(fill='x', pady=(8, 8))
+        self.desc = tk.Text(
+            center,
+            height=11,
+            wrap='word',
+            bg='#0b1220',
+            fg='#e5e7eb',
+            insertbackground='white',
+            relief='flat',
+            highlightthickness=0,
+            padx=10,
+            pady=10,
+        )
+        self.desc.pack(fill='x', pady=(0, 10))
 
-        btns = ttk.Frame(right)
-        btns.pack(fill='x')
+        btns = ttk.Frame(center, style='Panel.TFrame')
+        btns.pack(fill='x', pady=(0, 10))
         ttk.Button(btns, text='Ejecutar', command=self.run_selected).pack(side='left')
         ttk.Button(btns, text='Usar ejemplo', command=self.use_example_args).pack(side='left', padx=(8, 0))
         ttk.Button(btns, text='Copiar comando', command=self.copy_command).pack(side='left', padx=(8, 0))
         ttk.Button(btns, text='Favorito ★', command=self.toggle_selected_favorite).pack(side='left', padx=(8, 0))
         ttk.Button(btns, text='Refrescar', command=self.reload_registry).pack(side='left', padx=(8, 0))
 
-        ttk.Label(right, text='Salida').pack(anchor='w', pady=(12, 0))
-        self.output = tk.Text(right, wrap='word', height=18)
+        ttk.Label(center, text='Salida', style='PanelTitle.TLabel').pack(anchor='w')
+        self.output = tk.Text(
+            center,
+            wrap='word',
+            height=18,
+            bg='#020617',
+            fg='#d1fae5',
+            insertbackground='white',
+            relief='flat',
+            highlightthickness=0,
+            padx=10,
+            pady=10,
+        )
         self.output.pack(fill='both', expand=True)
 
-        history_frame = ttk.Frame(container)
-        history_frame.pack(side='left', fill='y', padx=(10, 0))
-        ttk.Label(history_frame, text='Historial').pack(anchor='w')
-        self.history_list = tk.Listbox(history_frame, width=36, height=30)
+        ttk.Label(right, text='Historial', style='PanelTitle.TLabel').pack(anchor='w')
+        ttk.Label(right, text='Tus últimas ejecuciones quedan aquí para reutilizarlas rápido.', style='Small.TLabel').pack(anchor='w', pady=(0, 8))
+        self.history_list = tk.Listbox(
+            right,
+            width=36,
+            height=30,
+            bg='#0b1220',
+            fg='#e5e7eb',
+            selectbackground='#7c3aed',
+            selectforeground='white',
+            relief='flat',
+            highlightthickness=0,
+            activestyle='none',
+        )
         self.history_list.pack(fill='both', expand=True)
         self.history_list.bind('<<ListboxSelect>>', lambda e: self.use_history_item())
 
-        status = ttk.Label(self.root, textvariable=self.status_var, anchor='w')
-        status.pack(fill='x', padx=10, pady=(0, 8))
+        footer = ttk.Frame(shell, style='App.TFrame')
+        footer.pack(fill='x', pady=(8, 0))
+        status = ttk.Label(footer, textvariable=self.status_var, style='Small.TLabel', anchor='w')
+        status.pack(fill='x')
 
     def refresh_list(self):
         category = self.category_var.get().strip()
@@ -120,7 +206,8 @@ class ToolboxApp:
     def refresh_history(self):
         self.history_list.delete(0, tk.END)
         for item in self.state.get('history', []):
-            self.history_list.insert(tk.END, f"{item.get('time','')} | {item.get('script','')}")
+            exit_code = item.get('exit_code', '?')
+            self.history_list.insert(tk.END, f"[{exit_code}] {item.get('time','')} | {item.get('script','')}")
 
     def selected_entry(self) -> ScriptEntry | None:
         sel = self.listbox.curselection()
@@ -137,7 +224,7 @@ class ToolboxApp:
         self.title_label.config(text=favorite_mark + entry.script)
         self.desc.delete('1.0', tk.END)
         self.desc.insert(tk.END, f'Categoría: {entry.category}\n')
-        self.desc.insert(tk.END, f'Ruta: {entry.relative_path}\n')
+        self.desc.insert(tk.END, f'Ruta relativa: {entry.relative_path}\n')
         self.desc.insert(tk.END, f'Descripción: {entry.description}\n\n')
         self.desc.insert(tk.END, f'Ejemplo: {entry.example or "(sin ejemplo)"}\n')
         self.desc.insert(tk.END, f'Toolkit: {entry.source_toolkit}\n')
@@ -210,12 +297,13 @@ class ToolboxApp:
         script_name = item.get('script', '')
         args = item.get('args', '')
         self.args_var.set(args)
-        for idx, entry in enumerate(self.filtered):
-            if entry.script == script_name:
-                self.listbox.selection_clear(0, tk.END)
-                self.listbox.selection_set(idx)
-                self.show_selected()
-                break
+        if self.filtered:
+            for idx, entry in enumerate(self.filtered):
+                if entry.script == script_name:
+                    self.listbox.selection_clear(0, tk.END)
+                    self.listbox.selection_set(idx)
+                    self.show_selected()
+                    break
         self.status_var.set('Historial cargado en argumentos.')
 
     def reload_registry(self):

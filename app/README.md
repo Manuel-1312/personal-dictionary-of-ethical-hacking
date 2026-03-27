@@ -19,6 +19,16 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 - fallbacks de ejecución para Windows (`python` / `py -3`, `pwsh` / `powershell`)
 - empaquetado a `.exe` con `PyInstaller`
 
+## Qué está mejor ahora
+La interfaz ya no se siente tan de prototipo:
+- layout en paneles más claro
+- cabecera y textos de contexto
+- caja de detalle más legible
+- consola de salida con mejor contraste
+- historial más visible
+- favoritos mejor integrados
+- doble clic para ejecutar
+
 ## Archivos principales
 - `main.py` → arranque de la app
 - `services/registry.py` → descubre scripts desde el repo
@@ -26,17 +36,6 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 - `services/state.py` → guarda favoritos e historial local
 - `services/paths.py` → detecta la ruta real del repo
 - `build_exe.ps1` → empaqueta el launcher a `.exe`
-
-## Mejoras de esta fase
-La app ya tiene una base más utilizable de verdad:
-- buscador por categoría y texto
-- panel de detalle del script
-- caja para argumentos extra
-- botón para usar el comando de ejemplo como base
-- botón para copiar comando
-- favoritos
-- historial local de ejecuciones
-- consola con stdout/stderr y código de salida
 
 ## Nota
 El `.exe` está pensado para vivir junto al repositorio o dentro de él, usando sus carpetas reales como motor.
