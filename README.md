@@ -2,6 +2,8 @@
 
 
 [![Ethical Lab](https://img.shields.io/badge/Ethical-Lab-blueviolet?logo=shield&logoColor=white)](README.md)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Active-green)](CODE_OF_CONDUCT.md)
 
 **Autor:** Manuel Sánchez Brito · [LinkedIn](https://www.linkedin.com/in/manuel-sanchez-brito)
 
@@ -14,7 +16,17 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 1. Clona el repositorio y crea tu entorno (puede ser WSL, VM o contenedor).
 2. Lee `README.md` para orientarte sobre la estructura.
 3. Consulta los `toolkit.md` de cada carpeta para ver herramientas recomendadas.
-5. Siempre mantén el entorno aislado y sigue el código de conducta.
+4. Siempre mantén el entorno aislado y sigue el código de conducta.
+
+## 🔗 Enlaces rápidos
+| Recurso | Descripción |
+| --- | --- |
+| [README.md](README.md) | Esta guía vive aquí; incluye acceso directo a todas las carpetas principales. |
+| [conceptos/diccionario.md](conceptos/diccionario.md) | Diccionario de términos tecnológicos explicado de forma sencilla. |
+| [wifi/toolkit.md](wifi/toolkit.md) | Colección en profundidad para auditorías inalámbricas. |
+| [web/toolkit.md](web/toolkit.md) | Referencias a proxies, fuzzers y laboratorios web. |
+| [defense/toolkit.md](defense/toolkit.md) | Sensores, hunting y dashboards; ideal si trabajas en detección. |
+| [automation/reporting/toolkit.md](automation/reporting/toolkit.md) | Plantillas y scripts para automatizar informes. |
 
 ## 🧭 Sección de recursos
 - **Documentación:** https://docs.owasp.org/ (OWASP Guides) y https://www.lvh.io/ (laboratorios vulnerables).
