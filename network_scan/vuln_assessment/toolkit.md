@@ -1,26 +1,34 @@
 # Toolkit - Evaluación de Vulnerabilidades ⚠️
 
-Catálogo de herramientas para la fase de validación. Cada fila añade comando típico, output y lo que hice personalmente con ese hallazgo.
+Catálogo de herramientas para validar hallazgos de vulnerabilidades en laboratorios y entornos autorizados. Aquí lo importante no es solo detectar, sino poder justificar por qué confías —o no— en cada resultado.
 
-| Herramienta | Enlace | Objetivo | Notas reales |
-| --- | --- | --- | --- |
-| nmap + Vulscan | https://github.com/scipag/vulscan | CVE detection | Conservo XML en `reports/network/vulscan/` y documento los IDs encontrados.
-| Greenbone/OpenVAS | https://www.greenbone.net/ | Escaneo profundo | Uso una política `light` y anoto cuántos falsos positivos fueron descartados.
-| Nikto + Gobuster | https://github.com/sullo/nikto | Cabeceras/dirs | Los logs van a `reports/network/nikto/`, memorizo qué cabeceras inseguros aparecieron.
-| Lynis | https://github.com/CISOfy/lynis | Auditoría host | `lynis audit system` y guardo `lynis-report.dat` para comparar con sesiones futuras.
-| VulnWhisperer | https://github.com/whisperer/VulnWhisperer | Centralización | Agrupa las salidas y genera dashboards; guardo la configuración en `automation/reporting/templates/`.
-| Metasploit auxiliary | https://github.com/rapid7/metasploit-framework | Verificación | Uso módulos `scanner/` para validar vectores detectados.
+| Herramienta | Enlace | Objetivo | Comando / uso típico | Notas reales |
+| --- | --- | --- | --- | --- |
+| Nmap + Vulscan | https://github.com/scipag/vulscan | CVE / banners | `nmap --script vulscan --script-args vulscandb=scipag -oX reports/network/vulscan.xml 10.0.0.0/24` | Muy útil para triage rápido, pero siempre pide validación manual después. |
+| Greenbone / OpenVAS | https://www.greenbone.net/ | Escaneo profundo | `omp --create-target ...` + política ligera | Bueno para una pasada más pesada, pero conviene controlar mucho el ruido y los falsos positivos. |
+| Nessus Essentials | https://www.tenable.com/products/nessus/nessus-essentials | Vulnerability scanner | `nessuscli managed link --key ...` | Muy cómodo para host scanning y reporting visual si lo tienes montado en lab. |
+| Nikto | https://github.com/sullo/nikto | Web básica / cabeceras | `nikto -h http://10.0.0.5 -output reports/network/nikto-10.0.0.5.html` | Ligero, rápido y útil para sacar una idea general del frente web. |
+| Gobuster | https://github.com/OJ/gobuster | Enumeración | `gobuster dir -u http://10.0.0.5 -w wordlists/common.txt` | Sirve para complementar la parte de paths antes de afirmar que una superficie es pequeña. |
+| Lynis | https://github.com/CISOfy/lynis | Auditoría de host | `lynis audit system` | Muy útil para Linux hardening y para tener checklist comparables entre sesiones. |
+| Metasploit auxiliary | https://github.com/rapid7/metasploit-framework | Verificación | `msfconsole -q` + módulos `scanner/` | Mejor como verificación controlada que como detector principal. |
+| nuclei | https://github.com/projectdiscovery/nuclei | Plantillas de vulnerabilidad | `nuclei -l hosts.txt -severity low,medium,high` | Bueno para priorizar, no para cerrar un informe sin validar. |
+| testssl.sh | https://github.com/drwetter/testssl.sh | TLS / SSL | `testssl.sh https://target.lab` | Muy práctico para revisar cifrados, suites y configuración HTTPS. |
+| sslscan | https://github.com/rbsec/sslscan | TLS rápido | `sslscan target.lab:443` | Complemento ligero cuando no necesitas todo el detalle de testssl.sh. |
+| enum4linux-ng | https://github.com/cddmp/enum4linux-ng | SMB / Windows | `enum4linux-ng -A 10.0.0.20` | Muy bueno para triage de shares, usuarios y SMB posture. |
+| smbclient | https://www.samba.org/samba/docs/current/man-html/smbclient.1.html | SMB manual | `smbclient -L //10.0.0.20/ -N` | Ideal para contrastar lo que otros scanners dicen sobre shares y acceso. |
 
 ## Comandos utilizados
-- `nmap --script vulscan --script-args vulscandb=scipag -oX reports/network/vulscan/nmap-vulscan.xml 10.0.0.0/24`.
-- `omp --create-target --name 'lab-net' --hosts 10.0.0.0/24` seguido de `omp --start-task --target=ID --config=/etc/openvas/policies/light.xml`.
-- `nikto -h http://10.0.0.5 -output reports/network/nikto/nikto-10.0.0.5.html`.
+- `nmap --script vulscan --script-args vulscandb=scipag -oX reports/network/vulscan.xml 10.0.0.0/24`.
+- `nikto -h http://10.0.0.5 -output reports/network/nikto-10.0.0.5.html`.
+- `lynis audit system` y comparación posterior del `lynis-report.dat`.
+- `testssl.sh https://10.0.0.5` para una revisión específica de TLS.
 
 ## Técnicas aplicadas
-- Contraste de resultados: comparo `nmap` con `OpenVAS` y limpias mis scripts `scripts/network/compare-cves.py`.
-- Detección de falsos: replico la petición con `curl` y `python requests` para ver si el servicio responde.
+- Contrasto al menos dos fuentes antes de elevar un hallazgo importante a “vulnerabilidad real”.
+- Si el hallazgo viene por banner o firma, intento reproducir con una petición manual, `curl`, `smbclient` o una prueba ligera.
+- Mantengo una lista de falsos positivos y la razón del descarte para no repetir el mismo trabajo en futuras sesiones.
 
 ## Recomendaciones personales
-- Anota en `reports/network/falsos.csv` por qué descartaste cada hallazgo y quién validó la decisión.
-- Genera un PDF semanal con `reports/network/summary.pdf` usando Pandoc para entregar a tu equipo.
-- No corras OpenVAS sobre subredes completas sin aislar: arranca el escaneo desde una VM `scanner-lab`.
+- Si una herramienta escupe demasiadas alertas, no intentes arreglarlo con fe: recorta scope, cambia política o valida por capas.
+- Cuando un hallazgo merezca seguirse, enlázalo con `exploitation/` o con una nota de mitigación para no dejarlo huérfano.
+- Genera reportes exportables (XML, CSV, HTML) siempre que puedas; ayudan mucho más que una captura suelta o una nota improvisada.
