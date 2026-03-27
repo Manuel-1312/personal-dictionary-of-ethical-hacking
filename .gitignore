@@ -1,0 +1,20 @@
+# Node / JavaScript
+node_modules/
+# Python
+__pycache__/
+*.py[cod]
+# Environment
+.env
+# Visual Studio Code
+.vscode/
+# macOS
+.DS_Store
+# Logs
+logs/
+*.log
+# Windows
+Thumbs.db
+# Generated files
+*.tmp
+# Git itself
+.git/

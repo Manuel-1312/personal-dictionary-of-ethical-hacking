@@ -1,0 +1,16 @@
+# Catálogo de la Biblioteca Ética
+
+Este catálogo repasa cada sección del repositorio, qué contiene y cómo se puede profundizar. Está pensado como índice viviente: conforme añadas herramientas o readmes puedes actualizarlo.
+
+| Categoría | Descripción | Contenido actual | Futuro ideal |
+| --- | --- | --- | --- |
+| `wifi/` | Herramientas y flujos para redes inalámbricas | README general, subcarpetas `captura/`, `auditorias/`, `toolkit.md` con comandos, notas y tablas detalladas | Mantener ejemplos de comandos por sesión, comparativas de adaptadores y mini-guías regulatorias locales |
+| `web/` | Escáneres, proxies y aplicaciones vulnerables | README enriquecido, subcarpetas `proxies/`, `apps/` con toolkits tabulados y ejemplos prácticos, plus cheat sheets asociados | Añadir mini-tutoriales (ZAP + Juice Shop), comparativas de fuzzers y documentación viva de payloads |
+| `network_scan/` | Descubrimiento y evaluación de redes | READMEs para `host_discovery`/`vuln_assessment`, toolkits con scripts, comandos y tablas de resultados, resumen central en cheatsheets | Incorporar scripts de ejemplo (nmap+vulscan), plantillas de reporte por host y políticas de throttling documentadas |
+| `recon/` | Reconocimiento pasivo/activo | READMEs y toolkits para flujos pasivos/activos con tablas, plus notas de OSINT y libros de hipótesis | Completar con workflows de hunting, registros de APIs y documentación clara de legalidad por fuente |
+| `automation/` | Orquestación, snapshots y reporting | READMEs + toolkits (orquestación, snapshots, reporting, templates) detallados con comandos y logs reales | Añadir snippets de playbooks, plantillas Markdown/Allure y guías de uso para cada script |
+| `defense/` | Monitoreo, hunting e incident response | READMEs y subcarpetas con toolkits para sensores, hunts y contención; hay registros de alertas y links a cheat sheets | Expandir con ejemplos de alertas (falsos positivos), plantillas de hunts y mapas de flujo SOC |
+| `evasion/` | Técnicas de evasión controlada | README + toolkit + notas sobre payloads, frameworks (Veil, Sliver) y recomendaciones de mitigación | Agregar estudios de caso de evasión/control y registrar cómo se detectaron |
+| `osint/` | Personas e infraestructuras | READMEs y subcarpetas `people/`, `infrastructure/` con toolkits, listas de APIs y políticas de privacidad | Documentar fuentes específicas, notebooks de análisis, quick queries y checklists de ética |
+| `forensics/` | Disco y memoria | READMEs y toolkits con comandos, scripts y pasos (disk/memory) más plantillas de evidencia | Enlazar scripts de timeline (Plaso), plantillas de evidencia y formatos de hash para cada caso |
+| Raíz (`README.md`, `CODE_OF_CONDUCT.md`, plantillas) | Visión general, ética, plantillas y referencia rápida | ASCII art, badge, recursos, `lab-notes.md`, `SESSION_TEMPLATE.md`, `CODE_OF_CONDUCT.md` con autor y los cheat sheets (`CHEAT_SHEETS.md`, `CHEAT_SHEETS_EXT.md`) | Generar `CONTRIBUTING.md`, plantillas de issue/PR, script para validar kits/READMEs y versión imprimible de los cheat sheets |
