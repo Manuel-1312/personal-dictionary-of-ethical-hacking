@@ -45,6 +45,14 @@ Este archivo recoge los comandos y técnicas clave que ya documentaste en cada s
 - Técnica: usa snapshots antes de los playbooks y vuelve al estado base para repetir flujos.
 - Recomendación: mantén los scripts versionados y documenta qué variables actuales se reemplazan en cada ejecución.
 
+## Exploitation (Lab)
+- `msfconsole -q` → abrir workspace limpio para validar hallazgos en un entorno controlado.
+- `searchsploit --nmap reports/network/nmap-full.xml` → relacionar banners/versiones con referencias públicas.
+- `sudo -l && find / -perm -4000 -type f 2>/dev/null` → enumeración local Linux previa a privilege escalation.
+- `whoami /priv` → revisión rápida de privilegios en Windows de laboratorio.
+- Técnica: parte siempre de un hallazgo previo y documenta evidencia + limpieza al terminar.
+- Recomendación: enlaza la explotación con mitigaciones en `defense/` o `network_scan/`.
+
 ## OSINT & Forense
 - `shodan search org:"Example Inc" --fields ip_str,org,port` → inventario de hosts públicos.
 - `curl "https://crt.sh/?q=%25example.com"` + guarda el PDF para detectar rotaciones TLS.
