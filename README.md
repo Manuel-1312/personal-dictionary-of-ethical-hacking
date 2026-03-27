@@ -87,6 +87,31 @@ La fase 4 remata esa línea con más utilidades de conversión y trazabilidad: p
 
 Y para no perder de vista qué necesita cada helper, la carpeta ya incluye `python/DEPENDENCIES.md`, donde se separan dependencias de `pip` y herramientas externas del sistema como `tshark`.
 
+## 🖥️ Launcher / app `.exe`
+El repositorio ya incluye una app de escritorio en `app/` pensada para usar la propia biblioteca como backend.
+
+### Qué hace
+- lee categorías y scripts desde los `toolkit.md`
+- muestra descripción, ruta y comando de ejemplo
+- permite ejecutar scripts Python, PowerShell y `fun-scripts` desde una interfaz
+- guarda favoritos e historial local
+- puede empaquetarse como `.exe`
+
+### Ruta del ejecutable
+Tras compilarla, el binario queda en:
+- `dist/HackingToolbox.exe`
+
+### Cómo usarla
+1. Abre `HackingToolbox.exe` desde la carpeta `dist/`.
+2. Elige una categoría (`Python`, `PowerShell`, `Fun Scripts`).
+3. Selecciona un script en la lista.
+4. Revisa la descripción y el ejemplo de uso.
+5. Si hace falta, añade argumentos extra.
+6. Pulsa **Ejecutar** o haz doble clic sobre el script.
+
+### Qué ventaja tiene
+No sustituye al repo: lo convierte en una toolbox ejecutable, más cómoda para lanzar scripts y revisar resultados sin ir comando por comando en terminal.
+
 ## 📘 Cheat Sheets & Referencias rápidas
 - `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
 - `CHEAT_SHEETS_EXT.md`: guía extendida con técnicas, comandos, scripts, recursos premium y plantillas adjuntas para cada bloque.
