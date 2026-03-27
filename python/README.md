@@ -7,4 +7,4 @@ Cada script tiene su mini README/nota, una breve descripción de qué hace, qué
 - `log_parser.py`: parsea logs de Zeek/Suricata, extrae IPs + puertos y genera un CSV resumido.
 - `inventory_builder.py`: combina salidas de `nmap`/`masscan` y las normaliza (próximamente, puedes añadir tu propia variante).
 
-Haz `pip install -r python/requirements.txt` si los scripts lo requieren, y ejecuta los comandos listados en `toolkit.md` para ver resultados reproducibles.
+Instala dependencias con `pip install -r python/requirements.txt` y corrige `python/log_parser.py --help` para ver sus flags. Los ejemplos del toolkit (`python/toolkit.md`) muestran las líneas exactas que ejecuto con logs reales. Copia los comandos, cambia los paths y tendrás el resultado sin sorpresas.
