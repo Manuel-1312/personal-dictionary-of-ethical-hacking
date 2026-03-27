@@ -56,6 +56,14 @@ Este archivo recoge los comandos y técnicas clave que ya documentaste en cada s
 - Técnica: parte siempre de un hallazgo previo y documenta evidencia + limpieza al terminar.
 - Recomendación: enlaza la explotación con mitigaciones en `defense/` o `network_scan/` y abre una nota en `exploitation/notes/`.
 
+## Fun Scripts
+- `python fun-scripts/ascii_banner_maker.py --text "LAB 01"` → banner rápido para notas o demos.
+- `python fun-scripts/random_codenames.py --count 5` → nombres de operación aleatorios.
+- `python fun-scripts/log_noise_generator.py --count 50 --output fake.log` → logs falsos para practicar parsers y reporting.
+- `python fun-scripts/fake_breach_report.py --company Acme --output report.md` → informe ficticio para entrenar documentación.
+- Técnica: mezcla humor con utilidad ligera para que el repo tenga personalidad sin volverse caótico.
+- Recomendación: si un script de esta carpeta se vuelve demasiado útil o complejo, muévelo luego a `python/`.
+
 ## OSINT & Forense
 - `shodan search org:"Example Inc" --fields ip_str,org,port` → inventario de hosts públicos.
 - `curl "https://crt.sh/?q=%25example.com"` + guarda el PDF para detectar rotaciones TLS.
