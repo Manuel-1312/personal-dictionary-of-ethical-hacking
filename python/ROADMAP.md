@@ -2,6 +2,8 @@
 
 Esta hoja de ruta recoge ideas de scripts que encajan bien con la biblioteca. La idea no es meter herramientas por meter, sino ampliar `python/` con piezas pequeñas, útiles y fáciles de mantener. Cada propuesta está pensada para complementar otras áreas del repo como `network_scan/`, `web/`, `defense/`, `forensics/` y `exploitation/`.
 
+La carpeta `python/` ya está organizada por subcategorías (`parsers/`, `web/`, `forensics/`) para que este crecimiento sea ordenado desde el principio.
+
 ## 10 utilidades candidatas
 
 ### 1. `nmap_xml_to_markdown.py`
