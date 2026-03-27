@@ -34,6 +34,22 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - `evasion/`, `osint/`, `forensics/` – técnicas de evasión controlada, investigación OSINT y análisis forense.
 - Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.
 
+## 🎯 Foco actual: explotación de laboratorio
+La sección `exploitation/` ya forma parte del núcleo del repositorio y está pensada para documentar la **validación controlada de hallazgos** sin perder contexto ni evidencia.
+
+### Subcategorías integradas
+- `exploitation/frameworks/` → frameworks, RPC, consolas y validación guiada.
+- `exploitation/web_exploitation/` → fallos web reproducidos con requests, endpoints y mitigación.
+- `exploitation/active_directory/` → dominios AD de laboratorio, rutas de privilegio y notas de hardening.
+- `exploitation/privilege_escalation/` → escalada local en Linux/Windows de laboratorio.
+- `exploitation/post_exploitation/` → impacto controlado, artefactos, limpieza y cierre.
+- `exploitation/notes/` → plantillas reutilizables para casos, cronología y evidencias.
+
+### Cómo se conecta con el resto del repo
+- Se alimenta de hallazgos previos en `web/`, `network_scan/` y `recon/`.
+- Genera artefactos y notas que luego encajan en `defense/` y `forensics/`.
+- Se apoya en `python/` para hashes, extracción de IOCs y reporting auxiliar.
+
 ## 📁 Otros archivos útiles
 - `lab-notes.md` (puedes crearlo) para registrar qué herramienta usas y qué aprendiste.
 - `toolkit.md` en cada carpeta, explica cómo catalogar nuevas herramientas.

@@ -163,8 +163,11 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - Si pruebas privilege escalation, guarda tanto la salida en bruto como un resumen humano corto.
 
 ### Subbloques útiles dentro de `exploitation/`
+- `frameworks/` para consolas, RPC y validación organizada por workspace.
 - `web_exploitation/` para fallos web reproducidos con request/response y notas por endpoint.
 - `active_directory/` para laboratorios AD con rutas de privilegio, shares, Kerberos y mitigación.
+- `privilege_escalation/` para Linux/Windows local con enumeración y remediación.
+- `post_exploitation/` para evidencia, impacto controlado y cierre de sesión.
 - `notes/` para plantillas de caso, evidencia y cronología reutilizable.
 
 ---
