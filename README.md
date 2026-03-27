@@ -101,6 +101,12 @@ La sección `exploitation/` ya forma parte del núcleo del repositorio y está p
 3. **Ética y alcance**: trabaja solo sobre activos autorizados y nunca reutilices exploits fuera del laboratorio.
 4. **Compartir es educar**: cuando agregues un recurso, cita la fuente original y menciona el uso educativo.
 5. **Lee el CODE_OF_CONDUCT** antes de contribuir; define claramente el compromiso ético y el alcance permitido.
+6. **Calidad automatizada**: todos los merges pasan por `Face 3 — Quality checks` (MarkdownLint + link check) antes de alcanzar `main`.
+
+## 🤖 Face 3 — Calidad automatizada
+- La acción `Face 3 — Quality checks` en `.github/workflows/face3-quality.yml` corre en cada push/PR.
+- Ejecuta `markdownlint` con `.markdownlint.json` y un chequeo adicional de enlaces en los documentos clave.
+- Si necesitas ignorar un enlace temporalmente, menciónalo en el PR para revisarlo manualmente.
 
 ## 🤝 Cómo contribuir
 ¿Quieres aportar una herramienta, tutorial o plantilla? Sigue los pasos de [CONTRIBUTING.md](CONTRIBUTING.md), registra cambios en los issues con los templates (`.github/ISSUE_TEMPLATE/`) y rellena [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md) cuando envíes tu PR. Mantén claro que todo aquí es para uso ético, respeta el [Code of Conduct](CODE_OF_CONDUCT.md) y enlaza referencias oficiales cuando añadas contenido. Este proyecto se distribuye bajo licencia MIT (`LICENSE`).
