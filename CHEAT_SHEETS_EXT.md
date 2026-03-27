@@ -119,9 +119,17 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - `pwsh -File powershell/files/recent_files_report.ps1 -Path $HOME -Days 3 -Output reports/recent.csv` → saca archivos modificados recientemente.
 - `pwsh -File powershell/network/net_connections_report.ps1 -Output reports/connections.csv` → conexiones TCP activas con proceso asociado.
 - `pwsh -File powershell/network/ping_sweep.ps1 -Base 192.168.1 -Start 1 -End 20` → barrido simple para ver hosts vivos.
+- `pwsh -File powershell/network/adapter_report.ps1 -Output reports/adapters.csv` → estado de adaptadores de red.
+- `pwsh -File powershell/network/route_table_export.ps1 -Output reports/routes.csv` → export de tabla de rutas.
+- `pwsh -File powershell/system/installed_software_report.ps1 -Output reports/software.csv` → software instalado en formato exportable.
+- `pwsh -File powershell/system/list_local_users.ps1 -Output reports/users.csv` → usuarios locales con estado y flags básicos.
+- `pwsh -File powershell/files/hash_inventory.ps1 -Path $HOME\Desktop -Output reports/hashes.csv` → hashes rápidos para inventario.
+- `pwsh -File powershell/files/folder_size_report.ps1 -Path $HOME` → tamaños por carpeta para detectar monstruos de disco.
 - `pwsh -File powershell/reporting/json_to_markdown.ps1 -Input data.json -Output data.md` → transforma JSON en algo legible.
+- `pwsh -File powershell/reporting/csv_summary_card.ps1 -Input reports/software.csv` → mini tarjeta resumen de un CSV.
 - `pwsh -File powershell/fun/ascii_status_card.ps1 -Title LAB -Status ACTIVE` → porque hasta PowerShell se merece un poco de estética.
 - `pwsh -File powershell/fun/matrix_console.ps1 -Lines 40 -Width 60` → matrix de consola para demos o puro postureo.
+- `pwsh -File powershell/fun/rainbow_table.ps1 -Text "LAB ACTIVE"` → texto arcoíris con dignidad discutible.
 
 ### Recomendaciones personales
 1. Úsalo para scripts realmente pegados a Windows: servicios, tareas, red local, escritorio y reporting rápido.
