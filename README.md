@@ -33,6 +33,7 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - `defense/` – monitoreo, detección y respuesta (con `monitoring/` e `incident_response/`).
 - `exploitation/` – validación de hallazgos en laboratorio, con subcarpetas `frameworks/`, `web_exploitation/`, `active_directory/`, `privilege_escalation/`, `post_exploitation/` y `notes/` para documentar casos y evidencias.
 - `fun-scripts/` – scripts ligeros, curiosos y creativos para demos, práctica, documentación y un poco de personalidad terminal.
+- `app/` – launcher de escritorio para usar el repositorio como backend y evolucionarlo hacia una `.exe`.
 - `evasion/`, `osint/`, `forensics/` – técnicas de evasión controlada, investigación OSINT y análisis forense.
 - Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.
 
