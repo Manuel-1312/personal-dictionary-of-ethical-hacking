@@ -25,20 +25,38 @@ TOOLKIT_PATHS = {
 }
 
 
+CATEGORY_PREFIXES = {
+    "Python": "python/",
+    "PowerShell": "powershell/",
+    "Fun Scripts": "fun-scripts/",
+}
+
+
+def normalize_script_path(category: str, script: str) -> str:
+    cleaned = script.strip().replace('\\', '/')
+    prefix = CATEGORY_PREFIXES.get(category, '')
+    if prefix and cleaned.startswith(prefix):
+        return cleaned
+    if prefix:
+        return prefix + cleaned
+    return cleaned
+
+
 def parse_markdown_table(lines: Iterable[str], toolkit_path: Path, category: str) -> list[ScriptEntry]:
     entries: list[ScriptEntry] = []
     for line in lines:
         stripped = line.strip()
-        if not stripped.startswith("|"):
+        if not stripped.startswith('|'):
             continue
-        if "---" in stripped or ("Script" in stripped and "Comando" in stripped):
+        if '---' in stripped or ('Script' in stripped and 'Comando' in stripped):
             continue
-        parts = [part.strip() for part in stripped.strip("|").split("|")]
+        parts = [part.strip() for part in stripped.strip('|').split('|')]
         if len(parts) < 4:
             continue
-        script = parts[0].strip("`")
-        description = parts[2] if len(parts) >= 3 else ""
-        example = parts[3].strip("`") if len(parts) >= 4 else ""
+        raw_script = parts[0].strip('`')
+        script = normalize_script_path(category, raw_script)
+        description = parts[2] if len(parts) >= 3 else ''
+        example = parts[3].strip('`') if len(parts) >= 4 else ''
         entries.append(
             ScriptEntry(
                 category=category,
@@ -57,6 +75,6 @@ def load_registry(repo_root: Path) -> list[ScriptEntry]:
         toolkit = repo_root / rel_path
         if not toolkit.exists():
             continue
-        lines = toolkit.read_text(encoding="utf-8", errors="ignore").splitlines()
+        lines = toolkit.read_text(encoding='utf-8', errors='ignore').splitlines()
         entries.extend(parse_markdown_table(lines, toolkit, category))
     return entries
