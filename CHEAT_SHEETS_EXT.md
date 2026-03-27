@@ -121,6 +121,9 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - `pwsh -File powershell/network/ping_sweep.ps1 -Base 192.168.1 -Start 1 -End 20` → barrido simple para ver hosts vivos.
 - `pwsh -File powershell/network/adapter_report.ps1 -Output reports/adapters.csv` → estado de adaptadores de red.
 - `pwsh -File powershell/network/route_table_export.ps1 -Output reports/routes.csv` → export de tabla de rutas.
+- `pwsh -File powershell/network/firewall_profile_report.ps1 -Output reports/firewall.csv` → perfiles de firewall en CSV.
+- `pwsh -File powershell/network/share_report.ps1 -Output reports/shares.csv` → shares SMB del equipo.
+- `pwsh -File powershell/network/wifi_profiles_list.ps1` → perfiles Wi-Fi guardados.
 - `pwsh -File powershell/system/installed_software_report.ps1 -Output reports/software.csv` → software instalado en formato exportable.
 - `pwsh -File powershell/system/list_local_users.ps1 -Output reports/users.csv` → usuarios locales con estado y flags básicos.
 - `pwsh -File powershell/files/hash_inventory.ps1 -Path $HOME\Desktop -Output reports/hashes.csv` → hashes rápidos para inventario.

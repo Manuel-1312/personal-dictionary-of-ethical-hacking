@@ -52,6 +52,7 @@ Este archivo recoge los comandos y técnicas clave que ya documentaste en cada s
 - `pwsh -File powershell/network/local_network_snapshot.ps1 -Output reports/network.json` → snapshot de la red local.
 - `pwsh -File powershell/network/ping_sweep.ps1 -Base 192.168.1 -Start 1 -End 20` → barrido simple por ping.
 - `pwsh -File powershell/system/installed_software_report.ps1 -Output reports/software.csv` → software instalado a CSV.
+- `pwsh -File powershell/network/firewall_profile_report.ps1 -Output reports/firewall.csv` → perfiles de firewall exportados.
 - `pwsh -File powershell/files/hash_inventory.ps1 -Path $HOME\Desktop -Output reports/hashes.csv` → inventario con SHA256.
 - `pwsh -File powershell/reporting/markdown_table_from_csv.ps1 -Input data.csv -Output table.md` → pasar CSV a Markdown.
 - `pwsh -File powershell/reporting/lab_session_template.ps1 -Output session.md -Title "Lab web"` → plantilla rápida para sesiones.

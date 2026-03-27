@@ -15,11 +15,11 @@ Esta carpeta reúne utilidades PowerShell pensadas para Windows, inventario, rep
 - útiles de verdad en Windows
 - con outputs fáciles de guardar en CSV, JSON o Markdown
 
-## Fase 3
+## Fase 4
 La colección ya cubre:
-- inventario de sistema y software instalado
-- usuarios locales, procesos, servicios, tareas y arranque
-- hashes, tamaños de carpetas, archivos recientes y duplicados por nombre
-- snapshots de red, adaptadores, cache DNS, rutas y chequeo de puertos
-- reporting rápido en Markdown
+- inventario de sistema, software, hotfixes, usuarios y grupos locales
+- procesos, servicios, tareas, arranque y variables de entorno
+- descargas, hashes, tamaños de carpetas y archivos grandes
+- snapshots de red, adaptadores, rutas, cache DNS, shares y perfiles de firewall
+- reporting rápido en Markdown y HTML
 - plantillas de sesión y pequeños scripts visuales
