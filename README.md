@@ -3,7 +3,7 @@
 
 [![Ethical Lab](https://img.shields.io/badge/Ethical-Lab-blueviolet?logo=shield&logoColor=white)](README.md)
 
-**Autor:** Manuel Sánchez Brito
+**Autor:** Manuel Sánchez Brito · [LinkedIn](https://www.linkedin.com/in/manuel-sanchez-brito)
 
 ## 🎯 Propósito
 Este repositorio organiza herramientas de código abierto y documentación enfocada en aprendizaje ético: todo lo que encuentres aquí está pensado para usarse **en entornos controlados**, con alcance autorizado. El objetivo es ayudar a estudiantes y profesionales a encontrar colecciones útiles sin tener que buscar en cientos de repositorios dispersos.
