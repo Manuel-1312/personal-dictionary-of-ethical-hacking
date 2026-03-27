@@ -50,7 +50,9 @@ Este archivo recoge los comandos y técnicas clave que ya documentaste en cada s
 - `pwsh -File powershell/system/service_report.ps1 -Output reports/services.csv` → export de servicios.
 - `pwsh -File powershell/files/desktop_inventory.ps1 -Output reports/desktop.csv` → inventario del escritorio.
 - `pwsh -File powershell/network/local_network_snapshot.ps1 -Output reports/network.json` → snapshot de la red local.
+- `pwsh -File powershell/network/ping_sweep.ps1 -Base 192.168.1 -Start 1 -End 20` → barrido simple por ping.
 - `pwsh -File powershell/reporting/markdown_table_from_csv.ps1 -Input data.csv -Output table.md` → pasar CSV a Markdown.
+- `pwsh -File powershell/reporting/lab_session_template.ps1 -Output session.md -Title "Lab web"` → plantilla rápida para sesiones.
 - Técnica: ideal para automatización ligera, inventario y reporting en Windows sin meter demasiadas dependencias.
 - Recomendación: si el script toca mucho el sistema, deja siempre un output exportable para revisar después.
 
