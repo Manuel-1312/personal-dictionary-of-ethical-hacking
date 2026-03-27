@@ -8,6 +8,10 @@
 | `ascii_separator_generator.py` | Crea separadores ASCII con o sin etiqueta | `python fun-scripts/ascii_separator_generator.py --label "SESSION START"` | Útil en terminal y documentación. |
 | `ascii_skull.py` | Imprime una calavera ASCII mínima | `python fun-scripts/ascii_skull.py` | Cero utilidad, bastante encanto. |
 | `ascii_lab_card.py` | Genera una tarjeta ASCII para un lab o caso | `python fun-scripts/ascii_lab_card.py --title "LAB 07" --subtitle "AD Playground"` | Ideal para abrir notas con estilo. |
+| `ascii_network_map.py` | Dibuja un mini flujo de nodos en ASCII | `python fun-scripts/ascii_network_map.py router kali juice-shop` | Bueno para demos rápidas o notas. |
+| `ascii_progress_bar.py` | Genera barras de progreso ASCII | `python fun-scripts/ascii_progress_bar.py --percent 73` | Sencillo, útil y visual. |
+| `ascii_terminal_frame.py` | Enmarca texto como si fuera una terminal vieja | `python fun-scripts/ascii_terminal_frame.py --title shell --text "access granted"` | Queda bastante aparente. |
+| `ascii_badge_maker.py` | Crea un badge ASCII simple | `python fun-scripts/ascii_badge_maker.py --left LAB --right ACTIVE` | Va bien para títulos o estados. |
 | `lab_quote_generator.py` | Saca frases aleatorias de laboratorio | `python fun-scripts/lab_quote_generator.py` | Humor ligero con tono hacker/seguridad. |
 | `fake_breach_report.py` | Genera un informe ficticio de incidente | `python fun-scripts/fake_breach_report.py --company Acme --output report.md` | Útil para practicar reporting. |
 | `terminal_glitch_text.py` | Convierte texto en estilo glitch | `python fun-scripts/terminal_glitch_text.py --text "ACCESS GRANTED"` | Puro postureo terminalero. |
