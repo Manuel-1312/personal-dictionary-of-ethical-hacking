@@ -191,6 +191,20 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - Documenta cada hash, el responsable y la ubicación en `forensics/chain-of-custody.md`.
 
 ---
+## 🎉 Fun Scripts y creatividad de laboratorio
+### Ideas de uso
+- Usa `ascii_banner_maker.py` para abrir notas de sesión con un toque visual.
+- Usa `random_codenames.py` para poner nombre a casos, ejercicios o labs temporales.
+- Usa `log_noise_generator.py` para fabricar datasets falsos y probar parsers o dashboards.
+- Usa `fake_breach_report.py` para practicar reporting sin tocar un incidente real.
+- Usa `retro_matrix_printer.py` cuando simplemente te apetezca que la terminal haga ruido bonito.
+
+### Recomendaciones
+- Mantén esta carpeta divertida, sí, pero también limpia y pequeña.
+- Si un script pasa de broma a herramienta real, reubícalo donde toque.
+- Añadir humor al repo no le quita seriedad; bien hecho, le da carácter.
+
+---
 ## Recursos premium y plantillas
 - WiFi: `wifi/notas/` (tabla antena/driver/observaciones) y script `scripts/wifi/start-monitor.sh`.
 - Web: macros en `web/proxies/macros.md` y el `web/apps/scoreboard.md` con retos completados.
