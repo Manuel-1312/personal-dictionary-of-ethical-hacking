@@ -20,6 +20,11 @@ Una mezcla de scripts:
 
 ## Scripts incluidos
 - `ascii_banner_maker.py` → banners rápidos para labs, notas o intros
+- `ascii_box_text.py` → mete cualquier texto en una cajita ASCII apañada
+- `ascii_tree_generator.py` → genera arbolitos ASCII porque a veces sí, simplemente por qué no
+- `ascii_separator_generator.py` → separadores bonitos para notas, terminal y READMEs
+- `ascii_skull.py` → una calavera ASCII minimalista y descaradamente innecesaria
+- `ascii_lab_card.py` → tarjeta ASCII para nombrar labs, casos o sesiones
 - `lab_quote_generator.py` → frases de laboratorio con energía de terminal trasnochada
 - `fake_breach_report.py` → informes ficticios para practicar reporting sin dramas reales
 - `terminal_glitch_text.py` → texto con efecto raro/glitch para postureo sano

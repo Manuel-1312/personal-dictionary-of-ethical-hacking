@@ -3,6 +3,11 @@
 | Script | Qué hace | Comando de ejemplo | Notas |
 | --- | --- | --- | --- |
 | `ascii_banner_maker.py` | Genera banners ASCII | `python fun-scripts/ascii_banner_maker.py --text "LAB 01"` | Bueno para notas o intros rápidas. |
+| `ascii_box_text.py` | Mete texto dentro de una caja ASCII | `python fun-scripts/ascii_box_text.py --text "Objetivo: web-lab"` | Muy bueno para notas y pantallas. |
+| `ascii_tree_generator.py` | Genera un árbol ASCII | `python fun-scripts/ascii_tree_generator.py --height 6` | Completamente innecesario y por eso simpático. |
+| `ascii_separator_generator.py` | Crea separadores ASCII con o sin etiqueta | `python fun-scripts/ascii_separator_generator.py --label "SESSION START"` | Útil en terminal y documentación. |
+| `ascii_skull.py` | Imprime una calavera ASCII mínima | `python fun-scripts/ascii_skull.py` | Cero utilidad, bastante encanto. |
+| `ascii_lab_card.py` | Genera una tarjeta ASCII para un lab o caso | `python fun-scripts/ascii_lab_card.py --title "LAB 07" --subtitle "AD Playground"` | Ideal para abrir notas con estilo. |
 | `lab_quote_generator.py` | Saca frases aleatorias de laboratorio | `python fun-scripts/lab_quote_generator.py` | Humor ligero con tono hacker/seguridad. |
 | `fake_breach_report.py` | Genera un informe ficticio de incidente | `python fun-scripts/fake_breach_report.py --company Acme --output report.md` | Útil para practicar reporting. |
 | `terminal_glitch_text.py` | Convierte texto en estilo glitch | `python fun-scripts/terminal_glitch_text.py --text "ACCESS GRANTED"` | Puro postureo terminalero. |
