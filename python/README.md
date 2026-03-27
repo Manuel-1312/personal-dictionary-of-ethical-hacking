@@ -17,10 +17,12 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 ### `parsers/`
 - `parsers/log_parser.py`: parsea logs de Zeek/Suricata y genera CSV resumido.
 - `parsers/inventory_builder.py`: combina salidas de `nmap`/`masscan` y las normaliza.
+- `parsers/masscan_to_csv.py`: convierte salidas grepables de Masscan/GNMAP en CSV limpio.
 
 ### `web/`
 - `web/http_headers_probe.py`: consulta objetivos HTTP/HTTPS y exporta headers defensivos clave a CSV.
 - `web/dir_bruteforce_report.py`: resume resultados de `ffuf` en Markdown o CSV.
+- `web/web_screenshot_manifest.py`: indexa capturas web y genera un manifiesto CSV.
 
 ### `forensics/`
 - `forensics/hash_manifest.py`: genera manifiestos de hashes para evidencias, muestras o colecciones de laboratorio.
@@ -28,6 +30,7 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 - `forensics/ioc_enricher.py`: clasifica y contextualiza IOCs a partir de un CSV.
 - `forensics/pcap_summary.py`: resume un PCAP mediante `tshark` y genera Markdown o JSON.
 - `forensics/evidence_indexer.py`: crea un índice CSV de evidencias con hash y tamaño.
+- `forensics/chain_of_custody_builder.py`: genera una plantilla Markdown de cadena de custodia a partir de un índice CSV.
 
 ### `recon/`
 - `recon/subdomain_diff.py`: compara dos listas de subdominios y genera un resumen Markdown con altas, bajas y coincidencias.
@@ -35,6 +38,7 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 ### `reporting/`
 - `reporting/nmap_xml_to_markdown.py`: convierte XML de Nmap en un informe Markdown legible.
 - `reporting/markdown_case_bundler.py`: une varias notas Markdown en un único informe final.
+- `reporting/csv_to_markdown_table.py`: convierte un CSV sencillo en tabla Markdown.
 
 ### `ad/`
 - `ad/ad_notes_builder.py`: genera una nota estructurada para casos de Active Directory en laboratorio.
@@ -52,14 +56,18 @@ Algunos scripts pueden depender además de utilidades externas del entorno (por 
 ```bash
 python python/web/http_headers_probe.py https://example.org 10.10.10.5:8080 -o automation/reporting/http-headers.csv
 python python/web/dir_bruteforce_report.py -i web/apps/ffuf/results.json -o web/apps/ffuf/report.md
+python python/web/web_screenshot_manifest.py -i web/screenshots -o web/screenshots/manifest.csv
 python python/forensics/hash_manifest.py -i samples/ -o automation/reporting/hash-manifest.csv --algorithm sha256
 python python/forensics/ioc_extractor.py -i defense/incident_response/notes.txt -o automation/reporting/iocs.csv
 python python/forensics/ioc_enricher.py -i automation/reporting/iocs.csv -o automation/reporting/iocs-enriched.csv
 python python/forensics/pcap_summary.py -i captures/session.pcapng -o reports/pcap-summary.md
 python python/forensics/evidence_indexer.py -i exploitation/notes -o reports/evidence-index.csv
+python python/forensics/chain_of_custody_builder.py -i reports/evidence-index.csv -o reports/chain-of-custody.md --case "Caso 01"
 python python/parsers/log_parser.py --input defense/monitoring/logs/zeek.log --output automation/reporting/results/defense/zeek-summary.csv
+python python/parsers/masscan_to_csv.py -i reports/network/masscan.gnmap -o reports/network/masscan.csv
 python python/recon/subdomain_diff.py --old recon/old.txt --new recon/new.txt -o recon/subdomain-diff.md
 python python/reporting/nmap_xml_to_markdown.py -i reports/network/nmap-full.xml -o reports/network/nmap-report.md
+python python/reporting/csv_to_markdown_table.py -i reports/network/masscan.csv -o reports/network/masscan.md
 python python/ad/ad_notes_builder.py --host dc01 --user analyst --domain lab.local --finding "Delegación débil" -o exploitation/active_directory/case-dc01.md
 ```
 

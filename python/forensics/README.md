@@ -8,6 +8,7 @@ Esta subcarpeta reúne utilidades relacionadas con artefactos, evidencias e IOCs
 - `ioc_enricher.py` → añade clasificación y contexto simple a un CSV de IOCs.
 - `pcap_summary.py` → resume un PCAP usando `tshark` y genera salida Markdown o JSON.
 - `evidence_indexer.py` → crea un índice CSV de evidencias con hash y tamaño.
+- `chain_of_custody_builder.py` → genera una plantilla Markdown de cadena de custodia desde un CSV de evidencias.
 
 ## Recomendaciones
 - Si añades nuevos helpers aquí, intenta que generen salidas reutilizables (CSV/Markdown/JSON) y fáciles de enlazar desde `forensics/` o `exploitation/notes/`.

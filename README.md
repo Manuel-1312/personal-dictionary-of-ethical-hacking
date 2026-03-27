@@ -80,6 +80,8 @@ Además, la fase 2 ya ha ampliado la librería con nuevas subcategorías (`recon
 
 La fase 3 añade una capa más práctica para forense y evidencia: resumen de PCAPs, indexado de evidencias, enriquecimiento de IOCs y reporting ligero de resultados de fuzzing web.
 
+La fase 4 remata esa línea con más utilidades de conversión y trazabilidad: parser de Masscan a CSV, manifiestos de capturas web, conversión de CSV a Markdown y plantillas de cadena de custodia.
+
 ## 📘 Cheat Sheets & Referencias rápidas
 - `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
 - `CHEAT_SHEETS_EXT.md`: guía extendida con técnicas, comandos, scripts, recursos premium y plantillas adjuntas para cada bloque.
