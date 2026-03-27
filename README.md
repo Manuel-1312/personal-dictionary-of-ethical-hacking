@@ -28,7 +28,7 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - `network_scan/` – discovery y fingerprinting.
 - `recon/` – reconocimiento pasivo y activo (subcarpetas en `passive/` y `active/`).
 - `automation/` – scripts, playbooks y reporting (tiene `orchestration/` y `reporting/`).
-- `python/` – utilidades propias en Python para parsear logs, normalizar outputs y automatizar tareas ad-hoc; mira los comandos de `python/toolkit.md` para ejemplos claros.
+- `python/` – utilidades propias en Python para parsear logs, normalizar outputs, inventariar servicios web, generar manifiestos de hashes y extraer IOCs; mira los comandos de `python/toolkit.md` para ejemplos claros.
 - `defense/` – monitoreo, detección y respuesta (con `monitoring/` e `incident_response/`).
 - `evasion/`, `osint/`, `forensics/` – técnicas de evasión controlada, investigación OSINT y análisis forense.
 - Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.
@@ -52,4 +52,5 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
 - `CHEAT_SHEETS_EXT.md`: guía extendida con técnicas, comandos, scripts, recursos premium y plantillas adjuntas para cada bloque.
 - Usa estos documentos como referencia previa a una sesión o para entrenar a un compañero: están listos para imprimirse o compartir en la sala de SOC.
+
 
