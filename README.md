@@ -14,7 +14,6 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 1. Clona el repositorio y crea tu entorno (puede ser WSL, VM o contenedor).
 2. Lee `README.md` para orientarte sobre la estructura.
 3. Consulta los `toolkit.md` de cada carpeta para ver herramientas recomendadas.
-4. Documenta cada sesión en `lab-notes.md` (puedes crear uno nuevo con su fecha).
 5. Siempre mantén el entorno aislado y sigue el código de conducta.
 
 ## 🧭 Sección de recursos
