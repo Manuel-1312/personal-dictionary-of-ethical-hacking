@@ -102,8 +102,8 @@ La sección `exploitation/` ya forma parte del núcleo del repositorio y está p
 4. **Compartir es educar**: cuando agregues un recurso, cita la fuente original y menciona el uso educativo.
 5. **Lee el CODE_OF_CONDUCT** antes de contribuir; define claramente el compromiso ético y el alcance permitido.
 
-## 🧠 Contribuciones
-¿Quieres aportar una herramienta, tutorial o plantilla? Haz un fork, agrega tu contenido siguiendo esta estructura y abre un pull request. Mantén claro que todo aquí es para uso ético y añade referencias oficiales siempre que sea posible. Este proyecto se distribuye bajo licencia MIT (`LICENSE`).
+## 🤝 Cómo contribuir
+¿Quieres aportar una herramienta, tutorial o plantilla? Sigue los pasos de [CONTRIBUTING.md](CONTRIBUTING.md), registra cambios en los issues con los templates (`.github/ISSUE_TEMPLATE/`) y rellena [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md) cuando envíes tu PR. Mantén claro que todo aquí es para uso ético, respeta el [Code of Conduct](CODE_OF_CONDUCT.md) y enlaza referencias oficiales cuando añadas contenido. Este proyecto se distribuye bajo licencia MIT (`LICENSE`).
 
 ## 🐍 Crecimiento de la librería Python
 La carpeta `python/` ya no es solo un rincón de scripts sueltos: ahora está organizada por subcategorías y se está convirtiendo en una caja de utilidades reutilizable para reporting, inventario, extracción de IOCs, hashes y automatización ligera.
