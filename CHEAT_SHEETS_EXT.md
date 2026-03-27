@@ -114,9 +114,14 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - `pwsh -File powershell/system/system_report.ps1` → resumen corto de sistema, modelo, memoria, BIOS y arranque.
 - `pwsh -File powershell/system/process_snapshot.ps1 -Output reports/processes.csv` → snapshot de procesos para revisar luego con calma.
 - `pwsh -File powershell/system/scheduled_tasks_export.ps1 -Output reports/tasks.json` → exporta tareas programadas a JSON.
+- `pwsh -File powershell/system/startup_audit.ps1 -Output reports/startup.csv` → revisa elementos de arranque.
 - `pwsh -File powershell/files/large_files_finder.ps1 -Path $HOME -MinMb 100` → caza archivos grandes rápidamente.
+- `pwsh -File powershell/files/recent_files_report.ps1 -Path $HOME -Days 3 -Output reports/recent.csv` → saca archivos modificados recientemente.
 - `pwsh -File powershell/network/net_connections_report.ps1 -Output reports/connections.csv` → conexiones TCP activas con proceso asociado.
+- `pwsh -File powershell/network/ping_sweep.ps1 -Base 192.168.1 -Start 1 -End 20` → barrido simple para ver hosts vivos.
+- `pwsh -File powershell/reporting/json_to_markdown.ps1 -Input data.json -Output data.md` → transforma JSON en algo legible.
 - `pwsh -File powershell/fun/ascii_status_card.ps1 -Title LAB -Status ACTIVE` → porque hasta PowerShell se merece un poco de estética.
+- `pwsh -File powershell/fun/matrix_console.ps1 -Lines 40 -Width 60` → matrix de consola para demos o puro postureo.
 
 ### Recomendaciones personales
 1. Úsalo para scripts realmente pegados a Windows: servicios, tareas, red local, escritorio y reporting rápido.
