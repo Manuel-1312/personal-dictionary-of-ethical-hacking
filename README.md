@@ -78,6 +78,8 @@ Para planificar su crecimiento sin perder coherencia, el repo incluye `python/RO
 
 Además, la fase 2 ya ha ampliado la librería con nuevas subcategorías (`recon/`, `reporting/`, `ad/`) y scripts enfocados a diff de subdominios, reporting de Nmap, bundling de notas y documentación de casos AD.
 
+La fase 3 añade una capa más práctica para forense y evidencia: resumen de PCAPs, indexado de evidencias, enriquecimiento de IOCs y reporting ligero de resultados de fuzzing web.
+
 ## 📘 Cheat Sheets & Referencias rápidas
 - `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
 - `CHEAT_SHEETS_EXT.md`: guía extendida con técnicas, comandos, scripts, recursos premium y plantillas adjuntas para cada bloque.
