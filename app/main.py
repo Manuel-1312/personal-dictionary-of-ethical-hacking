@@ -5,7 +5,7 @@ from pathlib import Path
 from tkinter import messagebox, ttk
 
 from services.registry import ScriptEntry, load_registry
-from services.runner import run_script
+from services.runner import run_script, script_full_path
 
 
 class ToolboxApp:
@@ -13,17 +13,21 @@ class ToolboxApp:
         self.root = root
         self.repo_root = repo_root
         self.root.title('Hacking Toolbox')
-        self.root.geometry('1100x700')
+        self.root.geometry('1180x760')
         self.entries = load_registry(repo_root)
         self.filtered: list[ScriptEntry] = []
 
-        self.category_var = tk.StringVar(value='Python')
+        categories = sorted({entry.category for entry in self.entries})
+        default_category = categories[0] if categories else ''
+        self.category_var = tk.StringVar(value=default_category)
         self.search_var = tk.StringVar()
+        self.args_var = tk.StringVar()
+        self.status_var = tk.StringVar(value='Listo.')
 
-        self.build_ui()
+        self.build_ui(categories)
         self.refresh_list()
 
-    def build_ui(self):
+    def build_ui(self, categories: list[str]):
         container = ttk.Frame(self.root, padding=10)
         container.pack(fill='both', expand=True)
 
@@ -31,7 +35,6 @@ class ToolboxApp:
         left.pack(side='left', fill='y', padx=(0, 10))
 
         ttk.Label(left, text='Categoría').pack(anchor='w')
-        categories = sorted({entry.category for entry in self.entries})
         self.category_box = ttk.Combobox(left, textvariable=self.category_var, values=categories, state='readonly')
         self.category_box.pack(fill='x')
         self.category_box.bind('<<ComboboxSelected>>', lambda e: self.refresh_list())
@@ -41,7 +44,7 @@ class ToolboxApp:
         search.pack(fill='x')
         search.bind('<KeyRelease>', lambda e: self.refresh_list())
 
-        self.listbox = tk.Listbox(left, width=40, height=30)
+        self.listbox = tk.Listbox(left, width=42, height=32)
         self.listbox.pack(fill='both', expand=True, pady=(10, 0))
         self.listbox.bind('<<ListboxSelect>>', lambda e: self.show_selected())
 
@@ -51,17 +54,27 @@ class ToolboxApp:
         self.title_label = ttk.Label(right, text='Selecciona un script', font=('Segoe UI', 14, 'bold'))
         self.title_label.pack(anchor='w')
 
-        self.desc = tk.Text(right, height=8, wrap='word')
+        meta = ttk.Frame(right)
+        meta.pack(fill='x', pady=(8, 6))
+        ttk.Label(meta, text='Argumentos extra:').pack(anchor='w')
+        ttk.Entry(meta, textvariable=self.args_var).pack(fill='x')
+
+        self.desc = tk.Text(right, height=10, wrap='word')
         self.desc.pack(fill='x', pady=(8, 8))
 
         btns = ttk.Frame(right)
         btns.pack(fill='x')
         ttk.Button(btns, text='Ejecutar', command=self.run_selected).pack(side='left')
+        ttk.Button(btns, text='Usar ejemplo', command=self.use_example_args).pack(side='left', padx=(8, 0))
+        ttk.Button(btns, text='Copiar comando', command=self.copy_command).pack(side='left', padx=(8, 0))
         ttk.Button(btns, text='Refrescar', command=self.reload_registry).pack(side='left', padx=(8, 0))
 
         ttk.Label(right, text='Salida').pack(anchor='w', pady=(12, 0))
         self.output = tk.Text(right, wrap='word')
         self.output.pack(fill='both', expand=True)
+
+        status = ttk.Label(self.root, textvariable=self.status_var, anchor='w')
+        status.pack(fill='x', padx=10, pady=(0, 8))
 
     def refresh_list(self):
         category = self.category_var.get().strip()
@@ -74,8 +87,12 @@ class ToolboxApp:
         for entry in self.filtered:
             self.listbox.insert(tk.END, entry.script)
         if self.filtered:
+            self.listbox.selection_clear(0, tk.END)
             self.listbox.selection_set(0)
             self.show_selected()
+        else:
+            self.title_label.config(text='Sin resultados')
+            self.desc.delete('1.0', tk.END)
 
     def selected_entry(self) -> ScriptEntry | None:
         sel = self.listbox.curselection()
@@ -87,30 +104,67 @@ class ToolboxApp:
         entry = self.selected_entry()
         if not entry:
             return
+        full_path = script_full_path(self.repo_root, entry.relative_path)
         self.title_label.config(text=entry.script)
         self.desc.delete('1.0', tk.END)
         self.desc.insert(tk.END, f'Categoría: {entry.category}\n')
+        self.desc.insert(tk.END, f'Ruta: {entry.relative_path}\n')
         self.desc.insert(tk.END, f'Descripción: {entry.description}\n\n')
-        self.desc.insert(tk.END, f'Ejemplo: {entry.example}\n')
+        self.desc.insert(tk.END, f'Ejemplo: {entry.example or "(sin ejemplo)"}\n')
         self.desc.insert(tk.END, f'Toolkit: {entry.source_toolkit}\n')
+        self.desc.insert(tk.END, f'Archivo real: {full_path}\n')
+        self.status_var.set(f'Seleccionado: {entry.script}')
+
+    def use_example_args(self):
+        entry = self.selected_entry()
+        if not entry or not entry.example:
+            return
+        example = entry.example.strip()
+        rel = entry.relative_path.replace('\\', '/')
+        if rel in example:
+            args = example.split(rel, 1)[1].strip()
+        else:
+            parts = example.split(maxsplit=1)
+            args = parts[1] if len(parts) > 1 else ''
+        self.args_var.set(args)
+        self.status_var.set('Argumentos copiados desde el ejemplo.')
+
+    def copy_command(self):
+        entry = self.selected_entry()
+        if not entry:
+            return
+        command = entry.example or entry.relative_path
+        if self.args_var.get().strip() and not entry.example:
+            command = f'{command} {self.args_var.get().strip()}'
+        self.root.clipboard_clear()
+        self.root.clipboard_append(command)
+        self.status_var.set('Comando copiado al portapapeles.')
 
     def run_selected(self):
         entry = self.selected_entry()
         if not entry:
             messagebox.showinfo('Hacking Toolbox', 'Selecciona un script primero.')
             return
-        code, stdout, stderr = run_script(self.repo_root, entry.relative_path)
+        self.status_var.set(f'Ejecutando: {entry.script}')
+        self.root.update_idletasks()
+        code, stdout, stderr, cmd = run_script(self.repo_root, entry.relative_path, self.args_var.get())
         self.output.delete('1.0', tk.END)
-        self.output.insert(tk.END, f'$ {entry.example or entry.relative_path}\n\n')
+        self.output.insert(tk.END, '$ ' + ' '.join(cmd) + '\n\n')
         if stdout:
-            self.output.insert(tk.END, stdout + '\n')
+            self.output.insert(tk.END, stdout + ('\n' if not stdout.endswith('\n') else ''))
         if stderr:
-            self.output.insert(tk.END, '[stderr]\n' + stderr + '\n')
+            self.output.insert(tk.END, '\n[stderr]\n' + stderr + ('\n' if not stderr.endswith('\n') else ''))
         self.output.insert(tk.END, f'\nExit code: {code}\n')
+        self.status_var.set(f'Ejecución terminada con código {code}.')
 
     def reload_registry(self):
         self.entries = load_registry(self.repo_root)
+        categories = sorted({entry.category for entry in self.entries})
+        self.category_box.configure(values=categories)
+        if self.category_var.get() not in categories and categories:
+            self.category_var.set(categories[0])
         self.refresh_list()
+        self.status_var.set('Catálogo recargado.')
 
 
 def main():
