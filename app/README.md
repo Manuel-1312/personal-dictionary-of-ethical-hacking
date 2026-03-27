@@ -16,6 +16,7 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 - ejecución controlada de scripts Python y PowerShell
 - estado local para favoritos e historial
 - detección automática del repo cuando corre como `.exe`
+- fallbacks de ejecución para Windows (`python` / `py -3`, `pwsh` / `powershell`)
 - empaquetado a `.exe` con `PyInstaller`
 
 ## Archivos principales
@@ -23,6 +24,7 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 - `services/registry.py` → descubre scripts desde el repo
 - `services/runner.py` → ejecuta scripts y devuelve salida
 - `services/state.py` → guarda favoritos e historial local
+- `services/paths.py` → detecta la ruta real del repo
 - `build_exe.ps1` → empaqueta el launcher a `.exe`
 
 ## Mejoras de esta fase
