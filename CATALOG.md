@@ -2,6 +2,8 @@
 
 Este catálogo repasa cada sección del repositorio, qué contiene y cómo se puede profundizar. Está pensado como índice viviente: conforme añadas herramientas o readmes puedes actualizarlo.
 
+> Nota: `exploitation/` ya no es una categoría marginal; ahora actúa como puente entre descubrimiento, validación, evidencia y mitigación dentro del flujo completo del repositorio.
+
 | Categoría | Descripción | Contenido actual | Futuro ideal |
 | --- | --- | --- | --- |
 | `wifi/` | Herramientas y flujos para redes inalámbricas | README general, subcarpetas `captura/`, `auditorias/`, `toolkit.md` con comandos, notas y tablas detalladas | Mantener ejemplos de comandos por sesión, comparativas de adaptadores y mini-guías regulatorias locales |

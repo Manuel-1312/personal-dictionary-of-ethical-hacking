@@ -52,8 +52,9 @@ Este archivo recoge los comandos y técnicas clave que ya documentaste en cada s
 - `bloodhound-python -u analyst -p 'Password123!' -d lab.local -ns 10.0.0.10 -c All` → mapear privilegios en AD de laboratorio.
 - `sudo -l && find / -perm -4000 -type f 2>/dev/null` → enumeración local Linux previa a privilege escalation.
 - `whoami /priv` → revisión rápida de privilegios en Windows de laboratorio.
+- `tar czf evidence-YYYYMMDD.tgz notes/ outputs/` → compactar evidencias del caso y enlazarlas con la nota.
 - Técnica: parte siempre de un hallazgo previo y documenta evidencia + limpieza al terminar.
-- Recomendación: enlaza la explotación con mitigaciones en `defense/` o `network_scan/`.
+- Recomendación: enlaza la explotación con mitigaciones en `defense/` o `network_scan/` y abre una nota en `exploitation/notes/`.
 
 ## OSINT & Forense
 - `shodan search org:"Example Inc" --fields ip_str,org,port` → inventario de hosts públicos.
