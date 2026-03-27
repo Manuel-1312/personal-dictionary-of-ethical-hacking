@@ -28,6 +28,7 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - `network_scan/` – discovery y fingerprinting.
 - `recon/` – reconocimiento pasivo y activo (subcarpetas en `passive/` y `active/`).
 - `automation/` – scripts, playbooks y reporting (tiene `orchestration/` y `reporting/`).
+- `python/` – utilidades propias en Python para parsear logs, normalizar outputs y automatizar tareas ad-hoc.
 - `defense/` – monitoreo, detección y respuesta (con `monitoring/` e `incident_response/`).
 - `evasion/`, `osint/`, `forensics/` – técnicas de evasión controlada, investigación OSINT y análisis forense.
 - Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.

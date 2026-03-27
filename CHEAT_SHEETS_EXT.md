@@ -110,6 +110,22 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - Respeta los límites de APIs (Shodan, Censys, SecurityTrails).
 
 ---
+## 🐍 Python Tools y scripts propios
+- `python python/log_parser.py --input defense/monitoring/logs/zeek.log --output automation/reporting/results/zeek-summary.csv` → parsea logs Zeek/Suricata y genera CSV/markdown con IPs/puertos.
+- `python python/inventory_builder.py --nmap reports/network/nmap-full.xml --masscan reports/network/masscan.gnmap --out reports/network/inventory.md` → normaliza escaneos y crea un inventario comprimido.
+- Configura un virtualenv y corre `pip install -r python/requirements.txt` para no mezclar dependencias del sistema.
+
+### Técnicas de desarrollo
+1. Cada script imprime pasos concretos (`start`, `processing`, `done`) para que el historial muestre qué sucedió.
+2. Uso `argparse` + `Path` para validar rutas y mantener outputs organizados.
+3. Guardar logs de cada ejecución (`python/logs/2026-03-27.log`) ayuda a replicar fallos.
+
+### Recomendaciones personales
+- Documenta en `python/README.md` qué versión de Python usas (3.11) y qué entornos virtuales creaste.
+- Añade tests simples con entradas mock y una carpeta `python/tests/` para poder validar los scripts.
+- Expande `python/toolkit.md` con nuevos scripts y anota qué problema resuelven (parsear JSON, generar reports, etc.).
+
+---
 ## 🤖 Automatización & Reportes
 ### Comandos útiles
 - `ansible-playbook -i automation/orchestration/inventory lab.yml --tags web`.
