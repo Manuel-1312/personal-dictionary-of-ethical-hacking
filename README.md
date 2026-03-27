@@ -111,6 +111,9 @@ La sección `exploitation/` ya forma parte del núcleo del repositorio y está p
 ## 🤝 Cómo contribuir
 ¿Quieres aportar una herramienta, tutorial o plantilla? Sigue los pasos de [CONTRIBUTING.md](CONTRIBUTING.md), registra cambios en los issues con los templates (`.github/ISSUE_TEMPLATE/`) y rellena [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md) cuando envíes tu PR. Mantén claro que todo aquí es para uso ético, respeta el [Code of Conduct](CODE_OF_CONDUCT.md) y enlaza referencias oficiales cuando añadas contenido. Este proyecto se distribuye bajo licencia MIT (`LICENSE`).
 
+## 🛡️ Reportando vulnerabilidades
+¿Detectaste un fallo? Consulta [SECURITY.md](SECURITY.md) y sigue las pautas de divulgación responsable (advisories privados o `security@manuel-sanchez-brito.com`). Asegúrate de incluir pasos reproducibles, impacto previsto y posibles mitigaciones antes de enviar el reporte.
+
 ## 🌍 Face 4 — Comunidad y difusión
 - Revisa y actualiza [COMMUNITY.md](COMMUNITY.md) con avisos mensuales, eventos, casos de uso y lecciones aprendidas.
 - Comparte un resumen de cada Face completado (esto ya incluye las notas de fase 3) en tus canales habituales (Discord, WhatsApp, blog, etc.) para que la comunidad sepa qué cambió.
