@@ -65,6 +65,17 @@ La sección `exploitation/` ya forma parte del núcleo del repositorio y está p
 ## 🧠 Contribuciones
 ¿Quieres aportar una herramienta, tutorial o plantilla? Haz un fork, agrega tu contenido siguiendo esta estructura y abre un pull request. Mantén claro que todo aquí es para uso ético y añade referencias oficiales siempre que sea posible. Este proyecto se distribuye bajo licencia MIT (`LICENSE`).
 
+## 🐍 Crecimiento de la librería Python
+La carpeta `python/` ya no es solo un rincón de scripts sueltos: se está convirtiendo en una caja de utilidades reutilizable para reporting, inventario, extracción de IOCs, hashes y automatización ligera.
+
+Para planificar su crecimiento sin perder coherencia, el repo incluye `python/ROADMAP.md`, una hoja de ruta con ideas priorizadas para nuevos helpers orientados a:
+- `network_scan/`
+- `web/`
+- `recon/`
+- `defense/`
+- `forensics/`
+- `exploitation/`
+
 ## 📘 Cheat Sheets & Referencias rápidas
 - `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
 - `CHEAT_SHEETS_EXT.md`: guía extendida con técnicas, comandos, scripts, recursos premium y plantillas adjuntas para cada bloque.
