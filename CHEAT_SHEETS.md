@@ -48,6 +48,8 @@ Este archivo recoge los comandos y técnicas clave que ya documentaste en cada s
 ## Exploitation (Lab)
 - `msfconsole -q` → abrir workspace limpio para validar hallazgos en un entorno controlado.
 - `searchsploit --nmap reports/network/nmap-full.xml` → relacionar banners/versiones con referencias públicas.
+- `sqlmap -r requests/login.txt --batch` → validar SQLi web a partir de requests guardadas.
+- `bloodhound-python -u analyst -p 'Password123!' -d lab.local -ns 10.0.0.10 -c All` → mapear privilegios en AD de laboratorio.
 - `sudo -l && find / -perm -4000 -type f 2>/dev/null` → enumeración local Linux previa a privilege escalation.
 - `whoami /priv` → revisión rápida de privilegios en Windows de laboratorio.
 - Técnica: parte siempre de un hallazgo previo y documenta evidencia + limpieza al terminar.

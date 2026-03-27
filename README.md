@@ -30,7 +30,7 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - `automation/` – scripts, playbooks y reporting (tiene `orchestration/` y `reporting/`).
 - `python/` – utilidades propias en Python para parsear logs, normalizar outputs, inventariar servicios web, generar manifiestos de hashes y extraer IOCs; mira los comandos de `python/toolkit.md` para ejemplos claros.
 - `defense/` – monitoreo, detección y respuesta (con `monitoring/` e `incident_response/`).
-- `exploitation/` – validación de hallazgos en laboratorio, privilege escalation y post-explotación controlada con subcarpetas `frameworks/`, `privilege_escalation/` y `post_exploitation/`.
+- `exploitation/` – validación de hallazgos en laboratorio, con subcarpetas `frameworks/`, `web_exploitation/`, `active_directory/`, `privilege_escalation/`, `post_exploitation/` y `notes/` para documentar casos y evidencias.
 - `evasion/`, `osint/`, `forensics/` – técnicas de evasión controlada, investigación OSINT y análisis forense.
 - Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.
 
