@@ -15,6 +15,7 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 - lectura de `toolkit.md` como fuente de catálogo
 - ejecución controlada de scripts Python y PowerShell
 - estado local para favoritos e historial
+- detección automática del repo cuando corre como `.exe`
 - empaquetado a `.exe` con `PyInstaller`
 
 ## Archivos principales

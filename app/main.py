@@ -5,6 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from tkinter import messagebox, ttk
 
+from services.paths import discover_repo_root
 from services.registry import ScriptEntry, load_registry
 from services.runner import run_script, script_full_path
 from services.state import add_history, load_state, toggle_favorite
@@ -25,7 +26,7 @@ class ToolboxApp:
         self.category_var = tk.StringVar(value=default_category)
         self.search_var = tk.StringVar()
         self.args_var = tk.StringVar()
-        self.status_var = tk.StringVar(value='Listo.')
+        self.status_var = tk.StringVar(value=f'Repo: {repo_root}')
         self.only_favorites_var = tk.BooleanVar(value=False)
 
         self.build_ui(categories)
@@ -54,6 +55,7 @@ class ToolboxApp:
         self.listbox = tk.Listbox(left, width=44, height=30)
         self.listbox.pack(fill='both', expand=True, pady=(10, 0))
         self.listbox.bind('<<ListboxSelect>>', lambda e: self.show_selected())
+        self.listbox.bind('<Double-Button-1>', lambda e: self.run_selected())
 
         right = ttk.Frame(container)
         right.pack(side='left', fill='both', expand=True)
@@ -113,6 +115,7 @@ class ToolboxApp:
         else:
             self.title_label.config(text='Sin resultados')
             self.desc.delete('1.0', tk.END)
+            self.desc.insert(tk.END, f'No se encontraron scripts para la categoría seleccionada.\n\nRepo detectado: {self.repo_root}')
 
     def refresh_history(self):
         self.history_list.delete(0, tk.END)
@@ -139,7 +142,7 @@ class ToolboxApp:
         self.desc.insert(tk.END, f'Ejemplo: {entry.example or "(sin ejemplo)"}\n')
         self.desc.insert(tk.END, f'Toolkit: {entry.source_toolkit}\n')
         self.desc.insert(tk.END, f'Archivo real: {full_path}\n')
-        self.status_var.set(f'Seleccionado: {entry.script}')
+        self.status_var.set(f'Repo: {self.repo_root} | Seleccionado: {entry.script}')
 
     def use_example_args(self):
         entry = self.selected_entry()
@@ -228,7 +231,7 @@ class ToolboxApp:
 
 
 def main():
-    repo_root = Path(__file__).resolve().parents[1]
+    repo_root = discover_repo_root()
     root = tk.Tk()
     ToolboxApp(root, repo_root)
     root.mainloop()
