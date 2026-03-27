@@ -14,21 +14,25 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 - GUI con `tkinter` (ligera, sin dependencia externa para la interfaz)
 - lectura de `toolkit.md` como fuente de catálogo
 - ejecución controlada de scripts Python y PowerShell
+- estado local para favoritos e historial
 - empaquetado a `.exe` con `PyInstaller`
 
 ## Archivos principales
 - `main.py` → arranque de la app
 - `services/registry.py` → descubre scripts desde el repo
 - `services/runner.py` → ejecuta scripts y devuelve salida
+- `services/state.py` → guarda favoritos e historial local
 - `build_exe.ps1` → empaqueta el launcher a `.exe`
 
 ## Mejoras de esta fase
-La app ya tiene una base más usable:
+La app ya tiene una base más utilizable de verdad:
 - buscador por categoría y texto
 - panel de detalle del script
 - caja para argumentos extra
 - botón para usar el comando de ejemplo como base
 - botón para copiar comando
+- favoritos
+- historial local de ejecuciones
 - consola con stdout/stderr y código de salida
 
 ## Nota

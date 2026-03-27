@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import tkinter as tk
+from datetime import datetime
 from pathlib import Path
 from tkinter import messagebox, ttk
 
 from services.registry import ScriptEntry, load_registry
 from services.runner import run_script, script_full_path
+from services.state import add_history, load_state, toggle_favorite
 
 
 class ToolboxApp:
@@ -13,9 +15,10 @@ class ToolboxApp:
         self.root = root
         self.repo_root = repo_root
         self.root.title('Hacking Toolbox')
-        self.root.geometry('1180x760')
+        self.root.geometry('1260x780')
         self.entries = load_registry(repo_root)
         self.filtered: list[ScriptEntry] = []
+        self.state = load_state(repo_root)
 
         categories = sorted({entry.category for entry in self.entries})
         default_category = categories[0] if categories else ''
@@ -23,9 +26,11 @@ class ToolboxApp:
         self.search_var = tk.StringVar()
         self.args_var = tk.StringVar()
         self.status_var = tk.StringVar(value='Listo.')
+        self.only_favorites_var = tk.BooleanVar(value=False)
 
         self.build_ui(categories)
         self.refresh_list()
+        self.refresh_history()
 
     def build_ui(self, categories: list[str]):
         container = ttk.Frame(self.root, padding=10)
@@ -44,7 +49,9 @@ class ToolboxApp:
         search.pack(fill='x')
         search.bind('<KeyRelease>', lambda e: self.refresh_list())
 
-        self.listbox = tk.Listbox(left, width=42, height=32)
+        ttk.Checkbutton(left, text='Solo favoritos', variable=self.only_favorites_var, command=self.refresh_list).pack(anchor='w', pady=(8, 0))
+
+        self.listbox = tk.Listbox(left, width=44, height=30)
         self.listbox.pack(fill='both', expand=True, pady=(10, 0))
         self.listbox.bind('<<ListboxSelect>>', lambda e: self.show_selected())
 
@@ -59,7 +66,7 @@ class ToolboxApp:
         ttk.Label(meta, text='Argumentos extra:').pack(anchor='w')
         ttk.Entry(meta, textvariable=self.args_var).pack(fill='x')
 
-        self.desc = tk.Text(right, height=10, wrap='word')
+        self.desc = tk.Text(right, height=12, wrap='word')
         self.desc.pack(fill='x', pady=(8, 8))
 
         btns = ttk.Frame(right)
@@ -67,11 +74,19 @@ class ToolboxApp:
         ttk.Button(btns, text='Ejecutar', command=self.run_selected).pack(side='left')
         ttk.Button(btns, text='Usar ejemplo', command=self.use_example_args).pack(side='left', padx=(8, 0))
         ttk.Button(btns, text='Copiar comando', command=self.copy_command).pack(side='left', padx=(8, 0))
+        ttk.Button(btns, text='Favorito ★', command=self.toggle_selected_favorite).pack(side='left', padx=(8, 0))
         ttk.Button(btns, text='Refrescar', command=self.reload_registry).pack(side='left', padx=(8, 0))
 
         ttk.Label(right, text='Salida').pack(anchor='w', pady=(12, 0))
-        self.output = tk.Text(right, wrap='word')
+        self.output = tk.Text(right, wrap='word', height=18)
         self.output.pack(fill='both', expand=True)
+
+        history_frame = ttk.Frame(container)
+        history_frame.pack(side='left', fill='y', padx=(10, 0))
+        ttk.Label(history_frame, text='Historial').pack(anchor='w')
+        self.history_list = tk.Listbox(history_frame, width=36, height=30)
+        self.history_list.pack(fill='both', expand=True)
+        self.history_list.bind('<<ListboxSelect>>', lambda e: self.use_history_item())
 
         status = ttk.Label(self.root, textvariable=self.status_var, anchor='w')
         status.pack(fill='x', padx=10, pady=(0, 8))
@@ -79,13 +94,18 @@ class ToolboxApp:
     def refresh_list(self):
         category = self.category_var.get().strip()
         query = self.search_var.get().strip().lower()
+        only_favorites = self.only_favorites_var.get()
+        favorites = set(self.state.get('favorites', []))
         self.filtered = [
             entry for entry in self.entries
-            if entry.category == category and (not query or query in entry.script.lower() or query in entry.description.lower())
+            if entry.category == category
+            and (not query or query in entry.script.lower() or query in entry.description.lower())
+            and (not only_favorites or entry.script in favorites)
         ]
         self.listbox.delete(0, tk.END)
         for entry in self.filtered:
-            self.listbox.insert(tk.END, entry.script)
+            prefix = '★ ' if entry.script in favorites else ''
+            self.listbox.insert(tk.END, prefix + entry.script)
         if self.filtered:
             self.listbox.selection_clear(0, tk.END)
             self.listbox.selection_set(0)
@@ -93,6 +113,11 @@ class ToolboxApp:
         else:
             self.title_label.config(text='Sin resultados')
             self.desc.delete('1.0', tk.END)
+
+    def refresh_history(self):
+        self.history_list.delete(0, tk.END)
+        for item in self.state.get('history', []):
+            self.history_list.insert(tk.END, f"{item.get('time','')} | {item.get('script','')}")
 
     def selected_entry(self) -> ScriptEntry | None:
         sel = self.listbox.curselection()
@@ -105,7 +130,8 @@ class ToolboxApp:
         if not entry:
             return
         full_path = script_full_path(self.repo_root, entry.relative_path)
-        self.title_label.config(text=entry.script)
+        favorite_mark = '★ ' if entry.script in set(self.state.get('favorites', [])) else ''
+        self.title_label.config(text=favorite_mark + entry.script)
         self.desc.delete('1.0', tk.END)
         self.desc.insert(tk.END, f'Categoría: {entry.category}\n')
         self.desc.insert(tk.END, f'Ruta: {entry.relative_path}\n')
@@ -140,6 +166,15 @@ class ToolboxApp:
         self.root.clipboard_append(command)
         self.status_var.set('Comando copiado al portapapeles.')
 
+    def toggle_selected_favorite(self):
+        entry = self.selected_entry()
+        if not entry:
+            return
+        self.state = toggle_favorite(self.repo_root, entry.script)
+        self.refresh_list()
+        self.show_selected()
+        self.status_var.set('Favoritos actualizados.')
+
     def run_selected(self):
         entry = self.selected_entry()
         if not entry:
@@ -155,15 +190,40 @@ class ToolboxApp:
         if stderr:
             self.output.insert(tk.END, '\n[stderr]\n' + stderr + ('\n' if not stderr.endswith('\n') else ''))
         self.output.insert(tk.END, f'\nExit code: {code}\n')
+        self.state = add_history(self.repo_root, {
+            'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'script': entry.script,
+            'args': self.args_var.get().strip(),
+            'exit_code': code,
+        })
+        self.refresh_history()
         self.status_var.set(f'Ejecución terminada con código {code}.')
+
+    def use_history_item(self):
+        sel = self.history_list.curselection()
+        if not sel:
+            return
+        item = self.state.get('history', [])[sel[0]]
+        script_name = item.get('script', '')
+        args = item.get('args', '')
+        self.args_var.set(args)
+        for idx, entry in enumerate(self.filtered):
+            if entry.script == script_name:
+                self.listbox.selection_clear(0, tk.END)
+                self.listbox.selection_set(idx)
+                self.show_selected()
+                break
+        self.status_var.set('Historial cargado en argumentos.')
 
     def reload_registry(self):
         self.entries = load_registry(self.repo_root)
+        self.state = load_state(self.repo_root)
         categories = sorted({entry.category for entry in self.entries})
         self.category_box.configure(values=categories)
         if self.category_var.get() not in categories and categories:
             self.category_var.set(categories[0])
         self.refresh_list()
+        self.refresh_history()
         self.status_var.set('Catálogo recargado.')
 
 
