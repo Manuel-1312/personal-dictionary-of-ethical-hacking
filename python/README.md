@@ -6,6 +6,9 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 - `parsers/` → transformación de logs, XML y salidas de scanners a formatos reutilizables.
 - `web/` → helpers ligeros para inventario y análisis HTTP/HTTPS.
 - `forensics/` → hashes, artefactos, IOCs y utilidades de apoyo para evidencias.
+- `recon/` → comparación y normalización de hallazgos de reconocimiento.
+- `reporting/` → conversión de resultados técnicos en informes Markdown reutilizables.
+- `ad/` → helpers para documentar mejor casos de Active Directory en laboratorio.
 - `requirements.txt` → dependencias comunes.
 - `toolkit.md` → catálogo vivo de scripts y ejemplos de uso.
 - `ROADMAP.md` → ideas priorizadas para futuras ampliaciones.
@@ -22,6 +25,16 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 - `forensics/hash_manifest.py`: genera manifiestos de hashes para evidencias, muestras o colecciones de laboratorio.
 - `forensics/ioc_extractor.py`: extrae IOCs básicos (IPs, dominios, URLs y hashes) desde notas o logs de texto plano.
 
+### `recon/`
+- `recon/subdomain_diff.py`: compara dos listas de subdominios y genera un resumen Markdown con altas, bajas y coincidencias.
+
+### `reporting/`
+- `reporting/nmap_xml_to_markdown.py`: convierte XML de Nmap en un informe Markdown legible.
+- `reporting/markdown_case_bundler.py`: une varias notas Markdown en un único informe final.
+
+### `ad/`
+- `ad/ad_notes_builder.py`: genera una nota estructurada para casos de Active Directory en laboratorio.
+
 ## Dependencias
 Instala dependencias con:
 
@@ -37,6 +50,9 @@ python python/web/http_headers_probe.py https://example.org 10.10.10.5:8080 -o a
 python python/forensics/hash_manifest.py -i samples/ -o automation/reporting/hash-manifest.csv --algorithm sha256
 python python/forensics/ioc_extractor.py -i defense/incident_response/notes.txt -o automation/reporting/iocs.csv
 python python/parsers/log_parser.py --input defense/monitoring/logs/zeek.log --output automation/reporting/results/defense/zeek-summary.csv
+python python/recon/subdomain_diff.py --old recon/old.txt --new recon/new.txt -o recon/subdomain-diff.md
+python python/reporting/nmap_xml_to_markdown.py -i reports/network/nmap-full.xml -o reports/network/nmap-report.md
+python python/ad/ad_notes_builder.py --host dc01 --user analyst --domain lab.local --finding "Delegación débil" -o exploitation/active_directory/case-dc01.md
 ```
 
 Los ejemplos del toolkit (`python/toolkit.md`) muestran líneas exactas para integrarlos en tu repo sin improvisar demasiado.
