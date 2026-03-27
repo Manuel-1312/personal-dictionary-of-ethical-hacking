@@ -29,10 +29,11 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - `recon/` – reconocimiento pasivo y activo (subcarpetas en `passive/` y `active/`).
 - `automation/` – scripts, playbooks y reporting (tiene `orchestration/` y `reporting/`).
 - `python/` – utilidades propias en Python para parsear logs, normalizar outputs, inventariar servicios web, generar manifiestos de hashes y extraer IOCs; mira los comandos de `python/toolkit.md` para ejemplos claros.
-- `powershell/` – automatización ligera para Windows organizada por `system/`, `files/`, `network/`, `reporting/` y `fun/`, útil para inventario, red local, reporting, tareas del sistema, software instalado, firewall, shares y helpers visuales.
+- `powershell/` – automatización ligera para Windows organizada por `system/`, `files/`, `network/`, `reporting/` y `fun/`, útil para inventario, red local, reporting, tareas del sistema, software instalado, firewall, shares y helpers visuales; incluye también `powershell/DEPENDENCIES.md` para aclarar requisitos.
 - `defense/` – monitoreo, detección y respuesta (con `monitoring/` e `incident_response/`).
 - `exploitation/` – validación de hallazgos en laboratorio, con subcarpetas `frameworks/`, `web_exploitation/`, `active_directory/`, `privilege_escalation/`, `post_exploitation/` y `notes/` para documentar casos y evidencias.
 - `fun-scripts/` – scripts ligeros, curiosos y creativos para demos, práctica, documentación y un poco de personalidad terminal.
+- `app/` – launcher de escritorio para usar el repositorio como backend y evolucionarlo hacia una `.exe`.
 - `evasion/`, `osint/`, `forensics/` – técnicas de evasión controlada, investigación OSINT y análisis forense.
 - Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.
 
@@ -85,6 +86,31 @@ La fase 3 añade una capa más práctica para forense y evidencia: resumen de PC
 La fase 4 remata esa línea con más utilidades de conversión y trazabilidad: parser de Masscan a CSV, manifiestos de capturas web, conversión de CSV a Markdown y plantillas de cadena de custodia.
 
 Y para no perder de vista qué necesita cada helper, la carpeta ya incluye `python/DEPENDENCIES.md`, donde se separan dependencias de `pip` y herramientas externas del sistema como `tshark`.
+
+## 🖥️ Launcher / app `.exe`
+El repositorio ya incluye una app de escritorio en `app/` pensada para usar la propia biblioteca como backend.
+
+### Qué hace
+- lee categorías y scripts desde los `toolkit.md`
+- muestra descripción, ruta y comando de ejemplo
+- permite ejecutar scripts Python, PowerShell y `fun-scripts` desde una interfaz
+- guarda favoritos e historial local
+- puede empaquetarse como `.exe`
+
+### Ruta del ejecutable
+Tras compilarla, el binario queda en:
+- `dist/HackingToolbox.exe`
+
+### Cómo usarla
+1. Abre `HackingToolbox.exe` desde la carpeta `dist/`.
+2. Elige una categoría (`Python`, `PowerShell`, `Fun Scripts`).
+3. Selecciona un script en la lista.
+4. Revisa la descripción y el ejemplo de uso.
+5. Si hace falta, añade argumentos extra.
+6. Pulsa **Ejecutar** o haz doble clic sobre el script.
+
+### Qué ventaja tiene
+No sustituye al repo: lo convierte en una toolbox ejecutable, más cómoda para lanzar scripts y revisar resultados sin ir comando por comando en terminal.
 
 ## 📘 Cheat Sheets & Referencias rápidas
 - `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
