@@ -162,6 +162,11 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - Enlaza cualquier IOC generado con `defense/` para que el repositorio conecte ataque y detección.
 - Si pruebas privilege escalation, guarda tanto la salida en bruto como un resumen humano corto.
 
+### Subbloques útiles dentro de `exploitation/`
+- `web_exploitation/` para fallos web reproducidos con request/response y notas por endpoint.
+- `active_directory/` para laboratorios AD con rutas de privilegio, shares, Kerberos y mitigación.
+- `notes/` para plantillas de caso, evidencia y cronología reutilizable.
+
 ---
 ## 🔎 OSINT & Forense
 ### Comandos básicos
