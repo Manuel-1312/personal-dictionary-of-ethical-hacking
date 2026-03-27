@@ -21,3 +21,5 @@ python python/ioc_extractor.py -i defense/incident_response/notes.txt -o automat
 ```
 
 Los ejemplos del toolkit (`python/toolkit.md`) muestran líneas exactas para integrarlos en tu repo sin improvisar demasiado.
+
+Si quieres ampliar la carpeta con nuevas utilidades, revisa también `python/ROADMAP.md`: ahí tienes una selección razonada de scripts candidatos para futuras tandas.
