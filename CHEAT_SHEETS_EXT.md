@@ -144,6 +144,25 @@ Esta guía extendida es la libreta que me llevo a cada sesión. Respirala como u
 - Guarda salidas en `automation/reporting/results/` con el nombre del caso y la fecha.
 
 ---
+## 🧨 Exploitation de laboratorio
+### Comandos base
+- `msfconsole -q` para abrir un workspace limpio y separar sesiones por objetivo.
+- `searchsploit --nmap reports/network/nmap-full.xml` para mapear hallazgos con PoCs públicas.
+- `sudo -l`, `find / -perm -4000 -type f 2>/dev/null` y `pspy64` para revisar rutas de escalada en Linux de laboratorio.
+- `whoami /priv`, `whoami /groups` y `winPEAS.exe` para enumerar privilegios y configuraciones débiles en Windows de prueba.
+- `tar czf evidence-YYYYMMDD.tgz notes/ outputs/` para empaquetar evidencias de una sesión.
+
+### Técnicas y aprendizajes
+1. Nunca empiezo esta fase sin un hallazgo previo ya registrado en `network_scan/`, `web/` o `recon/`.
+2. Prefiero validación mínima primero (manual o con herramienta ligera) y luego framework, para saber exactamente qué cambió.
+3. Cierro cada sesión documentando impacto, limpieza, snapshot restaurado y mitigación recomendada.
+
+### Recomendaciones personales
+- Mantén una nota por caso con objetivo, prerequisitos, resultado y pasos de reversión.
+- Enlaza cualquier IOC generado con `defense/` para que el repositorio conecte ataque y detección.
+- Si pruebas privilege escalation, guarda tanto la salida en bruto como un resumen humano corto.
+
+---
 ## 🔎 OSINT & Forense
 ### Comandos básicos
 - `shodan search org:"Example Inc" --fields ip_str,org,port > outputs/osint/infra/shodan-org.json`.
