@@ -111,6 +111,14 @@ La sección `exploitation/` ya forma parte del núcleo del repositorio y está p
 ## 🤝 Cómo contribuir
 ¿Quieres aportar una herramienta, tutorial o plantilla? Sigue los pasos de [CONTRIBUTING.md](CONTRIBUTING.md), registra cambios en los issues con los templates (`.github/ISSUE_TEMPLATE/`) y rellena [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md) cuando envíes tu PR. Mantén claro que todo aquí es para uso ético, respeta el [Code of Conduct](CODE_OF_CONDUCT.md) y enlaza referencias oficiales cuando añadas contenido. Este proyecto se distribuye bajo licencia MIT (`LICENSE`).
 
+## 🌍 Face 4 — Comunidad y difusión
+- Revisa y actualiza [COMMUNITY.md](COMMUNITY.md) con avisos mensuales, eventos, casos de uso y lecciones aprendidas.
+- Comparte un resumen de cada Face completado (esto ya incluye las notas de fase 3) en tus canales habituales (Discord, WhatsApp, blog, etc.) para que la comunidad sepa qué cambió.
+- Usa `conceptos/diccionario.md` y `CHEAT_SHEETS.md` para enseñar a nuevos colaboradores; añade ejercicios o capturas en `automation/reporting/`.
+- Documenta tus laboratorios en `lab-notes.md` y `exploitation/notes/` para que otros puedan seguir tus pasos.
+- Mantén un backlog visible (puedes expandir `AGENTS.md`, `PROJECT.md` o crear `ROADMAP.md`) y anota qué Face sigue a continuación.
+- Cuando publiques, recuerda recalcar que los ejemplos son para entornos autorizados y enlaza el `CODE_OF_CONDUCT` y `LICENSE`.
+
 ## 🐍 Crecimiento de la librería Python
 La carpeta `python/` ya no es solo un rincón de scripts sueltos: ahora está organizada por subcategorías y se está convirtiendo en una caja de utilidades reutilizable para reporting, inventario, extracción de IOCs, hashes y automatización ligera.
 
