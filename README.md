@@ -23,18 +23,18 @@ Este repositorio organiza herramientas de código abierto y documentación enfoc
 - **Boletines y cursos:** https://www.sans.org/cyber-security-courses/ y https://www.cybrary.it/.
 
 ## 🗂️ Estructura del repositorio
-- `wifi/` – herramientas inalámbricas (puede tener subcarpetas como `captura/`, `auditorias/`).
-- `web/` – escaneos web, aplicaciones vulnerables, proxies y fuzzers.
-- `network_scan/` – discovery y fingerprinting.
-- `recon/` – reconocimiento pasivo y activo (subcarpetas en `passive/` y `active/`).
-- `automation/` – scripts, playbooks y reporting (tiene `orchestration/` y `reporting/`).
-- `python/` – utilidades propias en Python para parsear logs, normalizar outputs, inventariar servicios web, generar manifiestos de hashes y extraer IOCs; mira los comandos de `python/toolkit.md` para ejemplos claros.
-- `powershell/` – automatización ligera para Windows organizada por `system/`, `files/`, `network/`, `reporting/` y `fun/`, útil para inventario, red local, reporting, tareas del sistema, software instalado, firewall, shares y helpers visuales; incluye también `powershell/DEPENDENCIES.md` para aclarar requisitos.
-- `defense/` – monitoreo, detección y respuesta (con `monitoring/` e `incident_response/`).
-- `exploitation/` – validación de hallazgos en laboratorio, con subcarpetas `frameworks/`, `web_exploitation/`, `active_directory/`, `privilege_escalation/`, `post_exploitation/` y `notes/` para documentar casos y evidencias.
-- `fun-scripts/` – scripts ligeros, curiosos y creativos para demos, práctica, documentación y un poco de personalidad terminal.
-- `app/` – launcher de escritorio para usar el repositorio como backend y evolucionarlo hacia una `.exe`.
-- `evasion/`, `osint/`, `forensics/` – técnicas de evasión controlada, investigación OSINT y análisis forense.
+- [wifi/](./wifi/) – herramientas inalámbricas (puede tener subcarpetas como `captura/`, `auditorias/`).
+- [web/](./web/) – escaneos web, aplicaciones vulnerables, proxies y fuzzers.
+- [network_scan/](./network_scan/) – discovery y fingerprinting.
+- [recon/](./recon/) – reconocimiento pasivo y activo (subcarpetas en `passive/` y `active/`).
+- [automation/](./automation/) – scripts, playbooks y reporting (tiene `orchestration/` y `reporting/`).
+- [python/](./python/) – utilidades propias en Python para parsear logs, normalizar outputs, inventariar servicios web, generar manifiestos de hashes y extraer IOCs; mira los comandos de `python/toolkit.md` para ejemplos claros.
+- [powershell/](./powershell/) – automatización ligera para Windows organizada por `system/`, `files/`, `network/`, `reporting/` y `fun/`, útil para inventario, red local, reporting, tareas del sistema, software instalado, firewall, shares y helpers visuales; incluye también `powershell/DEPENDENCIES.md` para aclarar requisitos.
+- [defense/](./defense/) – monitoreo, detección y respuesta (con `monitoring/` e `incident_response/`).
+- [exploitation/](./exploitation/) – validación de hallazgos en laboratorio, con subcarpetas `frameworks/`, `web_exploitation/`, `active_directory/`, `privilege_escalation/`, `post_exploitation/` y `notes/` para documentar casos y evidencias.
+- [fun-scripts/](./fun-scripts/) – scripts ligeros, curiosos y creativos para demos, práctica, documentación y un poco de personalidad terminal.
+- [app/](./app/) – launcher de escritorio para usar el repositorio como backend y evolucionarlo hacia una `.exe`.
+- [evasion/](./evasion/), [osint/](./osint/), [forensics/](./forensics/) – técnicas de evasión controlada, investigación OSINT y análisis forense.
 - Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.
 
 ## 🎯 Foco actual: explotación de laboratorio
