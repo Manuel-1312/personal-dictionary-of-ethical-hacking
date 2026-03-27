@@ -155,6 +155,8 @@ Ese pack da bastante valor real y cubre:
 - evidencias
 - cierre de casos
 
+A estas alturas varias de esas piezas ya están implementadas, así que el roadmap empieza a servir más como backlog fino que como lista de deseos.
+
 ## Cómo elegir sin meter ruido
 Para cada script nuevo, yo miraría:
 - si resuelve un dolor real del flujo
