@@ -20,10 +20,14 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 
 ### `web/`
 - `web/http_headers_probe.py`: consulta objetivos HTTP/HTTPS y exporta headers defensivos clave a CSV.
+- `web/dir_bruteforce_report.py`: resume resultados de `ffuf` en Markdown o CSV.
 
 ### `forensics/`
 - `forensics/hash_manifest.py`: genera manifiestos de hashes para evidencias, muestras o colecciones de laboratorio.
 - `forensics/ioc_extractor.py`: extrae IOCs básicos (IPs, dominios, URLs y hashes) desde notas o logs de texto plano.
+- `forensics/ioc_enricher.py`: clasifica y contextualiza IOCs a partir de un CSV.
+- `forensics/pcap_summary.py`: resume un PCAP mediante `tshark` y genera Markdown o JSON.
+- `forensics/evidence_indexer.py`: crea un índice CSV de evidencias con hash y tamaño.
 
 ### `recon/`
 - `recon/subdomain_diff.py`: compara dos listas de subdominios y genera un resumen Markdown con altas, bajas y coincidencias.
@@ -42,13 +46,17 @@ Instala dependencias con:
 pip install -r python/requirements.txt
 ```
 
-Los scripts actuales siguen siendo pequeños y directos. La reorganización busca que, cuando la carpeta crezca, no tengas que rebuscar entre archivos sin contexto.
+Algunos scripts pueden depender además de utilidades externas del entorno (por ejemplo `tshark` para procesar PCAPs). Si un helper lo necesita, la idea es dejarlo claro en su README y en el ejemplo de uso.
 
 ## Ejemplos rápidos
 ```bash
 python python/web/http_headers_probe.py https://example.org 10.10.10.5:8080 -o automation/reporting/http-headers.csv
+python python/web/dir_bruteforce_report.py -i web/apps/ffuf/results.json -o web/apps/ffuf/report.md
 python python/forensics/hash_manifest.py -i samples/ -o automation/reporting/hash-manifest.csv --algorithm sha256
 python python/forensics/ioc_extractor.py -i defense/incident_response/notes.txt -o automation/reporting/iocs.csv
+python python/forensics/ioc_enricher.py -i automation/reporting/iocs.csv -o automation/reporting/iocs-enriched.csv
+python python/forensics/pcap_summary.py -i captures/session.pcapng -o reports/pcap-summary.md
+python python/forensics/evidence_indexer.py -i exploitation/notes -o reports/evidence-index.csv
 python python/parsers/log_parser.py --input defense/monitoring/logs/zeek.log --output automation/reporting/results/defense/zeek-summary.csv
 python python/recon/subdomain_diff.py --old recon/old.txt --new recon/new.txt -o recon/subdomain-diff.md
 python python/reporting/nmap_xml_to_markdown.py -i reports/network/nmap-full.xml -o reports/network/nmap-report.md
