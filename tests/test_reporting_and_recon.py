@@ -123,9 +123,9 @@ class TestRegistry:
 
     @pytest.fixture
     def registry_mod(self):
-        # registry.py usa `from __future__ import annotations` que convierte
-        # las anotaciones en strings. Para que @dataclass pueda resolverlas,
-        # el módulo debe estar registrado en sys.modules ANTES de ejecutarlo.
+        # registry.py uses `from __future__ import annotations`, which converts
+        # type hints to strings. The module must be registered in sys.modules
+        # before execution so @dataclass can resolve these annotations.
         import importlib.util
         import sys
 
