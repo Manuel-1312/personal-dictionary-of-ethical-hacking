@@ -1,5 +1,14 @@
 #!/usr/bin/env python
-"""Genera un manifiesto de hashes para artefactos de laboratorio."""
+"""Genera un manifiesto de hashes para artefactos de laboratorio.
+
+Cuando trabajas con evidencias digitales, necesitas poder verificar que
+los archivos no se han alterado. Este script recorre una carpeta,
+calcula el hash de cada archivo y genera un CSV con ruta, tamaño,
+algoritmo y digest — ideal para documentar integridad en un caso forense.
+
+Uso típico:
+    python hash_manifest.py -i ./evidencia/ -o hashes.csv --algorithm sha256
+"""
 import argparse
 import csv
 import hashlib

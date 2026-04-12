@@ -1,32 +1,68 @@
 # Guía de contribución
 
-Gracias por ayudar a crecer esta biblioteca ética. Antes de comenzar:
+Gracias por interesarte en hacer crecer esta biblioteca ética. Antes de empezar, lee este documento completo para entender cómo mantener la calidad y coherencia del proyecto.
 
-1. Lee `CODE_OF_CONDUCT.md` y asegúrate de que tu participación siga esos valores.
-2. Comprende la estructura básica: cada carpeta tiene su propio `toolkit.md`, y hay recursos específicos en `conceptos/`, `CHEAT_SHEETS.md` y `CHEAT_SHEETS_EXT.md`.
-3. Trabaja sobre un fork, crea una rama descriptiva (`face2-contributing`, `feature/web-toolkit`, etc.) y empuja tus cambios ahí.
+## Antes de contribuir
 
-## Cómo contribuir
+1. Lee el [Código de Conducta](CODE_OF_CONDUCT.md) y asegúrate de que tu participación sigue esos valores.
+2. Familiarízate con la estructura: cada carpeta tiene su propio `toolkit.md` y hay recursos centrales en `conceptos/`, `CHEAT_SHEETS.md` y `CHEAT_SHEETS_EXT.md`.
+3. Revisa el [CATALOG.md](CATALOG.md) para ver el estado actual de cada sección y dónde hacen más falta aportes.
 
-1. **Reporta problemas claros** usando `ISSUE_TEMPLATE/bug_report.md` o propone ideas con `ISSUE_TEMPLATE/feature_request.md`. Incluye pasos para reproducir o el valor esperado.
-2. **Haz los cambios** en tu rama. Mantén un formato consistente (`toolkit`, documentación, scripts). Usa Markdown simple y explica cada término nuevo.
-3. **Prepara un pull request** explicando qué hiciste y por qué. Usa `PULL_REQUEST_TEMPLATE.md` para cubrir checklist, pruebas (si hay) y dependencias.
-4. **Incluye pruebas cuando sea viable**: si añades scripts, describe cómo ejecutarlos (por ejemplo `python create_conceptos.py`). Si modificas docs, revisa que los enlaces internos sean correctos y que los ressources referenciados existan.
+## Flujo de trabajo
+
+1. **Fork** del repositorio y crea una rama descriptiva (`feature/web-toolkit`, `fix/link-roto`, `docs/forensics-update`).
+2. Haz tus cambios en la rama, manteniendo commits pequeños y descriptivos.
+3. Abre un **Pull Request** usando la plantilla de [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md).
+4. Espera la revisión. El CI ejecutará MarkdownLint y link check automáticamente.
+
+## Tipos de contribución
+
+### 📝 Documentación
+
+- Mejora o amplía los `toolkit.md` de cada carpeta.
+- Añade definiciones al [diccionario de conceptos](conceptos/diccionario.md).
+- Actualiza los cheat sheets con comandos útiles que hayas probado.
+
+### 🐍 Scripts (Python / PowerShell)
+
+- Añade scripts en la subcarpeta correcta (`python/parsers/`, `powershell/network/`, etc.).
+- Incluye docstring/comentario con descripción, uso y ejemplo.
+- Actualiza `CHEAT_SHEETS.md` si el script es de uso frecuente.
+- Mantén las dependencias al mínimo; si necesitas una nueva, documéntala en `DEPENDENCIES.md`.
+
+### 🐛 Reportar problemas
+
+- Usa las plantillas de issue: [bug report](.github/ISSUE_TEMPLATE/bug_report.md) o feature request.
+- Incluye pasos para reproducir, resultado esperado y contexto.
 
 ## Estándares de formato
 
+### Markdown
+
 - Usa Markdown plano y evita tabulaciones para listas.
-- Documenta cada carpeta con `toolkit.md` o `README.md` si introduces subdirectorios nuevos.
-- Para scripts, agrega comentarios y actualiza `CHEAT_SHEETS.MD`/`CHEAT_SHEETS_EXT.MD` si es necesario.
+- Longitud máxima de línea: 160 caracteres (configurado en `.markdownlint.json`).
+- Documenta cada carpeta nueva con `toolkit.md` o `README.md`.
 
-## Verificaciones mínimas
+### Scripts
 
-- Revisa que los enlaces Markdown funcionen (por ejemplo, abre `README.md` y prueba los enlaces principales tras un cambio).
-- Confirma que los archivos sea evergreen (no incluyas secretos ni comandos destructivos sin contexto).
+- **Python**: sigue PEP 8, incluye docstring en el módulo y funciones principales, usa `argparse` para CLI.
+- **PowerShell**: documenta parámetros, usa `Format-Table` o export a CSV/JSON para outputs.
+- Añade comentarios que expliquen el *por qué*, no solo el *qué*.
+
+## Verificaciones antes de enviar el PR
+
+- [ ] Los enlaces Markdown funcionan correctamente.
+- [ ] Los scripts se ejecutan sin errores en un entorno limpio.
+- [ ] No hay secretos, credenciales ni comandos destructivos sin contexto.
+- [ ] El contenido es evergreen y no depende de URLs temporales.
+- [ ] Has actualizado los documentos relacionados (cheat sheets, toolkit, dependencies).
 
 ## Comunicación
 
-- Si el cambio requiere coordinación (por ejemplo modificaciones en `app/`, `vision`), deja un comentario en el PR explicando los pasos y el impacto en otras carpetas.
-- Cita el issue relacionado (si existe) y vincula recursos (CVE, docs oficiales, guías OWASP) que respalden tus aportes.
+- Si el cambio afecta varias carpetas (por ejemplo, modificaciones en `app/` o en la estructura), explica el impacto en el PR.
+- Cita el issue relacionado y enlaza recursos (CVE, docs oficiales, guías OWASP) que respalden tu aporte.
+- Sé claro, conciso y respetuoso en las discusiones.
+
+---
 
 Gracias por mantener este proyecto ético y bien organizado 💜
