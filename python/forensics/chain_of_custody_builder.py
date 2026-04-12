@@ -1,5 +1,15 @@
 #!/usr/bin/env python
-"""Genera una plantilla Markdown de cadena de custodia a partir de un índice CSV."""
+"""Genera una plantilla Markdown de cadena de custodia a partir de un índice CSV.
+
+La cadena de custodia es el documento que registra quién ha tenido acceso
+a cada evidencia, cuándo y por qué. Este script toma un CSV de evidencias
+(como el generado por evidence_indexer.py) y crea un documento Markdown
+con la tabla de artefactos y campos para completar manualmente el registro
+de custodia (responsable, fecha de recogida, transferencias).
+
+Uso típico:
+    python chain_of_custody_builder.py -i evidencias.csv -o custodia.md --case "Caso-2026-001"
+"""
 import argparse
 import csv
 from pathlib import Path

@@ -1,5 +1,14 @@
 #!/usr/bin/env python
-"""Resume un PCAP en texto/markdown a partir de tshark."""
+"""Resume un PCAP en texto/markdown a partir de tshark.
+
+Si tienes un PCAP grande y necesitas un resumen rápido sin abrir Wireshark,
+este script extrae las estadísticas clave (protocolos, IPs top, puertos)
+y las presenta en Markdown o JSON. Requiere tshark instalado en el sistema.
+
+Uso típico:
+    python pcap_summary.py -i captura.pcap -o resumen.md
+    python pcap_summary.py -i captura.pcap -o datos.json --format json
+"""
 import argparse
 import json
 import shutil

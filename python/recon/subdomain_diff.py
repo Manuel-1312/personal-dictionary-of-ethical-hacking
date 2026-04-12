@@ -1,5 +1,14 @@
 #!/usr/bin/env python
-"""Compara dos listas de subdominios y genera un resumen en Markdown."""
+"""Compara dos listas de subdominios y genera un resumen en Markdown.
+
+Cuando ejecutas herramientas de descubrimiento de subdominios (amass, subfinder)
+en diferentes momentos, necesitas saber qué cambió: subdominios nuevos pueden
+indicar infraestructura recién desplegada, y los desaparecidos pueden ser
+servicios retirados que aún merecen investigación.
+
+Uso típico:
+    python subdomain_diff.py --old subs_enero.txt --new subs_febrero.txt -o diff.md
+"""
 import argparse
 from pathlib import Path
 

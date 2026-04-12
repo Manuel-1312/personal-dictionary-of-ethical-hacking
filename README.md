@@ -1,174 +1,191 @@
 
 
+# 🛡️ Personal Dictionary of Ethical Hacking
 
 [![Ethical Lab](https://img.shields.io/badge/Ethical-Lab-blueviolet?logo=shield&logoColor=white)](README.md)
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Active-green)](CODE_OF_CONDUCT.md)
+[![Quality Checks](https://img.shields.io/badge/CI-MarkdownLint%20%2B%20Links-informational)](/.github/workflows/face3-quality.yml)
 
-**Autor:** Manuel Sánchez Brito · [LinkedIn](https://www.linkedin.com/in/manuel-sanchez-brito)
+> **Autor:** Manuel Sánchez Brito · [LinkedIn](https://www.linkedin.com/in/manuel-sanchez-brito)
 
-## 🎯 Propósito
-Este repositorio organiza herramientas de código abierto y documentación enfocada en aprendizaje ético: todo lo que encuentres aquí está pensado para usarse **en entornos controlados**, con alcance autorizado. El objetivo es ayudar a estudiantes y profesionales a encontrar colecciones útiles sin tener que buscar en cientos de repositorios dispersos.
+**Biblioteca curada de herramientas, scripts y documentación para aprender hacking ético de forma responsable.** Todo lo que encuentras aquí está pensado para usarse **exclusivamente en entornos controlados** y con autorización explícita.
 
-🏅 **Portada**: un solo lugar con estructura clara, badges y recursos vetados para prácticas responsables y compartidas.
+---
 
-## 🚀 Quick start
-1. Clona el repositorio y crea tu entorno (puede ser WSL, VM o contenedor).
-2. Lee `README.md` para orientarte sobre la estructura.
-3. Consulta los `toolkit.md` de cada carpeta para ver herramientas recomendadas.
-4. Siempre mantén el entorno aislado y sigue el código de conducta.
+## ✨ Características principales
 
-## 🔗 Enlaces rápidos
-| Recurso | Descripción |
+| Característica | Descripción |
 | --- | --- |
-| [README.md](README.md) | Esta guía vive aquí; incluye acceso directo a todas las carpetas principales. |
-| [conceptos/diccionario.md](conceptos/diccionario.md) | Diccionario de términos tecnológicos explicado de forma sencilla. |
-| [wifi/toolkit.md](wifi/toolkit.md) | Colección en profundidad para auditorías inalámbricas. |
-| [web/toolkit.md](web/toolkit.md) | Referencias a proxies, fuzzers y laboratorios web. |
-| [defense/toolkit.md](defense/toolkit.md) | Sensores, hunting y dashboards; ideal si trabajas en detección. |
-| [automation/reporting/toolkit.md](automation/reporting/toolkit.md) | Plantillas y scripts para automatizar informes. |
+| 📚 **Diccionario de conceptos** | Definiciones claras con ejemplos prácticos para cada área de seguridad. |
+| 🐍 **+25 scripts Python** | Parsers, forensics, IOCs, reporting — listos para usar con pocas dependencias. |
+| 💻 **+49 scripts PowerShell** | Inventario, red, sistema y reporting para Windows sin dependencias externas. |
+| 🖥️ **App de escritorio** | Launcher con GUI (Tkinter) para ejecutar scripts desde una interfaz visual. |
+| 📋 **Cheat sheets** | Versión rápida y extendida con comandos organizados por categoría. |
+| 🔄 **CI/CD integrado** | MarkdownLint + verificación de enlaces automática en cada push/PR. |
 
-## 🧭 Sección de recursos
-- **Documentación:** https://docs.owasp.org/ (OWASP Guides) y https://www.lvh.io/ (laboratorios vulnerables).
-- **Comunidades:** https://www.reddit.com/r/netsecstudents/ y https://www.twitch.tv/directory/game/Cybersecurity.
-- **Repositorios de referencia:** https://github.com/OWASP/securing-devops y https://github.com/OWASP/CheatSheetSeries.
-- **Boletines y cursos:** https://www.sans.org/cyber-security-courses/ y https://www.cybrary.it/.
+---
+
+## 🚀 Instalación y primeros pasos
+
+```bash
+# 1. Clona el repositorio
+git clone https://github.com/Manuel-1312/personal-dictionary-of-ethical-hacking.git
+cd personal-dictionary-of-ethical-hacking
+
+# 2. (Opcional) Instala dependencias Python si vas a usar los scripts
+pip install -r python/requirements.txt
+
+# 3. Explora la estructura
+ls -la
+```
+
+### Requisitos previos
+
+- **Python 3.9+** para los scripts de `python/` y `fun-scripts/`
+- **PowerShell 5.1+** o **pwsh 7+** para los scripts de `powershell/`
+- **Entorno aislado** (VM, WSL, contenedor Docker) — nunca ejecutes en producción
+
+### Uso rápido
+
+```bash
+# Generar hashes de evidencia
+python python/forensics/hash_manifest.py -i ./evidencia/ -o hashes.csv
+
+# Extraer IOCs de un archivo de texto
+python python/forensics/ioc_extractor.py -i sospechoso.txt -o iocs.csv
+
+# Parsear logs de Zeek/Suricata a CSV
+python python/parsers/log_parser.py -i conn.log -o conexiones.csv
+
+# Comparar subdominios entre dos escaneos
+python python/recon/subdomain_diff.py --old antes.txt --new despues.txt -o diff.md
+
+# Inventario rápido del sistema Windows
+pwsh -File powershell/system/system_report.ps1
+
+# Barrido de ping en la red local
+pwsh -File powershell/network/ping_sweep.ps1 -Base 192.168.1 -Start 1 -End 254
+```
+
+---
 
 ## 🗂️ Estructura del repositorio
-- [wifi/](./wifi/) – herramientas inalámbricas.
-  - [wifi/auditorias/](./wifi/auditorias/) – carpetas con ensayos de auditoría y registros de pruebas.
-  - [wifi/captura/](./wifi/captura/) – capturas de paquetes, handshakes y scripts de análisis.
-- [web/](./web/) – escaneos y laboratorios web (incluye `apps/`, `proxies/`).
-- [network_scan/](./network_scan/) – discovery y fingerprinting.
-  - [network_scan/host_discovery/](./network_scan/host_discovery/) – listas, scripts y resultados de descubrimiento de hosts.
-  - [network_scan/vuln_assessment/](./network_scan/vuln_assessment/) – herramientas para correlación de CVE y hallazgos de vulnerabilidades.
-- [recon/](./recon/) – reconocimiento pasivo y activo.
-  - [recon/passive/](./recon/passive/) – técnicas y toolkits pasivos.
-  - [recon/active/](./recon/active/) – técnicas de escaneo activo.
-- [automation/](./automation/) – scripts, playbooks y reporting.
-  - [automation/orchestration/](./automation/orchestration/) – orquestación de pipelines.
-  - [automation/reporting/](./automation/reporting/) – plantillas y templates de informes.
-- [python/](./python/) – utilidades Python (reporting, hash, parsing, IOCs).
-- [powershell/](./powershell/) – automatización Windows.
-  - [powershell/system/](./powershell/system/)
-  - [powershell/files/](./powershell/files/)
-  - [powershell/network/](./powershell/network/)
-  - [powershell/reporting/](./powershell/reporting/)
-  - [powershell/fun/](./powershell/fun/)
-- [defense/](./defense/) – monitoreo, detección y respuesta.
-  - [defense/monitoring/](./defense/monitoring/)
-  - [defense/incident_response/](./defense/incident_response/)
-  - [defense/thehive/](./defense/thehive/) – casos y automatización.
-- [exploitation/](./exploitation/) – validación controlada de hallazgos.
-  - [exploitation/frameworks/](./exploitation/frameworks/)
-  - [exploitation/web_exploitation/](./exploitation/web_exploitation/)
-  - [exploitation/active_directory/](./exploitation/active_directory/)
-  - [exploitation/privilege_escalation/](./exploitation/privilege_escalation/)
-  - [exploitation/post_exploitation/](./exploitation/post_exploitation/)
-  - [exploitation/notes/](./exploitation/notes/)
-- [fun-scripts/](./fun-scripts/) – scripts creativos y utilitarios.
-- [app/](./app/) – launcher/GUI del repositorio.
-- [evasion/](./evasion/) – técnicas de evasión controlada.
-- [osint/](./osint/) – investigación de fuentes abiertas.
-- [forensics/](./forensics/) – análisis forense integral.
-- [conceptos/](./conceptos/) – diccionario de conceptos y recursos explicativos.
-- Cada carpeta incluye un `toolkit.md` con referencias oficiales y consejos de uso responsable.
 
-## 🎯 Foco actual: explotación de laboratorio
-La sección `exploitation/` ya forma parte del núcleo del repositorio y está pensada para documentar la **validación controlada de hallazgos** sin perder contexto ni evidencia.
+```text
+📦 personal-dictionary-of-ethical-hacking/
+├── 📂 app/                  → Launcher GUI de escritorio (Tkinter + PyInstaller)
+├── 📂 automation/            → Orquestación, snapshots y reporting automatizado
+│   ├── orchestration/        → Pipelines con Ansible
+│   └── reporting/            → Plantillas y conversores de informes
+├── 📂 conceptos/             → Diccionario de términos de seguridad
+├── 📂 defense/               → Monitoreo, hunting e incident response
+│   ├── monitoring/           → Security Onion, Zeek, Suricata, Wazuh
+│   └── incident_response/    → Contención y respuesta a incidentes
+├── 📂 evasion/               → Técnicas de evasión controlada + mitigaciones
+├── 📂 exploitation/          → Validación controlada de hallazgos en laboratorio
+│   ├── frameworks/           → Metasploit, Empire, consolas
+│   ├── web_exploitation/     → SQLi, XSS, endpoints vulnerables
+│   ├── active_directory/     → Dominios AD de lab, BloodHound
+│   ├── privilege_escalation/ → Escalada Linux/Windows
+│   ├── post_exploitation/    → Artefactos, limpieza y cierre
+│   └── notes/                → Plantillas reutilizables de casos
+├── 📂 forensics/             → Análisis forense (disco y memoria)
+├── 📂 fun-scripts/           → Scripts creativos: banners, generadores, humor
+├── 📂 network_scan/          → Host discovery y vulnerability assessment
+├── 📂 osint/                 → Investigación de fuentes abiertas
+├── 📂 powershell/            → 49 scripts para Windows
+│   ├── system/               → Inventario, procesos, servicios, software
+│   ├── files/                → Hashes, duplicados, tamaños
+│   ├── network/              → Conexiones, firewall, WiFi, ping sweep
+│   ├── reporting/            → Conversores CSV/JSON → Markdown/HTML
+│   └── fun/                  → ASCII art, matrix, countdowns
+├── 📂 python/                → 25 utilidades organizadas por subcategoría
+│   ├── parsers/              → Zeek, masscan, nmap → CSV
+│   ├── forensics/            → Hashes, IOCs, PCAPs, cadena de custodia
+│   ├── web/                  → Cabeceras HTTP, fuzzing, screenshots
+│   ├── recon/                → Diff de subdominios
+│   ├── reporting/            → Nmap XML → Markdown, CSV → tablas
+│   └── ad/                   → Notas de Active Directory
+├── 📂 recon/                 → Reconocimiento pasivo y activo
+├── 📂 web/                   → Proxies, escáneres y labs web
+├── 📂 wifi/                  → Auditorías inalámbricas
+├── 📄 CHEAT_SHEETS.md        → Referencia rápida de comandos
+├── 📄 CHEAT_SHEETS_EXT.md    → Guía extendida con contexto y técnicas
+├── 📄 CATALOG.md             → Índice viviente de todas las secciones
+├── 📄 CHANGELOG.md           → Registro de cambios del proyecto
+├── 📄 CONTRIBUTING.md        → Guía para contribuir
+├── 📄 CODE_OF_CONDUCT.md     → Compromiso ético
+└── 📄 SECURITY.md            → Política de divulgación responsable
+```
 
-### Subcategorías integradas
-- `exploitation/frameworks/` → frameworks, RPC, consolas y validación guiada.
-- `exploitation/web_exploitation/` → fallos web reproducidos con requests, endpoints y mitigación.
-- `exploitation/active_directory/` → dominios AD de laboratorio, rutas de privilegio y notas de hardening.
-- `exploitation/privilege_escalation/` → escalada local en Linux/Windows de laboratorio.
-- `exploitation/post_exploitation/` → impacto controlado, artefactos, limpieza y cierre.
-- `exploitation/notes/` → plantillas reutilizables para casos, cronología y evidencias.
+> 💡 Cada carpeta incluye un `toolkit.md` con herramientas recomendadas y ejemplos de uso responsable.
 
-### Cómo se conecta con el resto del repo
-- Se alimenta de hallazgos previos en `web/`, `network_scan/` y `recon/`.
-- Genera artefactos y notas que luego encajan en `defense/` y `forensics/`.
-- Se apoya en `python/` para hashes, extracción de IOCs y reporting auxiliar.
+---
 
-## 📁 Otros archivos útiles
-- `lab-notes.md` (puedes crearlo) para registrar qué herramienta usas y qué aprendiste.
-- `toolkit.md` en cada carpeta, explica cómo catalogar nuevas herramientas.
-- Añade tu propia subcarpeta si quieres dividir un área en más detalle (por ejemplo `web/proxies/`).
+## 🔗 Navegación rápida
+
+| Recurso | Para qué sirve |
+| --- | --- |
+| [conceptos/diccionario.md](conceptos/diccionario.md) | Diccionario de términos explicados de forma sencilla |
+| [CHEAT_SHEETS.md](CHEAT_SHEETS.md) | Comandos esenciales por categoría (formato rápido) |
+| [CHEAT_SHEETS_EXT.md](CHEAT_SHEETS_EXT.md) | Guía extendida con técnicas, recursos y plantillas |
+| [CATALOG.md](CATALOG.md) | Índice completo del repositorio con estado actual |
+| [python/ROADMAP.md](python/ROADMAP.md) | Hoja de ruta para nuevos scripts Python |
+| [python/DEPENDENCIES.md](python/DEPENDENCIES.md) | Dependencias detalladas por script |
+
+---
+
+## 🖥️ App de escritorio (Launcher)
+
+El repositorio incluye una app en `app/` que funciona como interfaz visual para lanzar scripts.
+
+**Funcionalidades:**
+
+- Explora scripts por categoría (Python, PowerShell, Fun Scripts)
+- Muestra descripción, ruta y ejemplo de cada script
+- Ejecuta directamente desde la interfaz con argumentos personalizados
+- Guarda favoritos e historial de ejecuciones
+- Se puede empaquetar como `.exe` con PyInstaller
+
+```bash
+# Ejecutar directamente
+cd app && python main.py
+
+# Compilar como ejecutable Windows
+pwsh -File app/build_exe.ps1
+# El binario queda en dist/HackingToolbox.exe
+```
+
+---
+
+## 🧭 Recursos externos recomendados
+
+- **OWASP:** [docs.owasp.org](https://docs.owasp.org/) · [CheatSheetSeries](https://github.com/OWASP/CheatSheetSeries)
+- **Comunidades:** [r/netsecstudents](https://www.reddit.com/r/netsecstudents/)
+- **Formación:** [SANS Courses](https://www.sans.org/cyber-security-courses/) · [Cybrary](https://www.cybrary.it/)
+
+---
 
 ## 📝 Buenas prácticas
-1. **Aislado y seguro**: usa snapshots, redes privadas y desconecta del entorno real si es necesario.
-2. **Documentación**: registra comandos clave, resultados y hallazgos en `lab-notes.md` o dentro de cada carpeta.
-3. **Ética y alcance**: trabaja solo sobre activos autorizados y nunca reutilices exploits fuera del laboratorio.
-4. **Compartir es educar**: cuando agregues un recurso, cita la fuente original y menciona el uso educativo.
-5. **Lee el CODE_OF_CONDUCT** antes de contribuir; define claramente el compromiso ético y el alcance permitido.
-6. **Calidad automatizada**: todos los merges pasan por `Face 3 — Quality checks` (MarkdownLint + link check) antes de alcanzar `main`.
 
-## 🤖 Face 3 — Calidad automatizada
-- La acción `Face 3 — Quality checks` en `.github/workflows/face3-quality.yml` corre en cada push/PR.
-- Ejecuta `markdownlint` con `.markdownlint.json` y un chequeo adicional de enlaces en los documentos clave.
-- Si necesitas ignorar un enlace temporalmente, menciónalo en el PR para revisarlo manualmente.
+1. **Aislamiento**: usa snapshots, redes privadas y desconecta del entorno real.
+2. **Documentación**: registra comandos, resultados y hallazgos en cada sesión.
+3. **Ética**: trabaja solo sobre activos autorizados. Nunca reutilices exploits fuera del laboratorio.
+4. **Calidad**: todos los merges pasan por CI (MarkdownLint + link check) antes de llegar a `main`.
+5. **Compartir**: cita fuentes originales y menciona el uso educativo al añadir recursos.
 
-## 🤝 Cómo contribuir
-¿Quieres aportar una herramienta, tutorial o plantilla? Sigue los pasos de [CONTRIBUTING.md](CONTRIBUTING.md), registra cambios en los issues con los templates (`.github/ISSUE_TEMPLATE/`) y rellena [PULL_REQUEST_TEMPLATE.md](PULL_REQUEST_TEMPLATE.md) cuando envíes tu PR. Mantén claro que todo aquí es para uso ético, respeta el [Code of Conduct](CODE_OF_CONDUCT.md) y enlaza referencias oficiales cuando añadas contenido. Este proyecto se distribuye bajo licencia MIT (`LICENSE`).
+---
 
-## 🛡️ Reportando vulnerabilidades
-¿Detectaste un fallo? Consulta [SECURITY.md](SECURITY.md) y sigue las pautas de divulgación responsable (advisories privados o `security@manuel-sanchez-brito.com`). Asegúrate de incluir pasos reproducibles, impacto previsto y posibles mitigaciones antes de enviar el reporte.
+## 🤝 Contribuir
 
-## 🌍 Face 4 — Comunidad y difusión
-- Revisa y actualiza [COMMUNITY.md](COMMUNITY.md) con avisos mensuales, eventos, casos de uso y lecciones aprendidas.
-- Comparte un resumen de cada Face completado (esto ya incluye las notas de fase 3) en tus canales habituales (Discord, WhatsApp, blog, etc.) para que la comunidad sepa qué cambió.
-- Usa `conceptos/diccionario.md` y `CHEAT_SHEETS.md` para enseñar a nuevos colaboradores; añade ejercicios o capturas en `automation/reporting/`.
-- Documenta tus laboratorios en `lab-notes.md` y `exploitation/notes/` para que otros puedan seguir tus pasos.
-- Mantén un backlog visible (puedes expandir `AGENTS.md`, `PROJECT.md` o crear `ROADMAP.md`) y anota qué Face sigue a continuación.
-- Cuando publiques, recuerda recalcar que los ejemplos son para entornos autorizados y enlaza el `CODE_OF_CONDUCT` y `LICENSE`.
+¿Quieres aportar una herramienta, tutorial o plantilla? Lee la [guía de contribución](CONTRIBUTING.md), respeta el [Código de Conducta](CODE_OF_CONDUCT.md) y usa las plantillas de [issues](.github/ISSUE_TEMPLATE/) y [pull requests](PULL_REQUEST_TEMPLATE.md).
 
-## 🐍 Crecimiento de la librería Python
-La carpeta `python/` ya no es solo un rincón de scripts sueltos: ahora está organizada por subcategorías y se está convirtiendo en una caja de utilidades reutilizable para reporting, inventario, extracción de IOCs, hashes y automatización ligera.
+## 🛡️ Seguridad
 
-Para planificar su crecimiento sin perder coherencia, el repo incluye `python/ROADMAP.md`, una hoja de ruta con ideas priorizadas para nuevos helpers orientados a:
-- `network_scan/`
-- `web/`
-- `recon/`
-- `defense/`
-- `forensics/`
-- `exploitation/`
+¿Detectaste un fallo? Consulta [SECURITY.md](SECURITY.md) para reportar vulnerabilidades de forma responsable.
 
-Además, la fase 2 ya ha ampliado la librería con nuevas subcategorías (`recon/`, `reporting/`, `ad/`) y scripts enfocados a diff de subdominios, reporting de Nmap, bundling de notas y documentación de casos AD.
+## 📄 Licencia
 
-La fase 3 añade una capa más práctica para forense y evidencia: resumen de PCAPs, indexado de evidencias, enriquecimiento de IOCs y reporting ligero de resultados de fuzzing web.
-
-La fase 4 remata esa línea con más utilidades de conversión y trazabilidad: parser de Masscan a CSV, manifiestos de capturas web, conversión de CSV a Markdown y plantillas de cadena de custodia.
-
-Y para no perder de vista qué necesita cada helper, la carpeta ya incluye `python/DEPENDENCIES.md`, donde se separan dependencias de `pip` y herramientas externas del sistema como `tshark`.
-
-## 🖥️ Launcher / app `.exe`
-El repositorio ya incluye una app de escritorio en `app/` pensada para usar la propia biblioteca como backend.
-
-### Qué hace
-- lee categorías y scripts desde los `toolkit.md`
-- muestra descripción, ruta y comando de ejemplo
-- permite ejecutar scripts Python, PowerShell y `fun-scripts` desde una interfaz
-- guarda favoritos e historial local
-- puede empaquetarse como `.exe`
-
-### Ruta del ejecutable
-Tras compilarla, el binario queda en:
-- `dist/HackingToolbox.exe`
-
-### Cómo usarla
-1. Abre `HackingToolbox.exe` desde la carpeta `dist/`.
-2. Elige una categoría (`Python`, `PowerShell`, `Fun Scripts`).
-3. Selecciona un script en la lista.
-4. Revisa la descripción y el ejemplo de uso.
-5. Si hace falta, añade argumentos extra.
-6. Pulsa **Ejecutar** o haz doble clic sobre el script.
-
-### Qué ventaja tiene
-No sustituye al repo: lo convierte en una toolbox ejecutable, más cómoda para lanzar scripts y revisar resultados sin ir comando por comando en terminal.
-
-## 📘 Cheat Sheets & Referencias rápidas
-- `CHEAT_SHEETS.md`: resumen ágil con comandos y tips esenciales por categoría.
-- `CHEAT_SHEETS_EXT.md`: guía extendida con técnicas, comandos, scripts, recursos premium y plantillas adjuntas para cada bloque.
-- Usa estos documentos como referencia previa a una sesión o para entrenar a un compañero: están listos para imprimirse o compartir en la sala de SOC.
-
+Este proyecto se distribuye bajo licencia [MIT](LICENSE). Úsalo con responsabilidad.
 

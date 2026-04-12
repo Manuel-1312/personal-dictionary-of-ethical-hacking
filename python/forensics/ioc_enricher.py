@@ -1,5 +1,16 @@
 #!/usr/bin/env python
-"""Enriquece IOCs básicos con una clasificación simple y contexto de formato."""
+"""Enriquece IOCs básicos con una clasificación simple y contexto de formato.
+
+Recibe un CSV con una columna 'value' (generado por ioc_extractor.py, por ejemplo)
+y añade dos columnas: 'kind' (tipo de IOC) y 'context' (contexto útil como
+si la IP es privada/pública, si es un hash, un dominio, etc.).
+
+Esto permite filtrar y priorizar IOCs sin necesidad de herramientas externas
+ni APIs de threat intel — es un primer triaje rápido desde la terminal.
+
+Uso típico:
+    python ioc_enricher.py -i iocs.csv -o iocs_enriched.csv
+"""
 import argparse
 import csv
 import ipaddress
