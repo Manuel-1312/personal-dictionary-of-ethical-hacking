@@ -41,34 +41,43 @@ jobs:
       - name: Check for dead markdown links (README + key docs)
         run: |
           python - <<'PY'
-import markdown_it_py
+from markdown_it import MarkdownIt
 import requests
 from pathlib import Path
 
 def gather_links(path):
+    """Lee un archivo Markdown y extrae todos los enlaces HTTP/HTTPS."""
     text = path.read_text(encoding='utf-8')
-    md = markdown_it_py.MarkdownIt()
+    md = MarkdownIt()
     tokens = md.parse(text)
     for token in tokens:
-        if token.type == 'link_open':
-            for attr, val in token.attrs or []:
-                if attr == 'href':
-                    yield val
+        if token.type == 'inline' and token.children:
+            for child in token.children:
+                if child.type == 'link_open':
+                    for attr, val in child.attrs or []:
+                        if attr == 'href':
+                            yield val
 
 targets = [Path('README.md'), Path('conceptos/diccionario.md'), Path('CHEAT_SHEETS.md')]
+checked = set()
 failed = []
 for path in targets:
+    if not path.exists():
+        continue
     for link in gather_links(path):
-        if link.startswith('http'):
+        if link.startswith('http') and link not in checked:
+            checked.add(link)
             try:
-                resp = requests.head(link, allow_redirects=True, timeout=5)
+                resp = requests.head(link, allow_redirects=True, timeout=10)
                 if resp.status_code >= 400:
-                    failed.append((link, resp.status_code))
+                    failed.append((str(path), link, resp.status_code))
             except Exception as e:
-                failed.append((link, str(e)))
+                failed.append((str(path), link, str(e)))
 if failed:
     print('Links with issues:')
-    for link, err in failed:
-        print(link, err)
+    for source, link, err in failed:
+        print(f'  [{source}] {link} -> {err}')
     raise SystemExit('Link check failed')
+else:
+    print(f'All links OK ({len(checked)} checked)')
 PY
