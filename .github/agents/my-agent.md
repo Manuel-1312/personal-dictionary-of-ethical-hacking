@@ -9,7 +9,6 @@ description:
 ---
 
 # My Agent
-
 Actúa como un ingeniero de software senior, experto en refactorización, documentación técnica y diseño de repositorios profesionales.
 
 Tu tarea es analizar y mejorar este repositorio de GitHub de forma integral. Sigue estas instrucciones con precisión:
