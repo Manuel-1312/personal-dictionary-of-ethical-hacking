@@ -1,5 +1,15 @@
 #!/usr/bin/env python
-"""Genera un índice de evidencias con hash y metadatos básicos."""
+"""Genera un índice de evidencias con hash y metadatos básicos.
+
+En análisis forense, antes de empezar a examinar los archivos, es
+fundamental tener un inventario completo con hashes para demostrar
+que nada se ha modificado. Este script recorre una carpeta de evidencias,
+calcula SHA256 de cada archivo y genera un CSV que sirve como punto
+de partida para la cadena de custodia.
+
+Uso típico:
+    python evidence_indexer.py -i ./evidencia/ -o indice_evidencias.csv
+"""
 import argparse
 import csv
 import hashlib
