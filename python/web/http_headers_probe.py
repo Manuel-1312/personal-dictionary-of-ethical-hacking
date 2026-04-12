@@ -1,5 +1,17 @@
 #!/usr/bin/env python
-"""Sonda simple de cabeceras HTTP/HTTPS para inventario defensivo."""
+"""Sonda simple de cabeceras HTTP/HTTPS para inventario defensivo.
+
+Antes de empezar un pentest web, es útil saber qué cabeceras de seguridad
+tiene (o le faltan) cada objetivo. Este script hace GET a una lista de URLs,
+recoge cabeceras clave (Server, CSP, HSTS, X-Frame-Options) y las exporta
+a CSV para revisarlas de un vistazo.
+
+Usa un User-Agent propio ('ethical-lab-http-probe/1.0') para que el tráfico
+sea identificable en los logs del objetivo.
+
+Uso típico:
+    python http_headers_probe.py https://target.lab http://otro.lab -o headers.csv
+"""
 import argparse
 import csv
 import ssl

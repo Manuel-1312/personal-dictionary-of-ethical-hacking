@@ -1,10 +1,22 @@
 #!/usr/bin/env python
-"""Extrae IOCs básicos (IPs, dominios, URLs, hashes) de texto plano."""
+"""Extrae IOCs básicos (IPs, dominios, URLs, hashes) de texto plano.
+
+Cuando analizas un log de incidentes o un informe de amenazas, a menudo
+necesitas separar rápidamente los indicadores de compromiso del texto
+que los rodea. Este script busca patrones conocidos y los exporta a CSV,
+evitando duplicados y ordenando por tipo para facilitar la revisión.
+
+Uso típico:
+    python ioc_extractor.py -i informe_amenazas.txt -o iocs.csv
+"""
 import argparse
 import csv
 import re
 from pathlib import Path
 
+# Cada patrón busca un tipo de IOC distinto en texto libre.
+# Los hashes van de más largo (SHA256) a más corto (MD5) para evitar
+# que un SHA256 se detecte también como dos MD5 falsos.
 PATTERNS = {
     "ipv4": re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b"),
     "domain": re.compile(r"\b(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\b"),
