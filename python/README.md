@@ -1,8 +1,15 @@
-# Python Tools
+# 🐍 Python Tools
 
-Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organizada por subcategorías para que la librería pueda crecer sin perder claridad.
+🧰 Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organizada
+por subcategorías para que la librería pueda crecer sin perder claridad.
 
-## Estructura actual
+> [!NOTE]
+> Cada subcarpeta agrupa scripts por dominio. Consulta `toolkit.md` para ver ejemplos
+> de uso y `ROADMAP.md` para ideas de futuras ampliaciones.
+
+---
+
+## 📂 Estructura actual
 - `parsers/` → transformación de logs, XML y salidas de scanners a formatos reutilizables.
 - `web/` → helpers ligeros para inventario y análisis HTTP/HTTPS.
 - `forensics/` → hashes, artefactos, IOCs y utilidades de apoyo para evidencias.
@@ -14,7 +21,9 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 - `toolkit.md` → catálogo vivo de scripts y ejemplos de uso.
 - `ROADMAP.md` → ideas priorizadas para futuras ampliaciones.
 
-## Scripts actuales por subcategoría
+---
+
+## 📜 Scripts actuales por subcategoría
 ### `parsers/`
 - `parsers/log_parser.py`: parsea logs de Zeek/Suricata y genera CSV resumido.
 - `parsers/inventory_builder.py`: combina salidas de `nmap`/`masscan` y las normaliza.
@@ -44,7 +53,9 @@ Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organ
 ### `ad/`
 - `ad/ad_notes_builder.py`: genera una nota estructurada para casos de Active Directory en laboratorio.
 
-## Dependencias
+---
+
+## 📦 Dependencias
 Instala dependencias con:
 
 ```bash
@@ -53,7 +64,9 @@ pip install -r python/requirements.txt
 
 Algunos scripts pueden depender además de utilidades externas del entorno (por ejemplo `tshark` para procesar PCAPs). Si un helper lo necesita, la idea es dejarlo claro en su README y en el ejemplo de uso.
 
-## Ejemplos rápidos
+---
+
+## 🚀 Ejemplos rápidos
 ```bash
 python python/web/http_headers_probe.py https://example.org 10.10.10.5:8080 -o automation/reporting/http-headers.csv
 python python/web/dir_bruteforce_report.py -i web/apps/ffuf/results.json -o web/apps/ffuf/report.md
@@ -74,4 +87,10 @@ python python/ad/ad_notes_builder.py --host dc01 --user analyst --domain lab.loc
 
 Los ejemplos del toolkit (`python/toolkit.md`) muestran líneas exactas para integrarlos en tu repo sin improvisar demasiado.
 
-Si quieres ampliar la carpeta con nuevas utilidades, revisa también `python/ROADMAP.md`: ahí tienes una selección razonada de scripts candidatos para futuras tandas.
+> [!TIP]
+> Si quieres ampliar la carpeta con nuevas utilidades, revisa también `python/ROADMAP.md`:
+> ahí tienes una selección razonada de scripts candidatos para futuras tandas.
+
+---
+
+*📂 Volver al [índice principal](../README.md)*

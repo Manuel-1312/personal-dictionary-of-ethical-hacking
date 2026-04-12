@@ -1,8 +1,12 @@
-# Diccionario de conceptos
+# 📚 Diccionario de Conceptos
 
-Explicaciones sencillas como si fuera un diccionario. Cada término lleva su definición concreta, alguna intuición práctica y un ejemplo breve cuando aplica.
+🔐 Tu referencia rápida de ciberseguridad ofensiva y defensiva.
+Cada término incluye su definición concreta, una intuición práctica y un ejemplo breve cuando aplica.
+¡Consúltalo antes de escribir un informe, preparar un script o explorar un nuevo vector! 🚀
 
-## Red
+---
+
+## 🌐 Red
 
 | Término | Definición | Nota práctica |
 | --- | --- | --- |
@@ -22,7 +26,9 @@ Explicaciones sencillas como si fuera un diccionario. Cada término lleva su def
 | **VLAN** | Red virtual que segmenta tráfico dentro de un mismo switch físico. | Entender VLANs es clave para evaluar la segmentación: un VLAN hopping puede exponer tráfico que debería estar aislado. |
 | **Firewall** | Dispositivo o software que filtra tráfico basándose en reglas (IP, puerto, protocolo). | Durante un pentest, identifica qué puertos están filtrados vs cerrados. Un puerto filtrado puede indicar un firewall bloqueando. |
 
-## Web
+---
+
+## 🕸️ Web
 
 | Término | Definición | Ejemplo / Consejo |
 | --- | --- | --- |
@@ -37,7 +43,9 @@ Explicaciones sencillas como si fuera un diccionario. Cada término lleva su def
 | **IDOR** | Acceso directo a objetos internos cambiando un identificador (ej. `?id=1` → `?id=2`). | Cambia IDs en la URL o en el body y compara respuestas. Si accedes a datos de otro usuario, es un IDOR. |
 | **Directory Traversal** | Navegar fuera del directorio esperado usando secuencias como `../`. | Prueba `../../etc/passwd` en parámetros de archivo. Documenta la ruta exacta que funcionó. |
 
-## Reconocimiento y OSINT
+---
+
+## 🔎 Reconocimiento y OSINT
 
 | Término | Definición | Aplicación rápida |
 | --- | --- | --- |
@@ -50,7 +58,9 @@ Explicaciones sencillas como si fuera un diccionario. Cada término lleva su def
 | **Google Dorking** | Uso de operadores avanzados de Google para encontrar información expuesta. | `site:target.com filetype:pdf`, `inurl:admin`, `intitle:"index of"`. Documenta cada dork que dé resultados. |
 | **Certificate Transparency** | Logs públicos de certificados SSL/TLS emitidos. | `crt.sh` permite descubrir subdominios por certificados emitidos. Complementa `amass` y `subfinder`. |
 
-## Defensa
+---
+
+## 🛡️ Defensa
 
 | Término | Definición | Cómo ayuda |
 | --- | --- | --- |
@@ -63,7 +73,9 @@ Explicaciones sencillas como si fuera un diccionario. Cada término lleva su def
 | **EDR** | Detección y respuesta en endpoints: monitorea procesos, archivos y conexiones en cada host. | Complementa al SIEM dando visibilidad a nivel de host. Velociraptor y osquery son opciones open source. |
 | **Zero Trust** | Modelo que no confía en nada por defecto, ni siquiera dentro de la red interna. | Implica verificar identidad y autorización en cada acceso, no solo en el perímetro. |
 
-## Explotación y post-explotación
+---
+
+## 🧨 Explotación y Post-explotación
 
 | Término | Definición | Contexto de laboratorio |
 | --- | --- | --- |
@@ -74,7 +86,9 @@ Explicaciones sencillas como si fuera un diccionario. Cada término lleva su def
 | **Privilege Escalation** | Pasar de un usuario con pocos privilegios a administrador/root. | Linux: `sudo -l`, SUID, capabilities. Windows: `whoami /priv`, servicios mal configurados, tokens. |
 | **C2 (Command & Control)** | Servidor central que controla implantes o shells remotas en un lab. | Herramientas educativas: Sliver, Mythic, Covenant. Siempre en redes aisladas y documentado. |
 
-## Forense
+---
+
+## 🔬 Forense
 
 | Término | Definición | Punto clave |
 | --- | --- | --- |
@@ -86,7 +100,9 @@ Explicaciones sencillas como si fuera un diccionario. Cada término lleva su def
 | **Artefactos** | Rastros que deja la actividad en un sistema: logs, registros, prefetch, shellbags. | Cada SO tiene sus propios artefactos. En Windows: Event Logs, Prefetch, Amcache. En Linux: auth.log, bash_history. |
 | **Triage** | Recogida rápida de artefactos clave sin hacer imagen completa del disco. | Útil cuando el tiempo apremia. Herramientas: KAPE, Velociraptor, CyLR. |
 
-## WiFi
+---
+
+## 📡 WiFi
 
 | Término | Definición | Nota de seguridad |
 | --- | --- | --- |
@@ -98,8 +114,17 @@ Explicaciones sencillas como si fuera un diccionario. Cada término lleva su def
 | **Evil Twin** | Crear un AP falso que imita uno legítimo para interceptar tráfico. | Solo para demos en lab aislado. Herramientas: `hostapd-wpe`, `wifipumpkin3`. |
 | **WPA3** | Evolución de WPA2 con handshake SAE resistente a ataques de diccionario. | Requiere herramientas actualizadas; `hcxdumptool` soporta captura, pero el cracking es mucho más costoso. |
 
-## Tips extra
+---
+
+## 💡 Tips Extra
+
+> [!TIP]
+> Mantén este diccionario actualizado: cada nuevo término que aprendas es una pieza más en tu arsenal de conocimiento. 🧠
 
 - Siempre apunta la fuente del conocimiento (libro, blog, CVE, notas del laboratorio) para contextualizar las definiciones.
 - Usa este diccionario como referencia rápida antes de escribir un informe o preparar un script.
 - Si un término no aparece aquí, añádelo siguiendo el formato de la tabla correspondiente y abre un PR.
+
+---
+
+*Hecho con 💜 para la comunidad de hacking ético — ¡hack the planet!* 🌍
