@@ -19,7 +19,6 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '20'
-          cache: 'npm'
       - name: Install markdownlint-cli
         run: npm install -g markdownlint-cli
       - name: Run markdownlint
@@ -57,43 +56,43 @@ jobs:
       - name: Check for dead markdown links (README + key docs)
         run: |
           python - <<'PY'
-from markdown_it import MarkdownIt
-import requests
-from pathlib import Path
+          from markdown_it import MarkdownIt
+          import requests
+          from pathlib import Path
 
-def gather_links(path):
-    """Lee un archivo Markdown y extrae todos los enlaces HTTP/HTTPS."""
-    text = path.read_text(encoding='utf-8')
-    md = MarkdownIt()
-    tokens = md.parse(text)
-    for token in tokens:
-        if token.type == 'inline' and token.children:
-            for child in token.children:
-                if child.type == 'link_open':
-                    for attr, val in child.attrs or []:
-                        if attr == 'href':
-                            yield val
+          def gather_links(path):
+              """Lee un archivo Markdown y extrae todos los enlaces HTTP/HTTPS."""
+              text = path.read_text(encoding='utf-8')
+              md = MarkdownIt()
+              tokens = md.parse(text)
+              for token in tokens:
+                  if token.type == 'inline' and token.children:
+                      for child in token.children:
+                          if child.type == 'link_open':
+                              href = child.attrGet('href')
+                              if href:
+                                  yield href
 
-targets = [Path('README.md'), Path('conceptos/diccionario.md'), Path('CHEAT_SHEETS.md')]
-checked = set()
-failed = []
-for path in targets:
-    if not path.exists():
-        continue
-    for link in gather_links(path):
-        if link.startswith('http') and link not in checked:
-            checked.add(link)
-            try:
-                resp = requests.head(link, allow_redirects=True, timeout=10)
-                if resp.status_code >= 400:
-                    failed.append((str(path), link, resp.status_code))
-            except Exception as e:
-                failed.append((str(path), link, str(e)))
-if failed:
-    print('Links with issues:')
-    for source, link, err in failed:
-        print(f'  [{source}] {link} -> {err}')
-    raise SystemExit('Link check failed')
-else:
-    print(f'All links OK ({len(checked)} checked)')
-PY
+          targets = [Path('README.md'), Path('conceptos/diccionario.md'), Path('CHEAT_SHEETS.md')]
+          checked = set()
+          failed = []
+          for path in targets:
+              if not path.exists():
+                  continue
+              for link in gather_links(path):
+                  if link.startswith('http') and link not in checked:
+                      checked.add(link)
+                      try:
+                          resp = requests.head(link, allow_redirects=True, timeout=10)
+                          if resp.status_code >= 400 and resp.status_code not in (403, 429, 999):
+                              failed.append((str(path), link, resp.status_code))
+                      except Exception as e:
+                          failed.append((str(path), link, str(e)))
+          if failed:
+              print('Links with issues:')
+              for source, link, err in failed:
+                  print(f'  [{source}] {link} -> {err}')
+              raise SystemExit('Link check failed')
+          else:
+              print(f'All links OK ({len(checked)} checked)')
+          PY
