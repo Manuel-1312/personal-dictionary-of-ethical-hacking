@@ -42,7 +42,7 @@ Lista sensores, plataformas y herramientas de observabilidad defensiva. La idea 
 ### Wazuh
 - **Enlace:** https://github.com/wazuh/wazuh
 - **Caso de uso:** HIDS y SIEM orientado a endpoints con correlación básica.
-- **Comando de ejemplo:** `agent-control -lc`
+- **Comando de ejemplo:** `agent_control -lc`
 - **Notas útiles:** Bueno para visibilidad de host y correlación básica si quieres algo orientado a endpoints.
 - **Recomendaciones:** Despliega agentes en todos los hosts del lab; configura reglas personalizadas para reducir ruido.
 - **Cuándo usarlo:** Monitorización de endpoints y correlación de eventos de host en laboratorio.

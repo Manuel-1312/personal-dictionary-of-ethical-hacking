@@ -30,6 +30,7 @@ Las versiones se organizan por *Faces* (fases) del proyecto.
 - Extracción de enlaces en CI: ahora busca en tokens inline/children en vez de solo tokens raíz.
 - `inventory_builder.py`: el campo Origin ahora detecta correctamente hosts encontrados por ambas herramientas (`both`).
 - **Índice del diccionario**: anclas internas (`#-red` → `#red`, etc.) que quedaron rotas al retirar el emoji de las cabeceras.
+- **Toolkits**: correcciones técnicas en 10 `toolkit.md` — emoji residual (`⬆`) y `<br>` sueltos, herramienta renombrada (`hcxpcaptool` → `hcxpcapngtool`), flujo WiFi actualizado a `hc22000`/`-m 22000`, flag inválido de airgraph (`-g netxml` → `-g CAPR`), binario Wazuh (`agent-control` → `agent_control`), herramienta inexistente (`velocity`), imagen Docker de ZAP obsoleta (`owasp/zap2docker-stable` → `ghcr.io/zaproxy/zaproxy:stable`) y enlace equivocado de Cyber Triage.
 
 ## [Face 4] - Anterior a este changelog
 

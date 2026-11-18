@@ -15,7 +15,7 @@ Registro vivo de proxies, scanners y flujos para auditorías web. Este archivo s
 ### OWASP ZAP
 - **Enlace:** https://github.com/zaproxy/zaproxy
 - **Caso de uso:** línea base de seguridad y pruebas manuales sobre apps en contenedores.
-- **Comando de ejemplo:** `docker run -v $(pwd)/zap:/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000 -r reports/zap/baseline.html`.
+- **Comando de ejemplo:** `docker run -v $(pwd)/zap:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -r reports/zap/baseline.html`.
 - **Notas útiles:** guardo `reports/zap/session.session` y lo reimporto para continuar. Los `alerts.xml` van a `reports/zap/alerts/` y los enlazo con el cuaderno de pentesting.
 - **Recomendaciones:** guarda la CA de ZAP en `web/proxies/ca/` y compártela con Burp para no volver a generar certificados.
 - **Cuándo usarlo:** antes de tocar payloads manuales para capturar tráfico completo.
