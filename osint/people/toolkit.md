@@ -1,4 +1,4 @@
-# Toolkit - Personas 🧍
+# Toolkit - Personas
 
 Herramientas que usas para recolectar información de perfiles públicos y mantener el respeto por la privacidad.
 

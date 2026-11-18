@@ -1,4 +1,4 @@
-# Toolkit - Automatización 🤖
+# Toolkit - Automatización
 
 Catálogo de herramientas y scripts que te ayudan a automatizar despliegues, pruebas y recopilación de datos dentro del laboratorio.
 

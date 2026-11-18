@@ -1,12 +1,12 @@
-# 🖥️ Hacking Toolbox App
+# Hacking Toolbox App
 
-🚀 Esta carpeta contiene el launcher de escritorio para el repositorio. La idea no es
+Esta carpeta contiene el launcher de escritorio para el repositorio. La idea no es
 reemplazar el repo, sino usarlo como **backend**:
 
-- 📖 Lee categorías y scripts desde `toolkit.md`
-- 📝 Muestra descripción y comando de ejemplo
-- ▶️ Permite ejecutar scripts desde una interfaz
-- 🖥️ Captura la salida en una consola simple
+- Lee categorías y scripts desde `toolkit.md`
+- Muestra descripción y comando de ejemplo
+- ▶Permite ejecutar scripts desde una interfaz
+- Captura la salida en una consola simple
 
 > [!NOTE]
 > El `.exe` está pensado para vivir junto al repositorio o dentro de él, usando sus
@@ -14,13 +14,13 @@ reemplazar el repo, sino usarlo como **backend**:
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del proyecto.
 
 ---
 
-## 🔧 Enfoque técnico
+## Enfoque técnico
 
 - GUI con `tkinter` (ligera, sin dependencia externa para la interfaz)
 - Lectura de `toolkit.md` como fuente de catálogo
@@ -32,21 +32,21 @@ Convertir la biblioteca en una aplicación `.exe` sin romper la estructura del p
 
 ---
 
-## ✨ Qué está mejor ahora
+## Qué está mejor ahora
 
 La interfaz ya no se siente tan de prototipo:
 
-- 📐 Layout en paneles más claro
-- 📋 Cabecera y textos de contexto
-- 🔍 Caja de detalle más legible
-- 🎨 Consola de salida con mejor contraste
-- 📜 Historial más visible
-- ⭐ Favoritos mejor integrados
-- 🖱️ Doble clic para ejecutar
+- Layout en paneles más claro
+- Cabecera y textos de contexto
+- Caja de detalle más legible
+- Consola de salida con mejor contraste
+- Historial más visible
+- Favoritos mejor integrados
+- Doble clic para ejecutar
 
 ---
 
-## 📂 Archivos principales
+## Archivos principales
 
 - `main.py` → arranque de la app
 - `services/registry.py` → descubre scripts desde el repo
@@ -61,4 +61,4 @@ La interfaz ya no se siente tan de prototipo:
 
 ---
 
-*📂 Volver al [índice principal](../README.md)*
+*Volver al [índice principal](../README.md)*

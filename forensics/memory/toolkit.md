@@ -1,4 +1,4 @@
-# Toolkit - Memoria 🧠
+# Toolkit - Memoria
 
 Documenta tus capturas y análisis de RAM; incluye versiones del sistema, scripts usados y hallazgos.
 

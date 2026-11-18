@@ -1,45 +1,37 @@
-![Ethical Hacking](https://img.shields.io/badge/Ethical_Hacking-Toolkit-blueviolet?style=for-the-badge&logo=hackthebox&logoColor=white)
-![74+ Scripts](https://img.shields.io/badge/74+_Scripts-Python_%26_PowerShell-blue?style=for-the-badge&logo=gnubash&logoColor=white)
-![Active](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
-
-# 🛡️ Personal Dictionary of Ethical Hacking
-
-[![Ethical Lab](https://img.shields.io/badge/Ethical-Lab-blueviolet?logo=shield&logoColor=white)](README.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Active-green)](CODE_OF_CONDUCT.md)
-[![Quality Checks](https://img.shields.io/badge/CI-MarkdownLint%20%2B%20Links-informational)](/.github/workflows/face3-quality.yml)
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](python/)
 [![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-5391FE?logo=powershell&logoColor=white)](powershell/)
+[![Quality Checks](https://img.shields.io/badge/CI-MarkdownLint%20%2B%20Links-informational)](/.github/workflows/face3-quality.yml)
+[![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Active-green)](CODE_OF_CONDUCT.md)
+
+# Personal Dictionary of Ethical Hacking
 
 > **Autor:** Manuel Sánchez Brito · [LinkedIn](https://www.linkedin.com/in/manuel-sanchez-brito)
 
-**Biblioteca curada de herramientas, scripts y documentación para aprender hacking ético de forma responsable.**
-Todo lo que encuentras aquí está pensado para usarse **exclusivamente en entornos controlados**
-y con autorización explícita.
+Biblioteca curada de herramientas, scripts y documentación para aprender hacking ético de forma responsable. Todo está pensado para usarse exclusivamente en entornos controlados y con autorización explícita.
 
 > [!WARNING]
-> 🚨 Este material es **exclusivamente educativo**. Úsalo solo en entornos autorizados y controlados.
-> El uso indebido de estas herramientas puede tener consecuencias legales.
+> Material exclusivamente educativo. Úsalo solo en entornos autorizados y controlados; el uso indebido de estas herramientas puede tener consecuencias legales.
 
 ---
 
-## ✨ Características principales
+## Qué incluye
 
-| Característica | Descripción |
+| Área | Contenido |
 | --- | --- |
-| 📚 **Diccionario de conceptos** | 🔍 Definiciones claras con ejemplos prácticos para cada área de seguridad |
-| 🐍 **+25 scripts Python** | ⚙️ Parsers, forensics, IOCs, reporting — listos para usar con pocas dependencias |
-| 💻 **+49 scripts PowerShell** | 🪟 Inventario, red, sistema y reporting para Windows sin dependencias externas |
-| 🖥️ **App de escritorio** | 🎨 Launcher con GUI (Tkinter) para ejecutar scripts desde una interfaz visual |
-| 📋 **Cheat sheets** | ⚡ Versión rápida y extendida con comandos organizados por categoría |
-| 🔄 **CI/CD integrado** | ✅ MarkdownLint + verificación de enlaces automática en cada push/PR |
+| **Diccionario de conceptos** | Definiciones con ejemplos prácticos para cada área de seguridad |
+| **+25 scripts Python** | Parsers, forensics, IOCs y reporting, listos para usar con pocas dependencias |
+| **+49 scripts PowerShell** | Inventario, red, sistema y reporting para Windows, sin dependencias externas |
+| **App de escritorio** | Launcher con GUI (Tkinter) para ejecutar scripts desde una interfaz visual |
+| **Cheat sheets** | Versión rápida y extendida, con comandos organizados por categoría |
+| **CI/CD** | MarkdownLint y verificación de enlaces en cada push y PR |
 
 ---
 
-## 🚀 Instalación y primeros pasos
+## Instalación
 
 > [!TIP]
-> Asegúrate de usar un **entorno aislado** (VM, WSL, Docker) antes de ejecutar cualquier script.
+> Usa un entorno aislado (VM, WSL, Docker) antes de ejecutar cualquier script.
 
 ```bash
 # 1. Clona el repositorio
@@ -53,13 +45,13 @@ pip install -r python/requirements.txt
 ls -la
 ```
 
-### ⚙️ Requisitos previos
+### Requisitos previos
 
-- 🐍 **Python 3.9+** para los scripts de `python/` y `fun-scripts/`
-- 💠 **PowerShell 5.1+** o **pwsh 7+** para los scripts de `powershell/`
-- 🐳 **Entorno aislado** (VM, WSL, contenedor Docker) — nunca ejecutes en producción
+- **Python 3.9+** para los scripts de `python/` y `fun-scripts/`
+- **PowerShell 5.1+** o **pwsh 7+** para los scripts de `powershell/`
+- **Entorno aislado** (VM, WSL, contenedor Docker); nunca ejecutes en producción
 
-### 💻 Uso rápido
+### Uso rápido
 
 ```bash
 # Generar hashes de evidencia
@@ -83,84 +75,84 @@ pwsh -File powershell/network/ping_sweep.ps1 -Base 192.168.1 -Start 1 -End 254
 
 ---
 
-## 🗂️ Estructura del repositorio
+## Estructura del repositorio
 
 ```text
-📦 personal-dictionary-of-ethical-hacking/
-├── 📂 app/                  → Launcher GUI de escritorio (Tkinter + PyInstaller)
-├── 📂 automation/            → Orquestación, snapshots y reporting automatizado
+personal-dictionary-of-ethical-hacking/
+├── app/                      → Launcher GUI de escritorio (Tkinter + PyInstaller)
+├── automation/               → Orquestación, snapshots y reporting automatizado
 │   ├── orchestration/        → Pipelines con Ansible
 │   └── reporting/            → Plantillas y conversores de informes
-├── 📂 conceptos/             → Diccionario de términos de seguridad
-├── 📂 defense/               → Monitoreo, hunting e incident response
+├── conceptos/                → Diccionario de términos de seguridad
+├── defense/                  → Monitoreo, hunting e incident response
 │   ├── monitoring/           → Security Onion, Zeek, Suricata, Wazuh
 │   └── incident_response/    → Contención y respuesta a incidentes
-├── 📂 evasion/               → Técnicas de evasión controlada + mitigaciones
-├── 📂 exploitation/          → Validación controlada de hallazgos en laboratorio
+├── evasion/                  → Técnicas de evasión controlada y mitigaciones
+├── exploitation/             → Validación controlada de hallazgos en laboratorio
 │   ├── frameworks/           → Metasploit, Empire, consolas
 │   ├── web_exploitation/     → SQLi, XSS, endpoints vulnerables
 │   ├── active_directory/     → Dominios AD de lab, BloodHound
 │   ├── privilege_escalation/ → Escalada Linux/Windows
 │   ├── post_exploitation/    → Artefactos, limpieza y cierre
 │   └── notes/                → Plantillas reutilizables de casos
-├── 📂 forensics/             → Análisis forense (disco y memoria)
-├── 📂 fun-scripts/           → Scripts creativos: banners, generadores, humor
-├── 📂 network_scan/          → Host discovery y vulnerability assessment
-├── 📂 osint/                 → Investigación de fuentes abiertas
-├── 📂 powershell/            → 49 scripts para Windows
+├── forensics/                → Análisis forense (disco y memoria)
+├── fun-scripts/              → Scripts creativos: banners, generadores, humor
+├── network_scan/             → Host discovery y vulnerability assessment
+├── osint/                    → Investigación de fuentes abiertas
+├── powershell/               → 49 scripts para Windows
 │   ├── system/               → Inventario, procesos, servicios, software
 │   ├── files/                → Hashes, duplicados, tamaños
 │   ├── network/              → Conexiones, firewall, WiFi, ping sweep
-│   ├── reporting/            → Conversores CSV/JSON → Markdown/HTML
+│   ├── reporting/            → Conversores CSV/JSON a Markdown/HTML
 │   └── fun/                  → ASCII art, matrix, countdowns
-├── 📂 python/                → 25 utilidades organizadas por subcategoría
-│   ├── parsers/              → Zeek, masscan, nmap → CSV
+├── python/                   → 25 utilidades organizadas por subcategoría
+│   ├── parsers/              → Zeek, masscan, nmap a CSV
 │   ├── forensics/            → Hashes, IOCs, PCAPs, cadena de custodia
 │   ├── web/                  → Cabeceras HTTP, fuzzing, screenshots
 │   ├── recon/                → Diff de subdominios
-│   ├── reporting/            → Nmap XML → Markdown, CSV → tablas
+│   ├── reporting/            → Nmap XML a Markdown, CSV a tablas
 │   └── ad/                   → Notas de Active Directory
-├── 📂 recon/                 → Reconocimiento pasivo y activo
-├── 📂 web/                   → Proxies, escáneres y labs web
-├── 📂 wifi/                  → Auditorías inalámbricas
-├── 📄 CHEAT_SHEETS.md        → Referencia rápida de comandos
-├── 📄 CHEAT_SHEETS_EXT.md    → Guía extendida con contexto y técnicas
-├── 📄 CATALOG.md             → Índice viviente de todas las secciones
-├── 📄 CHANGELOG.md           → Registro de cambios del proyecto
-├── 📄 CONTRIBUTING.md        → Guía para contribuir
-├── 📄 CODE_OF_CONDUCT.md     → Compromiso ético
-└── 📄 SECURITY.md            → Política de divulgación responsable
+├── recon/                    → Reconocimiento pasivo y activo
+├── web/                      → Proxies, escáneres y labs web
+├── wifi/                     → Auditorías inalámbricas
+├── CHEAT_SHEETS.md           → Referencia rápida de comandos
+├── CHEAT_SHEETS_EXT.md       → Guía extendida con contexto y técnicas
+├── CATALOG.md                → Índice vivo de todas las secciones
+├── CHANGELOG.md              → Registro de cambios del proyecto
+├── CONTRIBUTING.md           → Guía para contribuir
+├── CODE_OF_CONDUCT.md        → Compromiso ético
+└── SECURITY.md               → Política de divulgación responsable
 ```
 
 > [!NOTE]
-> 💡 Cada carpeta incluye un `toolkit.md` con herramientas recomendadas y ejemplos de uso responsable.
+> Cada carpeta incluye un `toolkit.md` con herramientas recomendadas y ejemplos de uso responsable.
 
 ---
 
-## 🔗 Navegación rápida
+## Navegación rápida
 
-| | Recurso | Para qué sirve |
-| --- | --- | --- |
-| 📖 | [conceptos/diccionario.md](conceptos/diccionario.md) | Diccionario de términos explicados de forma sencilla |
-| ⚡ | [CHEAT_SHEETS.md](CHEAT_SHEETS.md) | Comandos esenciales por categoría (formato rápido) |
-| 📘 | [CHEAT_SHEETS_EXT.md](CHEAT_SHEETS_EXT.md) | Guía extendida con técnicas, recursos y plantillas |
-| 🗃️ | [CATALOG.md](CATALOG.md) | Índice completo del repositorio con estado actual |
-| 🗺️ | [python/ROADMAP.md](python/ROADMAP.md) | Hoja de ruta para nuevos scripts Python |
-| 📦 | [python/DEPENDENCIES.md](python/DEPENDENCIES.md) | Dependencias detalladas por script |
+| Recurso | Para qué sirve |
+| --- | --- |
+| [conceptos/diccionario.md](conceptos/diccionario.md) | Diccionario de términos explicados de forma sencilla |
+| [CHEAT_SHEETS.md](CHEAT_SHEETS.md) | Comandos esenciales por categoría (formato rápido) |
+| [CHEAT_SHEETS_EXT.md](CHEAT_SHEETS_EXT.md) | Guía extendida con técnicas, recursos y plantillas |
+| [CATALOG.md](CATALOG.md) | Índice completo del repositorio con estado actual |
+| [python/ROADMAP.md](python/ROADMAP.md) | Hoja de ruta para nuevos scripts Python |
+| [python/DEPENDENCIES.md](python/DEPENDENCIES.md) | Dependencias detalladas por script |
 
 ---
 
-## 🖥️ App de escritorio (Launcher)
+## App de escritorio (Launcher)
 
 El repositorio incluye una app en `app/` que funciona como interfaz visual para lanzar scripts.
 
-**Funcionalidades:**
+Funcionalidades:
 
-- 🗂️ Explora scripts por categoría (Python, PowerShell, Fun Scripts)
-- 📝 Muestra descripción, ruta y ejemplo de cada script
-- ▶️ Ejecuta directamente desde la interfaz con argumentos personalizados
-- ⭐ Guarda favoritos e historial de ejecuciones
-- 📦 Se puede empaquetar como `.exe` con PyInstaller
+- Explora scripts por categoría (Python, PowerShell, Fun Scripts)
+- Muestra descripción, ruta y ejemplo de cada script
+- Ejecuta directamente desde la interfaz con argumentos personalizados
+- Guarda favoritos e historial de ejecuciones
+- Se puede empaquetar como `.exe` con PyInstaller
 
 ```bash
 # Ejecutar directamente
@@ -173,43 +165,32 @@ pwsh -File app/build_exe.ps1
 
 ---
 
-## 🧭 Recursos externos recomendados
+## Recursos externos recomendados
 
-- 🌐 **OWASP:** [docs.owasp.org](https://docs.owasp.org/) · [CheatSheetSeries](https://github.com/OWASP/CheatSheetSeries)
-- 👥 **Comunidades:** [r/netsecstudents](https://www.reddit.com/r/netsecstudents/)
-- 🎓 **Formación:** [SANS Courses](https://www.sans.org/cyber-security-courses/) · [Cybrary](https://www.cybrary.it/)
-
----
-
-## 📝 Buenas prácticas
-
-> [!NOTE]
-> Seguir estas prácticas es fundamental para un aprendizaje ético y profesional.
-
-1. 🔒 **Aislamiento**: usa snapshots, redes privadas y desconecta del entorno real.
-2. 📝 **Documentación**: registra comandos, resultados y hallazgos en cada sesión.
-3. ⚖️ **Ética**: trabaja solo sobre activos autorizados. Nunca reutilices exploits fuera del laboratorio.
-4. ✅ **Calidad**: todos los merges pasan por CI (MarkdownLint + link check) antes de llegar a `main`.
-5. 🤝 **Compartir**: cita fuentes originales y menciona el uso educativo al añadir recursos.
+- **OWASP:** [docs.owasp.org](https://docs.owasp.org/) · [CheatSheetSeries](https://github.com/OWASP/CheatSheetSeries)
+- **Comunidades:** [r/netsecstudents](https://www.reddit.com/r/netsecstudents/)
+- **Formación:** [SANS Courses](https://www.sans.org/cyber-security-courses/) · [Cybrary](https://www.cybrary.it/)
 
 ---
 
-## 🤝 Contribuir
+## Buenas prácticas
 
-¿Quieres aportar una herramienta, tutorial o plantilla?
-Lee la [guía de contribución](CONTRIBUTING.md), respeta el [Código de Conducta](CODE_OF_CONDUCT.md)
-y usa las plantillas de [issues](.github/ISSUE_TEMPLATE/) y [pull requests](PULL_REQUEST_TEMPLATE.md).
+1. **Aislamiento:** usa snapshots, redes privadas y desconecta del entorno real.
+2. **Documentación:** registra comandos, resultados y hallazgos en cada sesión.
+3. **Ética:** trabaja solo sobre activos autorizados. Nunca reutilices exploits fuera del laboratorio.
+4. **Calidad:** todos los merges pasan por CI (MarkdownLint + link check) antes de llegar a `main`.
+5. **Compartir:** cita fuentes originales y menciona el uso educativo al añadir recursos.
 
-## 🛡️ Seguridad
+---
+
+## Contribuir
+
+¿Quieres aportar una herramienta, tutorial o plantilla? Lee la [guía de contribución](CONTRIBUTING.md), respeta el [Código de Conducta](CODE_OF_CONDUCT.md) y usa las plantillas de [issues](.github/ISSUE_TEMPLATE/) y [pull requests](PULL_REQUEST_TEMPLATE.md).
+
+## Seguridad
 
 ¿Detectaste un fallo? Consulta [SECURITY.md](SECURITY.md) para reportar vulnerabilidades de forma responsable.
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto se distribuye bajo licencia [MIT](LICENSE). Úsalo con responsabilidad.
-
----
-
-> 🛡️ **Personal Dictionary of Ethical Hacking** · Aprende · Practica · Comparte responsablemente
->
-> ⭐ Si te resulta útil, dale una estrella al repositorio · Hecho con 💜 para la comunidad de ciberseguridad

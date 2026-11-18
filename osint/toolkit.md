@@ -1,4 +1,4 @@
-# Toolkit - OSINT 🔎
+# Toolkit - OSINT
 
 Colección activa de herramientas OSINT para enriquecer inteligencia sobre dominios, personas e infraestructura. Cada entrada sigue una plantilla fija (enlace, caso de uso, comando, notas, recomendaciones, cuándo usar/no usar) y se documenta junto con flujos y límites legales.
 
@@ -157,5 +157,5 @@ Colección activa de herramientas OSINT para enriquecer inteligencia sobre domin
 - Coordina `osint/targets/README.md` con comandos usados y fase de cada herramienta.
 - Todos los outputs van a carpetas fechadas y se enlazan desde `reports/osint/index.md`.
 - Usa `scripts/osint/merge-reports.py` para combinar CSV/JSON en dashboards (`osint/scripts/README.md`).
-- Mantén `tracking.md` con fuente original, fecha y limitaciones legales. 
+- Mantén `tracking.md` con fuente original, fecha y limitaciones legales.
 - Documenta los tokens/API en `osint/keys.yaml` y no los subas al repositorio.

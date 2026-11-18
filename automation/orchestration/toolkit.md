@@ -1,4 +1,4 @@
-# Toolkit - Orquestación 🧩
+# Toolkit - Orquestación
 
 Cada herramienta corresponde a un script o playbook que ejecuté para montar el laboratorio. Anoto qué tareas encadené, qué variables usé y qué logs quedaron en `automation/orchestration/logs/`.
 

@@ -1,4 +1,4 @@
-# Toolkit - Contención 🧱
+# Toolkit - Contención
 
 Registro de acciones que aplico para aislar un incidente y preservar evidencia.
 

@@ -1,4 +1,4 @@
-# Toolkit - Host Discovery 🔎
+# Toolkit - Host Discovery
 
 Enumera herramientas para mapear hosts antes de escanear puertos. Añade comandos y notas claras.
 

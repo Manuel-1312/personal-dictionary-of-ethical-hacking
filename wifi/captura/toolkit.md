@@ -1,4 +1,4 @@
-# Toolkit - Captura WiFi 📥
+# Toolkit - Captura WiFi
 
 Catálogo corto para cada técnica de captura en laboratorio. Incluye filtros, interfaces usadas y cómo proteges los datos.
 

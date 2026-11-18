@@ -1,4 +1,4 @@
-# Toolkit - Monitoring 📡
+# Toolkit - Monitoring
 
 Lista sensores, plataformas y herramientas de observabilidad defensiva. La idea es poder montar una vista razonable del entorno, cazar actividad sospechosa y documentar cómo llegaste a cada hallazgo.
 

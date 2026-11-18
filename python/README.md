@@ -1,6 +1,6 @@
-# 🐍 Python Tools
+# Python Tools
 
-🧰 Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organizada
+Esta carpeta ya no funciona como un cajón de scripts sueltos: ahora está organizada
 por subcategorías para que la librería pueda crecer sin perder claridad.
 
 > [!NOTE]
@@ -9,7 +9,7 @@ por subcategorías para que la librería pueda crecer sin perder claridad.
 
 ---
 
-## 📂 Estructura actual
+## Estructura actual
 - `parsers/` → transformación de logs, XML y salidas de scanners a formatos reutilizables.
 - `web/` → helpers ligeros para inventario y análisis HTTP/HTTPS.
 - `forensics/` → hashes, artefactos, IOCs y utilidades de apoyo para evidencias.
@@ -23,7 +23,7 @@ por subcategorías para que la librería pueda crecer sin perder claridad.
 
 ---
 
-## 📜 Scripts actuales por subcategoría
+## Scripts actuales por subcategoría
 ### `parsers/`
 - `parsers/log_parser.py`: parsea logs de Zeek/Suricata y genera CSV resumido.
 - `parsers/inventory_builder.py`: combina salidas de `nmap`/`masscan` y las normaliza.
@@ -55,7 +55,7 @@ por subcategorías para que la librería pueda crecer sin perder claridad.
 
 ---
 
-## 📦 Dependencias
+## Dependencias
 Instala dependencias con:
 
 ```bash
@@ -66,7 +66,7 @@ Algunos scripts pueden depender además de utilidades externas del entorno (por 
 
 ---
 
-## 🚀 Ejemplos rápidos
+## Ejemplos rápidos
 ```bash
 python python/web/http_headers_probe.py https://example.org 10.10.10.5:8080 -o automation/reporting/http-headers.csv
 python python/web/dir_bruteforce_report.py -i web/apps/ffuf/results.json -o web/apps/ffuf/report.md
@@ -93,4 +93,4 @@ Los ejemplos del toolkit (`python/toolkit.md`) muestran líneas exactas para int
 
 ---
 
-*📂 Volver al [índice principal](../README.md)*
+*Volver al [índice principal](../README.md)*

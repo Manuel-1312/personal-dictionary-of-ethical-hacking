@@ -1,4 +1,4 @@
-# Toolkit - Recon Activo 🎯
+# Toolkit - Recon Activo
 
 Documenta cada herramienta que envía paquetes directamente al objetivo; anota autorización, criterios y resultados.
 

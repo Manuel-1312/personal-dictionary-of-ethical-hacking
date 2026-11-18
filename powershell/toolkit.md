@@ -1,4 +1,4 @@
-# Toolkit - PowerShell ⚡
+# Toolkit - PowerShell
 
 Colección de scripts PowerShell para inventario, análisis, reporting y utilidades de laboratorio.
 

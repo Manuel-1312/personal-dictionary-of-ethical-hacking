@@ -1,4 +1,4 @@
-# Toolkit - Evasión 🕶️
+# Toolkit - Evasión
 
 Registra frameworks y técnicas que usas para comprender y documentar cómo se detectan acciones adversas.
 

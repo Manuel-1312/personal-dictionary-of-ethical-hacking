@@ -1,4 +1,4 @@
-# Toolkit - Templates ✍️
+# Toolkit - Templates
 
 Documenta cada plantilla, qué variables contiene y qué script la usa. Así cualquiera puede levantar un reporte sin tener que adivinar los campos.
 

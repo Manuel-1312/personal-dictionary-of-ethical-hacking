@@ -1,4 +1,4 @@
-# Toolkit - Snapshots 💾
+# Toolkit - Snapshots
 
 Referencia rápida de cómo creo snapshots para cada laboratorio: herramienta, comando y qué guardo en `snapshots/`.
 

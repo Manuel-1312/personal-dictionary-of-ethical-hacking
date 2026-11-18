@@ -1,12 +1,12 @@
-# 🤖 Automatización y Orquestación
+# Automatización y Orquestación
 
-⚡ Aquí guardo los scripts que me permiten reproducir un laboratorio: desde levantar VMs
+Aquí guardo los scripts que me permiten reproducir un laboratorio: desde levantar VMs
 hasta lanzar escaneos y ensamblar reportes. Cada vez que lanzo un playbook
 (por ejemplo `ansible-playbook lab.yml`) incluyo en `automation/orchestration/` la salida
 `logs/` para que otros vean qué cambió.
 
-- **📦 `orchestration/`**: playbooks y scripts que arrancan/disponen entornos, aplican snapshots y preparan herramientas.
-- **📊 `reporting/`**: plantillas, scripts y ejemplos de dashboards que convierten datos crudos en informes legibles.
+- **`orchestration/`**: playbooks y scripts que arrancan/disponen entornos, aplican snapshots y preparan herramientas.
+- **`reporting/`**: plantillas, scripts y ejemplos de dashboards que convierten datos crudos en informes legibles.
 
 > [!NOTE]
 > Si automatizas un pipeline, guarda aquí la descripción, el script y el resultado
@@ -15,7 +15,7 @@ hasta lanzar escaneos y ensamblar reportes. Cada vez que lanzo un playbook
 
 ---
 
-## ⚙️ Comandos utilizados
+## Comandos utilizados
 
 - `ansible-playbook -i automation/orchestration/inventory lab.yml --tags web` para desplegar Kali + Juice Shop.
 - `bash automation/orchestration/scripts/deploy.sh && bash automation/orchestration/scripts/cleanup.sh` para controlar el ciclo.
@@ -23,14 +23,14 @@ hasta lanzar escaneos y ensamblar reportes. Cada vez que lanzo un playbook
 
 ---
 
-## 🎯 Técnicas aplicadas
+## Técnicas aplicadas
 
 - Uso de IDs de playbook en GitHub Actions para versionar y replicar cada ejecución.
 - Snapshot + playbook: tomo snapshot antes del playbook y lo empleo después para resets rápidos.
 
 ---
 
-## 💡 Recomendaciones personales
+## Recomendaciones personales
 
 > [!TIP]
 > - Mantén comentarios dentro de los scripts para saber qué variables cambiaste la última vez.
@@ -38,4 +38,4 @@ hasta lanzar escaneos y ensamblar reportes. Cada vez que lanzo un playbook
 
 ---
 
-*📂 Volver al [índice principal](../README.md)*
+*Volver al [índice principal](../README.md)*

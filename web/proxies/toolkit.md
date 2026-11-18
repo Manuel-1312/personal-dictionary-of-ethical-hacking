@@ -1,4 +1,4 @@
-# Toolkit - Proxies Web 🛡️
+# Toolkit - Proxies Web
 
 Guarda proxies interceptores, scripts y CA propios que usas en auditorías; documenta certificados y filtros aplicados.
 

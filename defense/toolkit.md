@@ -1,4 +1,4 @@
-# Toolkit - Defensa 🛡️
+# Toolkit - Defensa
 
 Inventario de sensores, dashboards, agentes y playbooks para entornos defensivos basados en Security Onion + Wazuh + Elastic. Cada herramienta sigue la plantilla estándar (enlace, caso de uso, comando, notas, recomendaciones, cuándo usar/no usar) y se enlaza con flujos de hunting y documentación relacionada.
 

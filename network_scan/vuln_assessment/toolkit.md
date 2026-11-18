@@ -1,4 +1,4 @@
-# Toolkit - Evaluación de Vulnerabilidades ⚠️
+# Toolkit - Evaluación de Vulnerabilidades
 
 Catálogo de herramientas para validar hallazgos de vulnerabilidades en laboratorios y entornos autorizados. Aquí lo importante no es solo detectar, sino poder justificar por qué confías —o no— en cada resultado.
 

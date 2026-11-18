@@ -1,4 +1,4 @@
-# Toolkit - Auditorías WiFi 🔍
+# Toolkit - Auditorías WiFi
 
 Documenta el flujo completo: escaneo, captura, análisis y mitigación durante una auditoría inalámbrica.
 

@@ -1,4 +1,4 @@
-# Toolkit - Reporting 📊
+# Toolkit - Reporting
 
 Herramientas que convierten datos crudos en entregables. Para cada una explico qué script ejecuté, qué archivo genera y qué incluí en el reporte.
 

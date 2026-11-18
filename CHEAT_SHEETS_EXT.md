@@ -1,4 +1,4 @@
-# 📓 Cheat Sheets Extensas — Biblioteca Ética
+# Cheat Sheets Extensas — Biblioteca Ética
 
 Esta guía extendida es la libreta que me llevo a cada sesión.
 Respirala como un bloc con pestañas: cada bloque tiene comandos probados, técnicas con contexto,
@@ -6,7 +6,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🛰️ WiFi (Notas del campo)
+## WiFi (Notas del campo)
 
 ### Comandos esenciales
 
@@ -36,7 +36,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🌐 Web (estilo diario)
+## Web (estilo diario)
 
 ### Comandos probados
 
@@ -63,11 +63,11 @@ recomendaciones personales y enlaces que consulto a menudo.
 >
 > - Burp docs: [Burp Documentation](https://portswigger.net/burp/documentation). OWASP Top Ten: [OWASP Top 10](https://owasp.org/www-project-top-ten/).
 > - Lista de extensiones de Burp: `web/proxies/extensions.md` (Autorize, JSON Beautifier, Active Scan++).
->   También guardo payloads en `web/apps/payloads.md`.
+> También guardo payloads en `web/apps/payloads.md`.
 
 ---
 
-## 🛡️ Defensa & Monitorización
+## Defensa & Monitorización
 
 ### Comandos clave
 
@@ -97,7 +97,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 📡 Network Scan & Vulnerability Assessment
+## Network Scan & Vulnerability Assessment
 
 ### Comandos frecuentes
 
@@ -129,7 +129,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🧭 Reconocimiento & OSINT
+## Reconocimiento & OSINT
 
 ### Comandos por tipo
 
@@ -152,7 +152,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## ⚡ PowerShell para Windows y automatización ligera
+## PowerShell para Windows y automatización ligera
 
 - `pwsh -File powershell/system/system_report.ps1` → resumen corto de sistema, modelo, memoria, BIOS y arranque.
 - `pwsh -File powershell/system/process_snapshot.ps1 -Output reports/processes.csv` → snapshot de procesos para revisar luego con calma.
@@ -186,12 +186,12 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🐍 Python Tools y scripts propios
+## Python Tools y scripts propios
 
 - `python python/log_parser.py --input defense/monitoring/logs/zeek.log --output automation/reporting/results/zeek-summary.csv`
-  → parsea logs Zeek/Suricata y genera CSV/markdown con IPs/puertos.
+ → parsea logs Zeek/Suricata y genera CSV/markdown con IPs/puertos.
 - `python python/inventory_builder.py --nmap reports/network/nmap-full.xml --masscan reports/network/masscan.gnmap --out reports/network/inventory.md`
-  → normaliza escaneos y crea un inventario comprimido.
+ → normaliza escaneos y crea un inventario comprimido.
 - Configura un virtualenv y corre `pip install -r python/requirements.txt` para no mezclar dependencias del sistema.
 
 ### Técnicas de desarrollo
@@ -209,13 +209,13 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🤖 Automatización & Reportes
+## Automatización & Reportes
 
 ### Comandos útiles
 
 - `ansible-playbook -i automation/orchestration/inventory lab.yml --tags web`.
 - `python automation/reporting/scripts/render.py --template automation/reporting/templates/standard.md`
-  `--output automation/reporting/results/report-20260327.pdf`.
+ `--output automation/reporting/results/report-20260327.pdf`.
 - `pandoc automation/reporting/templates/standard.md -o automation/reporting/results/report-2026.pdf`.
 - `docker compose -f automation/orchestration/docker-compose.yml up --build`.
 
@@ -234,7 +234,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🧨 Exploitation de laboratorio
+## Exploitation de laboratorio
 
 ### Comandos base
 
@@ -268,7 +268,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🔎 OSINT & Forense
+## OSINT & Forense
 
 ### Comandos básicos
 
@@ -294,7 +294,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 🎉 Fun Scripts y creatividad de laboratorio
+## Fun Scripts y creatividad de laboratorio
 
 ### Ideas de uso
 
@@ -313,7 +313,7 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-## 📚 Recursos premium y plantillas
+## Recursos premium y plantillas
 
 - WiFi: `wifi/notas/` (tabla antena/driver/observaciones) y script `scripts/wifi/start-monitor.sh`.
 - Web: macros en `web/proxies/macros.md` y el `web/apps/scoreboard.md` con retos completados.
@@ -325,4 +325,4 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 ---
 
-> ✏️ *Esta guía crece con cada sesión. Contribuye tus notas, comandos y enlaces favoritos para mantenerla viva.*
+> *Esta guía crece con cada sesión. Contribuye tus notas, comandos y enlaces favoritos para mantenerla viva.*

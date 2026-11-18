@@ -1,4 +1,4 @@
-# Toolkit - Threat Hunting 🕵️‍♂️
+# Toolkit - Threat Hunting
 
 Registro de hunts que he ejecutado, con las herramientas, fuentes y conclusiones.
 

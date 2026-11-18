@@ -1,4 +1,4 @@
-# Toolkit - Apps Vulnerables 🧪
+# Toolkit - Apps Vulnerables
 
 Documenta cada aplicación vulnerable, su stack y qué retos completaste en el laboratorio.
 

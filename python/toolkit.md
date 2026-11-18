@@ -1,4 +1,4 @@
-# Toolkit - Python Tools 🐍
+# Toolkit - Python Tools
 
 Documenta cada script, comando o helper que programas para esta biblioteca y anota qué dependencias necesita.
 

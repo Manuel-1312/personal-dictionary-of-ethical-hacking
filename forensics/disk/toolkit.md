@@ -1,4 +1,4 @@
-# Toolkit - Disco 🧱
+# Toolkit - Disco
 
 Lista herramientas que usas para capturar y analizar imágenes de disco; documenta cada comando y los hashes generados.
 

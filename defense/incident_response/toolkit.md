@@ -1,4 +1,4 @@
-# Toolkit - Respuesta a Incidentes 🚨
+# Toolkit - Respuesta a Incidentes
 
 Documenta cada herramienta, script y recurso usado durante un incidente real o simulado.
 

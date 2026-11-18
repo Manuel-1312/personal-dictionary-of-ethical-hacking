@@ -1,4 +1,4 @@
-# Toolkit - WiFi 🛰️
+# Toolkit - WiFi
 
 Libro de jugadas para auditorías inalámbricas. Cada herramienta sigue la plantilla (enlace, caso de uso, comando de ejemplo, notas, recomendaciones, cuándo usar/no usar) y documenta adaptador, canal y salidas para mantener reproducibilidad.
 

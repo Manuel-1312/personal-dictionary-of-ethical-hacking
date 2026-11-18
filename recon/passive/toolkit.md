@@ -1,4 +1,4 @@
-# Toolkit - Recon Pasivo 🌍
+# Toolkit - Recon Pasivo
 
 Herramientas que solo consultan fuentes públicas; registra cada dato con fecha y URL.
 

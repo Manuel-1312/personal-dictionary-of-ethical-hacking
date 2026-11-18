@@ -1,4 +1,4 @@
-# Toolkit - Network Scan 📡
+# Toolkit - Network Scan
 
 Inventario de escaneos de red ejecutados en laboratorios controlados. Cada herramienta sigue la plantilla estándar (enlace, caso de uso, comando, notas, recomendaciones y cuándo usar/no usar) y enlaza con reportes para facilitar la reproducibilidad.
 

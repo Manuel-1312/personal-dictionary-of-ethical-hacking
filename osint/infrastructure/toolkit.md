@@ -1,4 +1,4 @@
-# Toolkit - Infraestructura 🏗️
+# Toolkit - Infraestructura
 
 Herramientas para mapear infraestructura pública; añaden detalles sobre IPs, DNS y certificados.
 

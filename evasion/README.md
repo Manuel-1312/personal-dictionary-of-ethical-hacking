@@ -1,6 +1,6 @@
-# 🥷 Evasión Controlada
+# Evasión Controlada
 
-🎭 Documenta técnicas y frameworks que exploras para comprender cómo se detectan ciertas acciones.
+Documenta técnicas y frameworks que exploras para comprender cómo se detectan ciertas acciones.
 Siempre registra qué detección evitas y cómo restauras los controles.
 
 > [!WARNING]
@@ -14,21 +14,21 @@ Siempre registra qué detección evitas y cómo restauras los controles.
 
 ---
 
-## ⚙️ Comandos utilizados
+## Comandos utilizados
 
 - Documenta aquí los comandos específicos de cada ejercicio de evasión que realices.
 - Incluye la versión de la herramienta y el sistema operativo del laboratorio.
 
 ---
 
-## 🎯 Técnicas aplicadas
+## Técnicas aplicadas
 
 - Registro de bypass de AV/EDR en entornos controlados.
 - Comparación de detección antes y después de aplicar ofuscación.
 
 ---
 
-## 💡 Recomendaciones personales
+## Recomendaciones personales
 
 > [!TIP]
 > - Mantén un log con fecha, técnica y resultado para cada prueba de evasión.
@@ -37,4 +37,4 @@ Siempre registra qué detección evitas y cómo restauras los controles.
 
 ---
 
-*📂 Volver al [índice principal](../README.md)*
+*Volver al [índice principal](../README.md)*

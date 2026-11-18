@@ -1,31 +1,30 @@
-# 📚 Diccionario de Conceptos
+# Diccionario de Conceptos
 
-🔐 Tu referencia rápida de ciberseguridad ofensiva y defensiva.
-Cada término incluye su definición concreta, una intuición práctica y un ejemplo breve cuando aplica.
-¡Consúltalo antes de escribir un informe, preparar un script o explorar un nuevo vector! 🚀
-
----
-
-## 📑 Índice
-
-- [🌐 Red](#-red)
-- [🕸️ Web](#️-web)
-- [🔎 Reconocimiento y OSINT](#-reconocimiento-y-osint)
-- [🛡️ Defensa y Blue Team](#️-defensa-y-blue-team)
-- [🧨 Explotación y Post-explotación](#-explotación-y-post-explotación)
-- [🔬 Forense Digital](#-forense-digital)
-- [📡 WiFi](#-wifi)
-- [🔑 Criptografía](#-criptografía)
-- [🏛️ Active Directory y Windows](#️-active-directory-y-windows)
-- [☁️ Cloud Security](#️-cloud-security)
-- [📱 Seguridad Móvil](#-seguridad-móvil)
-- [🧬 Malware y Análisis de Amenazas](#-malware-y-análisis-de-amenazas)
-- [🧰 Herramientas Esenciales](#-herramientas-esenciales)
-- [💡 Tips Extra](#-tips-extra)
+Tu referencia rápida de ciberseguridad ofensiva y defensiva.
+Cada término incluye su definición concreta, una intuición práctica y un ejemplo breve cuando aplica. Consúltalo antes de escribir un informe, preparar un script o explorar un nuevo vector.
 
 ---
 
-## 🌐 Red
+## Índice
+
+- [Red](#-red)
+- [Web](#-web)
+- [Reconocimiento y OSINT](#-reconocimiento-y-osint)
+- [Defensa y Blue Team](#-defensa-y-blue-team)
+- [Explotación y Post-explotación](#-explotación-y-post-explotación)
+- [Forense Digital](#-forense-digital)
+- [WiFi](#-wifi)
+- [Criptografía](#-criptografía)
+- [Active Directory y Windows](#-active-directory-y-windows)
+- [Cloud Security](#-cloud-security)
+- [Seguridad Móvil](#-seguridad-móvil)
+- [Malware y Análisis de Amenazas](#-malware-y-análisis-de-amenazas)
+- [Herramientas Esenciales](#-herramientas-esenciales)
+- [Tips Extra](#-tips-extra)
+
+---
+
+## Red
 
 | Término | Definición | Nota práctica |
 | --- | --- | --- |
@@ -55,7 +54,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🕸️ Web
+## Web
 
 | Término | Definición | Ejemplo / Consejo |
 | --- | --- | --- |
@@ -85,7 +84,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🔎 Reconocimiento y OSINT
+## Reconocimiento y OSINT
 
 | Término | Definición | Aplicación rápida |
 | --- | --- | --- |
@@ -106,7 +105,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🛡️ Defensa y Blue Team
+## Defensa y Blue Team
 
 | Término | Definición | Cómo ayuda |
 | --- | --- | --- |
@@ -129,7 +128,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🧨 Explotación y Post-explotación
+## Explotación y Post-explotación
 
 | Término | Definición | Contexto de laboratorio |
 | --- | --- | --- |
@@ -146,7 +145,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🔬 Forense Digital
+## Forense Digital
 
 | Término | Definición | Punto clave |
 | --- | --- | --- |
@@ -163,7 +162,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 📡 WiFi
+## WiFi
 
 | Término | Definición | Nota de seguridad |
 | --- | --- | --- |
@@ -180,7 +179,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🔑 Criptografía
+## Criptografía
 
 | Término | Definición | Contexto de seguridad |
 | --- | --- | --- |
@@ -197,7 +196,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🏛️ Active Directory y Windows
+## Active Directory y Windows
 
 | Término | Definición | Técnica ofensiva / defensiva |
 | --- | --- | --- |
@@ -217,7 +216,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## ☁️ Cloud Security
+## Cloud Security
 
 | Término | Definición | Riesgo / Técnica |
 | --- | --- | --- |
@@ -233,7 +232,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 📱 Seguridad Móvil
+## Seguridad Móvil
 
 | Término | Definición | Vector de ataque / Análisis |
 | --- | --- | --- |
@@ -247,7 +246,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🧬 Malware y Análisis de Amenazas
+## Malware y Análisis de Amenazas
 
 | Término | Definición | Análisis / Detección |
 | --- | --- | --- |
@@ -264,7 +263,7 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 🧰 Herramientas Esenciales
+## Herramientas Esenciales
 
 | Herramienta | Categoría | Uso principal |
 | --- | --- | --- |
@@ -287,10 +286,10 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ---
 
-## 💡 Tips Extra
+## Tips Extra
 
 > [!TIP]
-> Mantén este diccionario actualizado: cada nuevo término que aprendas es una pieza más en tu arsenal de conocimiento. 🧠
+> Mantén este diccionario actualizado: cada nuevo término que aprendas es una pieza más en tu arsenal de conocimiento.
 
 - **Documenta siempre**: apunta la fuente (CVE, blog, libro, lab), los comandos exactos y los resultados obtenidos. Un buen pentest es 50% técnica y 50% documentación.
 - **Referencia cruzada**: combina conceptos de distintas secciones. Un SSRF + Metadata Service + credenciales IAM es una cadena de ataque completa.
@@ -298,7 +297,3 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 - **Metodologías de referencia**: OWASP Testing Guide, PTES (Penetration Testing Execution Standard), OSSTMM, y MITRE ATT&CK son tus marcos de trabajo.
 - **Contribuye**: si un término no aparece aquí, añádelo siguiendo el formato de la tabla correspondiente y abre un PR. La comunidad lo agradece.
 - **Cursos y recursos**: HackTheBox, TryHackMe, PortSwigger Web Academy (gratis), PentesterLab. Práctica > teoría.
-
----
-
-*Hecho con 💜 para la comunidad de hacking ético — ¡hack the planet!* 🌍

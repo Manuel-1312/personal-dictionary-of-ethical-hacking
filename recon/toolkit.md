@@ -1,4 +1,4 @@
-# Toolkit - Reconocimiento 🧭
+# Toolkit - Reconocimiento
 
 Catálogo estructurado de herramientas pasivas/activas. La plantilla que sigo por herramienta incluye enlace, caso de uso, comando reproducible, notas, recomendaciones y cuándo usar/no usar, para no perder contexto entre sesiones.
 

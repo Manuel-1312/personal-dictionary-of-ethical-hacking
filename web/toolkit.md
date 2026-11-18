@@ -1,4 +1,4 @@
-# Toolkit - Web 🌐
+# Toolkit - Web
 
 Registro vivo de proxies, scanners y flujos para auditorías web. Este archivo sigue una plantilla fija por herramienta (enlace, caso de uso, comando de ejemplo, notas prácticas, recomendaciones y cuándo usar/no usar) y añade flujos comunes y documentación relacionada para replicar escenarios reales.
 

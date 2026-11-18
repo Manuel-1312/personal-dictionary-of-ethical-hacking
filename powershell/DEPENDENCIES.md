@@ -98,8 +98,8 @@ Scripts como:
 ## Recomendaciones prácticas
 - Si un script depende de cmdlets de red o SMB, prueba primero en la máquina objetivo porque Windows no siempre trae exactamente lo mismo según edición/version.
 - Si más adelante añades módulos externos, mejor separar:
-  - `DEPENDENCIES.md` → mapa humano
-  - `requirements` o notas de instalación por módulo
+ - `DEPENDENCIES.md` → mapa humano
+ - `requirements` o notas de instalación por módulo
 - Si un script necesita admin, déjalo explícito en su README o en el comentario inicial.
 
 ## Regla simple

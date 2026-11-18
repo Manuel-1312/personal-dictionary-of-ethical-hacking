@@ -142,11 +142,11 @@ La carpeta `python/` ya está organizada por subcategorías (`parsers/`, `web/`,
 ## Mi recomendación honesta
 Si quieres crecer con cabeza, yo empezaría por estos cinco:
 
-1. `nmap_xml_to_markdown.py` ✅ ya implementado en `python/reporting/`
-2. `subdomain_diff.py` ✅ ya implementado en `python/recon/`
-3. `pcap_summary.py` ✅ ya implementado en `python/forensics/`
-4. `evidence_indexer.py` ✅ ya implementado en `python/forensics/`
-5. `markdown_case_bundler.py` ✅ ya implementado en `python/reporting/`
+1. `nmap_xml_to_markdown.py` ya implementado en `python/reporting/`
+2. `subdomain_diff.py` ya implementado en `python/recon/`
+3. `pcap_summary.py` ya implementado en `python/forensics/`
+4. `evidence_indexer.py` ya implementado en `python/forensics/`
+5. `markdown_case_bundler.py` ya implementado en `python/reporting/`
 
 Ese pack da bastante valor real y cubre:
 - reporting

@@ -1,11 +1,11 @@
-# ⚡ Cheat Sheets — Referencia Rápida
+# Cheat Sheets — Referencia Rápida
 
 Comandos esenciales, técnicas probadas y recomendaciones operativas para cada área del repositorio.
 Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 📡 WiFi
+## WiFi
 
 - `airmon-ng check kill && airmon-ng start wlan0` → preparar el adaptador en modo monitor.
 - `airodump-ng --write captures/session-YYYYMMDD --output-format csv,pcap wlan0mon` → captura por canal y export para análisis.
@@ -19,7 +19,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 🌐 Web
+## Web
 
 - `docker run -d --name juice-shop -p 3000:3000 bkimminich/juice-shop` → entorno de pruebas limpio.
 - `zap-baseline.py -t http://localhost:3000 -r reports/zap/base.html` → escaneo base.
@@ -33,7 +33,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 🛡️ Defensa & Monitoring
+## Defensa & Monitoring
 
 - `so-import-pcap -f security-onion.pcap` → inyectar tráfico sintético en Security Onion.
 - `wazuh-control -a` → sincronizar agentes después de añadir logs.
@@ -47,7 +47,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 📡 Network Scan & Vulnerability Assessment
+## Network Scan & Vulnerability Assessment
 
 - `arp-scan -l 10.0.0.0/24` → discovery antes del escaneo de puertos.
 - `nmap -T3 -sC -sV -oA reports/network/nmap-full 10.0.0.0/24` → escaneo completo con scripts.
@@ -62,7 +62,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 🔎 Reconocimiento
+## Reconocimiento
 
 - `amass enum -d example.lab -config recon/amass.conf -o outputs/recon/amass.json` → subdominios.
 - `nmap -sS -Pn -oA recon/active/nmap-active 10.0.1.5` → escaneo activo autorizado.
@@ -76,7 +76,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 🤖 Automatización & Reporting
+## Automatización & Reporting
 
 - `ansible-playbook -i automation/orchestration/inventory lab.yml --tags web` → despliegues.
 - `python automation/reporting/scripts/render.py --template automation/reporting/templates/standard.md` → generación de PDF.
@@ -90,7 +90,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 💻 PowerShell
+## PowerShell
 
 - `pwsh -File powershell/system/system_report.ps1` → resumen rápido del equipo Windows.
 - `pwsh -File powershell/system/service_report.ps1 -Output reports/services.csv` → export de servicios.
@@ -111,7 +111,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 🧨 Exploitation (Lab)
+## Exploitation (Lab)
 
 - `msfconsole -q` → abrir workspace limpio para validar hallazgos en un entorno controlado.
 - `searchsploit --nmap reports/network/nmap-full.xml` → relacionar banners/versiones con referencias públicas.
@@ -129,7 +129,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 🎉 Fun Scripts
+## Fun Scripts
 
 - `python fun-scripts/ascii_banner_maker.py --text "LAB 01"` → banner rápido para notas o demos.
 - `python fun-scripts/random_codenames.py --count 5` → nombres de operación aleatorios.
@@ -144,7 +144,7 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-## 🔍 OSINT & Forense
+## OSINT & Forense
 
 - `shodan search org:"Example Inc" --fields ip_str,org,port` → inventario de hosts públicos.
 - `curl "https://crt.sh/?q=%25example.com"` + guarda el PDF para detectar rotaciones TLS.
@@ -159,4 +159,4 @@ Usa esta hoja como tu referencia de bolsillo antes de abrir cualquier carpeta.
 
 ---
 
-> ✏️ *Última actualización automática. Contribuye nuevos comandos y técnicas en cada carpeta del repositorio.*
+> *Última actualización automática. Contribuye nuevos comandos y técnicas en cada carpeta del repositorio.*

@@ -1,4 +1,4 @@
-# Toolkit - Forense Digital 🔍
+# Toolkit - Forense Digital
 
 Registro práctico de herramientas de adquisición, análisis y documentación forense. Cada bloque sigue la plantilla estándar (enlace, caso de uso, comando, notas, recomendaciones, cuándo usar/no usar) y cierra con flujos y referencias para mantener la cadena de custodia.
 

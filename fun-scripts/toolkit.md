@@ -1,4 +1,4 @@
-# Toolkit - Fun Scripts 🎈
+# Toolkit - Fun Scripts
 
 Colección de scripts ligeros para decorar terminales, generar artefactos ficticios y añadir algo de humor al laboratorio.
 
