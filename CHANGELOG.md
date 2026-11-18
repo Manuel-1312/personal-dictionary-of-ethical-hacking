@@ -30,6 +30,7 @@ Las versiones se organizan por *Faces* (fases) del proyecto.
 - Extracción de enlaces en CI: ahora busca en tokens inline/children en vez de solo tokens raíz.
 - `inventory_builder.py`: el campo Origin ahora detecta correctamente hosts encontrados por ambas herramientas (`both`).
 - **Índice del diccionario**: anclas internas (`#-red` → `#red`, etc.) que quedaron rotas al retirar el emoji de las cabeceras.
+- **Scripts PowerShell**: `directory_markdown_index.ps1` (string roto `` "- `$rel`" `` que impedía generar el índice), `ping_sweep.ps1` (`Test-Connection -ComputerName` no existe en PowerShell 7; ahora host posicional, válido en 5.1 y 7+), `port_check_list.ps1` (variable automática `$host` → `$targetHost`), 5 scripts de `reporting/` (parámetro `$Input` colisionaba con la variable automática; renombrado a `$Path` con `[Alias('Input')]`), BOM UTF-8 en los 4 ficheros con acentos (mojibake en PS 5.1) y emoji residual en `fake_update_screen.ps1`. PSScriptAnalyzer: 0 avisos salvo `Write-Host` intencional en salidas de consola.
 - **Toolkits**: correcciones técnicas en 10 `toolkit.md` — emoji residual (`⬆`) y `<br>` sueltos, herramienta renombrada (`hcxpcaptool` → `hcxpcapngtool`), flujo WiFi actualizado a `hc22000`/`-m 22000`, flag inválido de airgraph (`-g netxml` → `-g CAPR`), binario Wazuh (`agent-control` → `agent_control`), herramienta inexistente (`velocity`), imagen Docker de ZAP obsoleta (`owasp/zap2docker-stable` → `ghcr.io/zaproxy/zaproxy:stable`) y enlace equivocado de Cyber Triage.
 
 ## [Face 4] - Anterior a este changelog

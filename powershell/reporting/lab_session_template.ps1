@@ -1,4 +1,4 @@
-param([string]$Output = 'lab-session.md', [string]$Title = 'Nueva sesión de lab')
+﻿param([string]$Output = 'lab-session.md', [string]$Title = 'Nueva sesión de lab')
 $content = @"
 # $Title
 

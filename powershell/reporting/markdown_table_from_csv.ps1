@@ -1,5 +1,5 @@
-param([string]$Input, [string]$Output = 'table.md')
-$rows = Import-Csv -Path $Input
+param([Alias('Input')][string]$Path, [string]$Output = 'table.md')
+$rows = Import-Csv -Path $Path
 if (-not $rows) { 'Sin datos.' | Set-Content -Path $Output; exit }
 $headers = $rows[0].PSObject.Properties.Name
 $lines = @()
