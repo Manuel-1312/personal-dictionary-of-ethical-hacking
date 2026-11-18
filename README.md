@@ -21,7 +21,7 @@ Biblioteca curada de herramientas, scripts y documentación para aprender hackin
 | --- | --- |
 | **Diccionario de conceptos** | Definiciones con ejemplos prácticos para cada área de seguridad |
 | **+25 scripts Python** | Parsers, forensics, IOCs y reporting, listos para usar con pocas dependencias |
-| **+49 scripts PowerShell** | Inventario, red, sistema y reporting para Windows, sin dependencias externas |
+| **+44 scripts PowerShell** | Inventario, red, sistema y reporting para Windows, sin dependencias externas |
 | **App de escritorio** | Launcher con GUI (Tkinter) para ejecutar scripts desde una interfaz visual |
 | **Cheat sheets** | Versión rápida y extendida, con comandos organizados por categoría |
 | **CI/CD** | MarkdownLint y verificación de enlaces en cada push y PR |
@@ -99,13 +99,13 @@ personal-dictionary-of-ethical-hacking/
 ├── fun-scripts/              → Scripts creativos: banners, generadores, humor
 ├── network_scan/             → Host discovery y vulnerability assessment
 ├── osint/                    → Investigación de fuentes abiertas
-├── powershell/               → 49 scripts para Windows
+├── powershell/               → 44 scripts para Windows
 │   ├── system/               → Inventario, procesos, servicios, software
 │   ├── files/                → Hashes, duplicados, tamaños
 │   ├── network/              → Conexiones, firewall, WiFi, ping sweep
 │   ├── reporting/            → Conversores CSV/JSON a Markdown/HTML
 │   └── fun/                  → ASCII art, matrix, countdowns
-├── python/                   → 25 utilidades organizadas por subcategoría
+├── python/                   → 17 utilidades organizadas por subcategoría
 │   ├── parsers/              → Zeek, masscan, nmap a CSV
 │   ├── forensics/            → Hashes, IOCs, PCAPs, cadena de custodia
 │   ├── web/                  → Cabeceras HTTP, fuzzing, screenshots

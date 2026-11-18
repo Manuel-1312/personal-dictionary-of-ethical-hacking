@@ -14,7 +14,7 @@ Incluye pasos para reproducir, el impacto esperado y cómo podría mitigarse.
 
 ---
 
-## ⏱¿Qué ocurre después?
+## ¿Qué ocurre después?
 
 - Confirmamos la recepción en menos de **3 días laborables**.
 - Evaluamos la severidad usando CVSS o criterios equivalentes.

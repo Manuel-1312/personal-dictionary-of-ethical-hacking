@@ -5,7 +5,7 @@ reemplazar el repo, sino usarlo como **backend**:
 
 - Lee categorías y scripts desde `toolkit.md`
 - Muestra descripción y comando de ejemplo
-- ▶Permite ejecutar scripts desde una interfaz
+- Permite ejecutar scripts desde una interfaz
 - Captura la salida en una consola simple
 
 > [!NOTE]
