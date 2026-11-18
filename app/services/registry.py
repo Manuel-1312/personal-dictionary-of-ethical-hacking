@@ -32,40 +32,56 @@ CATEGORY_PREFIXES = {
 }
 
 
-def normalize_script_path(category: str, script: str) -> str:
-    cleaned = script.strip().replace('\\', '/')
+def _relative_from_example(example: str, script_name: str, category: str, subcat: str) -> str:
+    """Devuelve la ruta relativa del script.
+
+    El comando de ejemplo de cada ficha ya incluye la ruta real
+    (p. ej. ``python python/parsers/log_parser.py ...``), así que se prefiere
+    ese token. Si no aparece, se reconstruye con el prefijo de la categoría y
+    la subcarpeta indicada en la ficha.
+    """
+    for token in example.replace('\\', '/').split():
+        token = token.strip('`"\'')
+        if token.endswith(script_name) and '/' in token:
+            return token
     prefix = CATEGORY_PREFIXES.get(category, '')
-    if prefix and cleaned.startswith(prefix):
-        return cleaned
-    if prefix:
-        return prefix + cleaned
-    return cleaned
+    sub = subcat.strip('`').strip('/')
+    sub = f"{sub}/" if sub else ''
+    return f"{prefix}{sub}{script_name}"
 
 
-def parse_markdown_table(lines: Iterable[str], toolkit_path: Path, category: str) -> list[ScriptEntry]:
+def parse_toolkit(lines: Iterable[str], toolkit_path: Path, category: str) -> list[ScriptEntry]:
+    """Parsea un toolkit.md en formato de fichas: cabecera '### script' y bullets."""
     entries: list[ScriptEntry] = []
-    for line in lines:
-        stripped = line.strip()
-        if not stripped.startswith('|'):
-            continue
-        if '---' in stripped or ('Script' in stripped and 'Comando' in stripped):
-            continue
-        parts = [part.strip() for part in stripped.strip('|').split('|')]
-        if len(parts) < 4:
-            continue
-        raw_script = parts[0].strip('`')
-        script = normalize_script_path(category, raw_script)
-        description = parts[2] if len(parts) >= 3 else ''
-        example = parts[3].strip('`') if len(parts) >= 4 else ''
+    name = description = example = subcat = ''
+
+    def flush() -> None:
+        if not name:
+            return
+        rel = _relative_from_example(example, name, category, subcat)
         entries.append(
             ScriptEntry(
                 category=category,
-                script=script,
+                script=rel,
                 description=description,
                 example=example,
                 source_toolkit=toolkit_path,
             )
         )
+
+    for raw_line in lines:
+        stripped = raw_line.strip()
+        if stripped.startswith('### '):
+            flush()
+            name = stripped[4:].strip().strip('`')
+            description = example = subcat = ''
+        elif stripped.startswith('- **Subcategoría:**'):
+            subcat = stripped.split('**Subcategoría:**', 1)[1].strip().strip('`')
+        elif stripped.startswith('- **Descripción:**'):
+            description = stripped.split('**Descripción:**', 1)[1].strip()
+        elif stripped.startswith('- **Comando de ejemplo:**'):
+            example = stripped.split('**Comando de ejemplo:**', 1)[1].strip().strip('`')
+    flush()
     return entries
 
 
@@ -76,5 +92,5 @@ def load_registry(repo_root: Path) -> list[ScriptEntry]:
         if not toolkit.exists():
             continue
         lines = toolkit.read_text(encoding='utf-8', errors='ignore').splitlines()
-        entries.extend(parse_markdown_table(lines, toolkit, category))
+        entries.extend(parse_toolkit(lines, toolkit, category))
     return entries

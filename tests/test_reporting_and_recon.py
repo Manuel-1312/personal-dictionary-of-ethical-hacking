@@ -115,11 +115,11 @@ class TestSubdomainDiff:
 
 
 # ---------------------------------------------------------------------------
-# app/services/registry — parser de tablas de toolkit.md
+# app/services/registry — parser de fichas de toolkit.md
 # ---------------------------------------------------------------------------
 
 class TestRegistry:
-    """El parser del registro de scripts debe interpretar tablas Markdown de toolkit.md."""
+    """El parser del registro debe interpretar los toolkit.md en formato de fichas."""
 
     @pytest.fixture
     def registry_mod(self):
@@ -136,22 +136,36 @@ class TestRegistry:
         spec.loader.exec_module(mod)
         return mod
 
-    def test_parse_markdown_table(self, registry_mod, tmp_path):
-        """Debe extraer ScriptEntry desde una tabla Markdown con formato toolkit."""
+    def test_parse_toolkit_extracts_entries(self, registry_mod):
+        """Una ScriptEntry por ficha, con la ruta tomada del comando de ejemplo; la plantilla no cuenta."""
         lines = [
-            "| Script | Subcarpeta | Descripción | Comando de ejemplo |",
-            "| --- | --- | --- | --- |",
-            "| `parsers/log_parser.py` | parsers | Parsea logs Zeek | `python python/parsers/log_parser.py -i conn.log -o out.csv` |",
-            "| `forensics/hash_manifest.py` | forensics | Genera hashes | `python python/forensics/hash_manifest.py -i dir -o hashes.csv` |",
+            "## Plantilla de scripts",
+            "- **Comando de ejemplo:** cómo lanzarlo.",  # plantilla: no debe generar entrada
+            "## 1. parsers/",
+            "### `log_parser.py`",
+            "- **Subcategoría:** `parsers/`",
+            "- **Descripción:** Parsea logs Zeek.",
+            "- **Comando de ejemplo:** `python python/parsers/log_parser.py -i conn.log -o out.csv`",
+            "### `hash_manifest.py`",
+            "- **Subcategoría:** `forensics/`",
+            "- **Descripción:** Genera hashes.",
+            "- **Comando de ejemplo:** `python python/forensics/hash_manifest.py -i dir -o hashes.csv`",
         ]
-        entries = registry_mod.parse_markdown_table(lines, tmp_path / "toolkit.md", "Python")
+        entries = registry_mod.parse_toolkit(lines, Path("python/toolkit.md"), "Python")
         assert len(entries) == 2
-        assert entries[0].script == "python/parsers/log_parser.py"
+        assert entries[0].relative_path == "python/parsers/log_parser.py"
+        assert entries[1].relative_path == "python/forensics/hash_manifest.py"
         assert entries[0].category == "Python"
         assert "Parsea" in entries[0].description
 
-    def test_normalize_script_path(self, registry_mod):
-        """normalize_script_path debe añadir el prefijo correcto si no lo tiene."""
-        assert registry_mod.normalize_script_path("Python", "parsers/log_parser.py") == "python/parsers/log_parser.py"
-        assert registry_mod.normalize_script_path("Python", "python/parsers/log_parser.py") == "python/parsers/log_parser.py"
-        assert registry_mod.normalize_script_path("Fun Scripts", "ascii_banner_maker.py") == "fun-scripts/ascii_banner_maker.py"
+    def test_parse_toolkit_path_fallback(self, registry_mod):
+        """Sin ruta en el ejemplo, reconstruye con el prefijo de categoría y la subcarpeta."""
+        lines = [
+            "### `system_report.ps1`",
+            "- **Subcategoría:** `system/`",
+            "- **Descripción:** Resumen del equipo.",
+            "- **Comando de ejemplo:** `pwsh -File system_report.ps1`",
+        ]
+        entries = registry_mod.parse_toolkit(lines, Path("powershell/toolkit.md"), "PowerShell")
+        assert len(entries) == 1
+        assert entries[0].relative_path == "powershell/system/system_report.ps1"

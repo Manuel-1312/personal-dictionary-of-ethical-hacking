@@ -30,11 +30,11 @@ Libro de jugadas para auditorías inalámbricas. Cada herramienta sigue la plant
 - **Cuándo usarlo:** siempre que necesites evidencia de handshake.
 - **Cuándo no:** si solo haces reconocimiento pasivo (usa Kismet).
 
-### hcxdumptool + hcxpcaptool
+### hcxdumptool + hcxpcapngtool
 - **Enlace:** https://github.com/ZerBea/hcxdumptool
 - **Caso de uso:** captura avanzada de handshakes, PMKID y 802.11r.
 - **Comando de ejemplo:** `hcxdumptool -o captures/pmkid-20260327.pcapng -i wlan0mon --enable_status=1 --filterlist=targets/hcxdumptool-filterlist.txt`
-- **Notas útiles:** convierto con `hcxpcaptool -z outputs/hashcat/pmkid.hc22000 captures/pmkid-*.pcapng`.
+- **Notas útiles:** convierto con `hcxpcapngtool -o outputs/hashcat/pmkid.hc22000 captures/pmkid-*.pcapng` (el antiguo `hcxpcaptool` fue retirado).
 - **Recomendaciones:** usa `--filterlist` para evitar redes externas.
 - **Cuándo usarlo:** cuando el objetivo soporta WPA2/3 con PMKID.
 - **Cuándo no:** si el entorno es muy ruidoso y prefieres `airodump`.
@@ -46,15 +46,15 @@ Libro de jugadas para auditorías inalámbricas. Cada herramienta sigue la plant
 - **Caso de uso:** recuperar claves WPA/WPA2 con handshake.
 - **Comando de ejemplo:** `aircrack-ng -w wordlists/rockyou.txt -b 00:11:22:33:44:55 captures/handshake-01.cap`
 - **Notas útiles:** tengo wordlists propias en `wifi/wordlists/` y documento resultados en `reports/wifi/aircrack-results.md`.
-- **Recomendaciones:** usa `--pke`/`--hccapx` para exportar a Hashcat.
+- **Recomendaciones:** para Hashcat, convierte la captura a `hc22000` con `hcxpcapngtool -o hash.hc22000 captura.pcapng` (el formato `.hccapx`/`-m 2500` está obsoleto desde hashcat 6.0).
 - **Cuándo usarlo:** cuando hay handshake válido.
 - **Cuándo no:** si la red usa WPA3 o PMKID-only (usa Hashcat).
 
 ### Hashcat
 - **Enlace:** https://hashcat.net/hashcat/
 - **Caso de uso:** ataques GPU sobre handshakes/PMKID.
-- **Comando de ejemplo:** `hashcat -m 2500 outputs/hashcat/handshake.hccapx -a 3 '?d?d?d?d?d?d?d?d' --session wifi-session`
-- **Notas útiles:** guardo estado en `wifi/hashcat/wifi-session.hccap` y cracks en `wifi/hashcat/cracked.txt`.
+- **Comando de ejemplo:** `hashcat -m 22000 outputs/hashcat/handshake.hc22000 -a 3 '?d?d?d?d?d?d?d?d' --session wifi-session`
+- **Notas útiles:** guardo estado en `wifi/hashcat/wifi-session.restore` y cracks en `wifi/hashcat/cracked.txt`.
 - **Recomendaciones:** habilita `--restore` y `--status`.
 - **Cuándo usarlo:** redes que requieren GPU o mask attacks.
 - **Cuándo no:** laboratorios sin GPU (usa Aircrack-ng con wordlists ligeros).
@@ -93,7 +93,7 @@ Libro de jugadas para auditorías inalámbricas. Cada herramienta sigue la plant
 ### Airgraph-ng
 - **Enlace:** https://github.com/aircrack-ng/airgraph-ng
 - **Caso de uso:** mapear relaciones SSID↔BSSID.
-- **Comando de ejemplo:** `airgraph-ng -i captures/session-20260327-01.csv -o wifi/airgraph/graph.svg -g netxml`
+- **Comando de ejemplo:** `airgraph-ng -i captures/session-20260327-01.csv -o wifi/airgraph/graph.png -g CAPR`
 - **Notas útiles:** convierto la salida en SVG y lo incluyo en reportes.
 - **Recomendaciones:** usa `--min-quality 20`.
 - **Cuándo usarlo:** para explicar cobertura a un cliente.

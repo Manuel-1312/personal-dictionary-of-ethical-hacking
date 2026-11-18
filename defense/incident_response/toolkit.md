@@ -49,7 +49,7 @@ Documenta cada herramienta, script y recurso usado durante un incidente real o s
 - **Cuándo no:** En hosts sin agente GRR o fuera del perímetro del incidente.
 
 ### Cyber Triage
-- **Enlace:** https://www.cynic.es/
+- **Enlace:** https://www.cybertriage.com/
 - **Caso de uso:** Análisis rápido de artefactos de triage para identificar IOCs en endpoints Windows.
 - **Comando de ejemplo:** Abre Cyber Triage → Import → selecciona el archivo de triage → exporta `triage.json`.
 - **Notas útiles:** Usa la GUI para validar artefactos y exporta `triage.json` para adjuntarlo al caso.

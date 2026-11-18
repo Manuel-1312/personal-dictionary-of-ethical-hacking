@@ -103,9 +103,9 @@ recomendaciones personales y enlaces que consulto a menudo.
 
 - `arp-scan -l 10.0.0.0/24` para discovery.
 - `nmap -T3 -sC -sV -oA reports/network/nmap-full 10.0.0.0/24` con XML para análisis posterior.
-- `ma --config /etc/openvas/policies/light.xml --output reports/network/openvas/scan-20260327.xml`.
-- `nikto -h http://10.0.0.5 -outpusscan 10.0.2.0/24 --rate 800 -p0-65535 -oG reports/network/masscan.gnmap` antes de nmap.
-- `openvas-cli --target 10.0.2.5t reports/network/nikto/nikto-10.0.0.5.html`.
+- `masscan 10.0.2.0/24 --rate 800 -p0-65535 -oG reports/network/masscan.gnmap` antes de nmap.
+- `nikto -h http://10.0.0.5 -output reports/network/nikto/nikto-10.0.0.5.html`.
+- `openvas-cli --target 10.0.2.5 --config /etc/openvas/policies/light.xml --output reports/network/openvas/scan-20260327.xml`.
 - `gobuster dir -u http://10.0.0.5 -w /usr/share/wordlists/raft-large.txt -o reports/network/gobuster-lab.txt`.
 
 ### Técnicas aplicadas

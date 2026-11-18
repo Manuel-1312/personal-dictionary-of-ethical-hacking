@@ -108,4 +108,4 @@ Inventario de sensores, dashboards, agentes y playbooks para entornos defensivos
 - Flujo típico: Zeek y Suricata alimentan Elastic, Grafana y Arkime; Velociraptor complementa con endpoints y GRR/RITA respalda piezas específicas.
 - Guarda dashboards versionados en `defense/dashboards/` y alertas/falsos positivos en `reports/defense/alerts/`.
 - Documenta cada playbook en `defense/playbooks/` y enlázalo con el caso correspondiente en The Hive (`defense/thehive/cases/`).
-- Usa `velocity` y `wazuh-logtest` antes de subir reglas para asegurarte de que no disparan falsos positivos.
+- Usa `wazuh-logtest` antes de subir reglas para asegurarte de que no disparan falsos positivos.

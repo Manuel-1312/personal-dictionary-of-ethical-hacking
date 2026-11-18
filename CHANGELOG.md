@@ -13,6 +13,7 @@ Las versiones se organizan por *Faces* (fases) del proyecto.
 - **Tests unitarios** para los scripts Python (`tests/`): parsers, forensics, reporting y recon.
 - **CI workflow mejorado**: paso de tests Python integrado en el pipeline de calidad.
 - **Diccionario ampliado**: nuevos términos en `conceptos/diccionario.md` (Exfiltración, Pivoting, Lateral Movement, etc.).
+- **Diccionario: 65 términos nuevos** repartidos por las 14 secciones: AD (SPN, Delegación Kerberos, ADCS/ESC, NTLM Relay, Shadow Credentials, DPAPI), Cripto (Padding Oracle, Length Extension, HMAC, PFS), Cloud (AssumeRole, OIDC Federation, Entra ID) y Red/Web/Malware/Herramientas, entre otras.
 
 ### Cambiado
 
@@ -28,6 +29,12 @@ Las versiones se organizan por *Faces* (fases) del proyecto.
 - Import roto en el CI link-check (`import markdown_it_py` → `from markdown_it import MarkdownIt`).
 - Extracción de enlaces en CI: ahora busca en tokens inline/children en vez de solo tokens raíz.
 - `inventory_builder.py`: el campo Origin ahora detecta correctamente hosts encontrados por ambas herramientas (`both`).
+- **Índice del diccionario**: anclas internas (`#-red` → `#red`, etc.) que quedaron rotas al retirar el emoji de las cabeceras.
+- **Docs varias**: emoji residual en `SECURITY.md`, `app/README.md` y `exploitation/README.md`; `hcxpcaptool` → `hcxpcapngtool` en `wifi/auditorias/README.md`; tres comandos corruptos (masscan/nikto/openvas-cli) reconstruidos en `CHEAT_SHEETS_EXT.md`; ruta `python/hash_manifest.py` → `python/forensics/hash_manifest.py`; conteos de scripts en `README.md` (PowerShell 49 → 44, Python 25 → 17); y ficheros inexistentes (`lab-notes.md`, `SESSION_TEMPLATE.md`) retirados de la columna de contenido actual en `CATALOG.md`.
+- **App (launcher)**: `app/services/registry.py` parseaba los `toolkit.md` como tablas Markdown, pero se habían convertido a formato de fichas (`### script` + bullets), así que el catálogo salía vacío y la app no listaba ningún script. Reescrito el parser al formato actual: ahora carga las 80 entradas (Python, PowerShell, Fun Scripts) y todas resuelven a ficheros reales.
+- **Scripts Python**: `inventory_builder.py` (`parse_nmap` capturaba la IP con paréntesis `(10.0.0.5)` cuando nmap muestra DNS inverso; ahora la limpia, con test de regresión) y `DEPENDENCIES.md` (corrige las dependencias falsas: `log_parser.py` y `inventory_builder.py` son solo librería estándar, no `pandas`/`xmltodict`).
+- **Scripts PowerShell**: `directory_markdown_index.ps1` (string roto `` "- `$rel`" `` que impedía generar el índice), `ping_sweep.ps1` (`Test-Connection -ComputerName` no existe en PowerShell 7; ahora host posicional, válido en 5.1 y 7+), `port_check_list.ps1` (variable automática `$host` → `$targetHost`), 5 scripts de `reporting/` (parámetro `$Input` colisionaba con la variable automática; renombrado a `$Path` con `[Alias('Input')]`), BOM UTF-8 en los 4 ficheros con acentos (mojibake en PS 5.1) y emoji residual en `fake_update_screen.ps1`. PSScriptAnalyzer: 0 avisos salvo `Write-Host` intencional en salidas de consola.
+- **Toolkits**: correcciones técnicas en 10 `toolkit.md` — emoji residual (`⬆`) y `<br>` sueltos, herramienta renombrada (`hcxpcaptool` → `hcxpcapngtool`), flujo WiFi actualizado a `hc22000`/`-m 22000`, flag inválido de airgraph (`-g netxml` → `-g CAPR`), binario Wazuh (`agent-control` → `agent_control`), herramienta inexistente (`velocity`), imagen Docker de ZAP obsoleta (`owasp/zap2docker-stable` → `ghcr.io/zaproxy/zaproxy:stable`) y enlace equivocado de Cyber Triage.
 
 ## [Face 4] - Anterior a este changelog
 

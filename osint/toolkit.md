@@ -99,7 +99,7 @@ Colección activa de herramientas OSINT para enriquecer inteligencia sobre domin
 
 ### Shodan
 - **Enlace:** https://www.shodan.io/
-- **Caso de uso:** enumerar hosts, banners y cambios.<br>
+- **Caso de uso:** enumerar hosts, banners y cambios.
 - **Comando de ejemplo:** `shodan search "org:Example Corp" --limit 50 --fields ip_str,port,product`
 - **Notas útiles:** exporto `outputs/osint/shodan-example.csv` y lo comparo con escaneos internos.
 - **Recomendaciones:** respeta limitaciones de tokens.

@@ -1,5 +1,5 @@
-param([string]$Input, [string]$Output = 'data.md')
-$data = Get-Content -Raw -Path $Input | ConvertFrom-Json
+param([Alias('Input')][string]$Path, [string]$Output = 'data.md')
+$data = Get-Content -Raw -Path $Path | ConvertFrom-Json
 $lines = @('# JSON to Markdown', '')
 foreach ($item in $data) {
     $lines += '## Item'

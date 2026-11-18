@@ -130,11 +130,16 @@ def test_inventory_parse_nmap(tmp_path):
 
     nmap_file = tmp_path / "scan.nmap"
     nmap_file.write_text(
-        "Starting Nmap\nNmap scan report for 10.0.0.1\nNmap scan report for 10.0.0.2\nDone\n",
+        "Starting Nmap\n"
+        "Nmap scan report for 10.0.0.1\n"
+        "Nmap scan report for 10.0.0.2\n"
+        "Nmap scan report for host.lab (10.0.0.3)\n"
+        "Done\n",
         encoding="utf-8",
     )
     hosts = mod.parse_nmap(nmap_file)
-    assert hosts == {"10.0.0.1", "10.0.0.2"}
+    # La forma con DNS inverso debe quedar como IP limpia, sin paréntesis.
+    assert hosts == {"10.0.0.1", "10.0.0.2", "10.0.0.3"}
 
 
 def test_inventory_parse_masscan(tmp_path):

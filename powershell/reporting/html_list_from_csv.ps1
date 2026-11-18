@@ -1,5 +1,5 @@
-param([string]$Input, [string]$Output = 'report.html')
-$data = Import-Csv -Path $Input
+param([Alias('Input')][string]$Path, [string]$Output = 'report.html')
+$data = Import-Csv -Path $Path
 $html = @('<html><body><h1>CSV Report</h1><ul>')
 foreach ($row in $data) {
   $html += '<li>' + (($row.PSObject.Properties | ForEach-Object { "$($_.Name): $($_.Value)" }) -join ' | ') + '</li>'

@@ -34,8 +34,8 @@ Catálogo corto para cada técnica de captura en laboratorio. Incluye filtros, i
 - **Enlace:** https://github.com/ZerBea/hcxdumptool
 - **Caso de uso:** Captura especializada de PMKID y handshakes WPA para análisis offline.
 - **Comando de ejemplo:** `hcxdumptool -i wlan0mon -o captures/pmkid.pcapng --enable_status=1`
-- **Notas útiles:** Usa `--enable_status=1` y comprueba handshake con `hcxpcaptool` tras la captura.
-- **Recomendaciones:** Verifica siempre la captura con `hcxpcaptool --summary`; documenta la red objetivo.
+- **Notas útiles:** Usa `--enable_status=1` y comprueba el handshake con `hcxpcapngtool` tras la captura.
+- **Recomendaciones:** Verifica la captura convirtiéndola: `hcxpcapngtool -o /tmp/chk.hc22000 captura.pcapng` imprime los EAPOL/PMKID encontrados. Documenta la red objetivo.
 - **Cuándo usarlo:** Captura de PMKID o handshakes en laboratorio para análisis de contraseñas WPA.
 - **Cuándo no:** Captura general de tráfico; airodump-ng o tcpdump son más apropiados para ese caso.
 

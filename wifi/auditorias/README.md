@@ -9,7 +9,7 @@ Puedes incluir subnotas para WPA2, WPA3, RADIUS, e identificar qué controladore
 - `reaver -i wlan0mon -b <BSSID> -vv --no-nacks` para pruebas controladas.
 
 ## Técnicas aplicadas
-- Recolección de PMKID con `hcxdumptool` y posterior análisis con `hcxpcaptool`.
+- Recolección de PMKID con `hcxdumptool` y posterior análisis con `hcxpcapngtool`.
 - Bruteforce WPS con `reaver` y `bully` en entornos aislados.
 
 ## Recomendaciones personales
