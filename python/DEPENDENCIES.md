@@ -17,14 +17,19 @@ Contenido actual de `python/requirements.txt`:
 - `pandas`
 - `xmltodict`
 
+Nota: a día de hoy ningún script de `python/` importa estos paquetes (toda la
+biblioteca funciona con librería estándar). Se dejan como utilidades opcionales
+para el análisis posterior de las salidas CSV; no hacen falta para ejecutar los
+helpers.
+
 ## Resumen por subcategoría
 
 ### `python/parsers/`
 - `log_parser.py`
- - Python: `pandas`
+ - Python: librería estándar
  - Sistema: ninguna
 - `inventory_builder.py`
- - Python: `xmltodict` (documentada como dependencia del módulo)
+ - Python: librería estándar
  - Sistema: ninguna
 - `masscan_to_csv.py`
  - Python: librería estándar

@@ -32,7 +32,9 @@ def parse_nmap(path: Path) -> set[str]:
         for line in fh:
             line = line.strip()
             if line.startswith("Nmap scan report for"):
-                hosts.add(line.split()[-1])
+                # El último token es la IP; cuando hay DNS inverso va entre
+                # paréntesis ("host.com (10.0.0.5)"), así que los quitamos.
+                hosts.add(line.split()[-1].strip("()"))
     return hosts
 
 
