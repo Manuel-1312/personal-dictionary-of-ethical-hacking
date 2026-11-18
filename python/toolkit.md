@@ -14,7 +14,7 @@ Documenta cada script, comando o helper que programas para esta biblioteca y ano
 - **Subcategoría:** `parsers/`
 - **Descripción:** Extrae IPs, puertos y alertas de Zeek/Suricata para CSV/Markdown.
 - **Comando de ejemplo:** `python python/parsers/log_parser.py --input defense/monitoring/logs/bro.log --output automation/reporting/results/zeek-summary.csv`
-- **Notas:** Usa pandas y argparse; genera un CSV con columnas `timestamp`, `src`, `dst`, `protocol`, `port`.
+- **Notas:** Usa `argparse` y `csv` de la librería estándar; genera un CSV con columnas `timestamp`, `src`, `dst`, `protocol`, `port`.
 
 ### `inventory_builder.py`
 - **Subcategoría:** `parsers/`
