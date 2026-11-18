@@ -13,6 +13,7 @@ Las versiones se organizan por *Faces* (fases) del proyecto.
 - **Tests unitarios** para los scripts Python (`tests/`): parsers, forensics, reporting y recon.
 - **CI workflow mejorado**: paso de tests Python integrado en el pipeline de calidad.
 - **Diccionario ampliado**: nuevos términos en `conceptos/diccionario.md` (Exfiltración, Pivoting, Lateral Movement, etc.).
+- **Diccionario: 65 términos nuevos** repartidos por las 14 secciones: AD (SPN, Delegación Kerberos, ADCS/ESC, NTLM Relay, Shadow Credentials, DPAPI), Cripto (Padding Oracle, Length Extension, HMAC, PFS), Cloud (AssumeRole, OIDC Federation, Entra ID) y Red/Web/Malware/Herramientas, entre otras.
 
 ### Cambiado
 
@@ -28,6 +29,7 @@ Las versiones se organizan por *Faces* (fases) del proyecto.
 - Import roto en el CI link-check (`import markdown_it_py` → `from markdown_it import MarkdownIt`).
 - Extracción de enlaces en CI: ahora busca en tokens inline/children en vez de solo tokens raíz.
 - `inventory_builder.py`: el campo Origin ahora detecta correctamente hosts encontrados por ambas herramientas (`both`).
+- **Índice del diccionario**: anclas internas (`#-red` → `#red`, etc.) que quedaron rotas al retirar el emoji de las cabeceras.
 
 ## [Face 4] - Anterior a este changelog
 
